@@ -1,7 +1,7 @@
 {
-  "name": "reactenvironment",
+  "name": "eventplanner",
   "version": "1.0.0",
-  "description": "Generic React Environment",
+  "description": "Event Planner Redeveloped in React",
   "main": "index.jsx",
   "scripts": {
     "lint": "eslint src/** src/**/**; exit 0",
