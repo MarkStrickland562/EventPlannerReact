@@ -111,7 +111,7 @@ function SideNav(){
       </style>
       <div>
         <nav className="sidebar">
-          <ul className="components">
+          <ul className="list-unstyled components">
             <li className="active">
               <Link to="/events">EVENTS<br></br><i className="fas fa-plus"></i></Link>
               <br></br>

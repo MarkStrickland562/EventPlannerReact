@@ -4,8 +4,18 @@ import { Link } from 'react-router-dom';
 function Header(){
   return (
     <div>
-      <h1>Help Queue</h1>
-      <Link to="/">Home</Link> | <Link to="/newticket">Create Ticket</Link>
+      <style jsx>{`
+        .button-main {
+          color: darkgreen;
+          align: right;
+          font-family: 'Luckiest Guy', cursive;
+          padding-right: 3%;
+        }
+      `}
+      </style>
+      <div align="right" class="button-main">
+        <Link to="/about">ABOUT</Link> | <Link to="/">EXIT</Link>
+      </div>
     </div>
   );
 }
