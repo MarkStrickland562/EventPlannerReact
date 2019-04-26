@@ -16,20 +16,28 @@ import Error404 from './Error404';
 function App(){
   return (
     <div>
-      <Switch>
-        <Route exact path='/' component={Welcome} />
-        <Route path='/main' component={Main} />
-        <Route path='/about' component={About} />
-        <Route path='/events' component={Events} />
-        <Route path='/menus' component={Menus} />
-        <Route path='/dishes' component={Dishes} />
-        <Route path='/foods' component={Foods} />
-        <Route path='/stores' component={Stores} />
-        <Route path='/tasks' component={Tasks} />
-        <Route path='/invitees' component={Invitees} />
-        <Route path='/recipes' component={Recipes} />
-        <Route component={Error404} />
-      </Switch>
+      <style global jsx>{`
+        body {
+          font-family: 'Luckiest Guy', cursive;
+        }
+      `}
+      </style>
+      <div>
+        <Switch>
+          <Route exact path='/' component={Welcome} />
+          <Route path='/main' component={Main} />
+          <Route path='/about' component={About} />
+          <Route path='/events' component={Events} />
+          <Route path='/menus' component={Menus} />
+          <Route path='/dishes' component={Dishes} />
+          <Route path='/foods' component={Foods} />
+          <Route path='/stores' component={Stores} />
+          <Route path='/tasks' component={Tasks} />
+          <Route path='/invitees' component={Invitees} />
+          <Route path='/recipes' component={Recipes} />
+          <Route component={Error404} />
+        </Switch>
+      </div>
     </div>
   );
 }

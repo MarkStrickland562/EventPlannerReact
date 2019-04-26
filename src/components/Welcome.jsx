@@ -15,7 +15,6 @@ function Welcome(){
                 width: 100%;
                 text-align: center;
                 font-size: 18px;
-                font-family: 'Luckiest Guy', cursive;
             }
             .e {
                 font-size: 30px;

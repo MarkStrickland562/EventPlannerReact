@@ -1,8 +1,9 @@
 import React from 'react';
+import SideNav from './SideNav';
 
 function Main(){
   return (
-    <h1>Main</h1>
+    <SideNav></SideNav>
   );
 
 }
