@@ -1,11 +1,14 @@
 import React from 'react';
 import SideNav from './SideNav';
+import Header from './Header';
 
 function Main(){
   return (
-    <SideNav></SideNav>
+    <div>
+      <Header></Header>
+      <SideNav></SideNav>
+    </div>
   );
-
 }
 
 export default Main;
