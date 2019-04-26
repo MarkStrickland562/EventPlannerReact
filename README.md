@@ -14,6 +14,8 @@
 This project is a re-development of an Angular-based project that was itself a redevelopment of a C#-based team project from the Epicodus C# class called *eHappenings*. The C# code was converted to javascript and Angular and the C# Model/View/Controller structure was converted to the Angular Model/View/Component structure. Then for this
 project, the Angular and Typescript code was converted to React and JSX. Much of the styling has been kept from the C# project and credit for the styling goes to Clara Munro and Micaela Jawor. Credit for the format of this README largely goes to Shawn Lunsford.
 
+The development process in React versus Angular seems more straightforward. More componentized. Somewhat gentler learning curve.
+
 ## Notes
 
 * Understanding how and when styling gets applied can be challenging.
