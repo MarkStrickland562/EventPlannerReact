@@ -25,6 +25,85 @@ The development process in React versus Angular seems more straightforward. More
 
 ## Component Structure
 
+App
+<br>
+----> Welcome ("/")
+<br>
+----> About ("/about")
+<br>
+----> Error404
+<br>
+----> Main ("/main")
+<br>
+--------> Header
+<br>
+--------> SideNav
+<br>
+--------> Events ("/events") &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<-------- EventData
+<br>
+----------------> Header
+<br>
+----------------> SideNav
+<br>
+----------------> Event
+<br>
+--------> Menus ("/menus")
+<br>
+----------------> Header
+<br>
+----------------> SideNav
+<br>
+----------------> Menu
+<br>
+--------> Dishes ("/dishes")
+<br>
+----------------> Header
+<br>
+----------------> SideNav
+<br>
+----------------> Dish
+<br>
+--------> Foods ("/foods")
+<br>
+----------------> Header
+<br>
+----------------> SideNav
+<br>
+----------------> Food
+<br>
+--------> Stores ("/stores")
+<br>
+----------------> Header
+<br>
+----------------> SideNav
+<br>
+----------------> Store
+<br>
+--------> Tasks ("/tasks")
+<br>
+----------------> Header
+<br>
+----------------> SideNav
+<br>
+----------------> Task
+<br>
+--------> Invitees ("/invitees")
+<br>
+----------------> Header
+<br>
+----------------> SideNav
+<br>
+----------------> Invitee
+<br>
+--------> Recipes ("/recipes")
+<br>
+----------------> Header
+<br>
+----------------> SideNav
+<br>
+----------------> Recipe
+<br>
+
 ## Technical Features
 
 * Bootstrap
