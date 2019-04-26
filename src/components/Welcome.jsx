@@ -4,7 +4,7 @@ import BackgroundImg from '../assets/images/background.png';
 
 function Welcome(){
   return (
-    <div style={{textAlign: 'center', backgroundImage: `url(${BackgroundImg})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', minHeight: '100vh', position: 'related'}}>
+    <div style={{textAlign: 'center', backgroundImage: `url(${BackgroundImg})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', minHeight: '100vh', position: 'related', backgroundColor: 'beige'}}>
       <style jsx>{`
             .container {
                 color: green;
