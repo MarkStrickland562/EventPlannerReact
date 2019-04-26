@@ -5,16 +5,42 @@ function Header(){
   return (
     <div>
       <style jsx>{`
-        .button-main {
+        .container {
+          text-align: right;
+          margin-top: -1%;
+        }
+
+        .button {
+          display: inline-block;
+          padding: 10px 10px 0px 10px;
+          margin-left: 5px;          
+        }
+
+        .button p {
+          font-size: 15px;
           color: darkgreen;
-          align: right;
-          font-family: 'Luckiest Guy', cursive;
-          padding-right: 3%;
+          padding-bottom: 30px;
+          border-bottom: 2px solid transparent;          
+        }
+
+        .button p:hover {
+          border-bottom: 2px solid black; /* Or whatever color you want */
+          padding-bottom: 30px;
+          cursor: pointer;          
         }
       `}
       </style>
-      <div align="right" class="button-main">
-        <Link to="/about">ABOUT</Link> | <Link to="/">EXIT</Link>
+      <div className="container">
+        <Link to="/about">
+          <div className="button">
+            <p>ABOUT</p>
+          </div>
+        </Link>
+        <Link to="/">
+          <div className="button">
+            <p>EXIT</p>
+          </div>
+        </Link>
       </div>
     </div>
   );

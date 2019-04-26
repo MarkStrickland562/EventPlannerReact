@@ -19,6 +19,9 @@ function App(){
       <style global jsx>{`
         body {
           font-family: 'Luckiest Guy', cursive;
+          background-color: beige;
+          color: darkgreen;
+          text-shadow: 1px 1px 2px black;          
         }
       `}
       </style>

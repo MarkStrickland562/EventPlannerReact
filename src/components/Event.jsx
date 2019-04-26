@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 function Event(props){
   return (
     <div>
-      <li class="list-group-item list-group-item-success">{props.eventName}<br></br>{props.eventDate}<br></br>{props.eventLocation}<br></br>{props.menusId}<br></br></li>
+      <li className="list-group-item list-group-item-success">Event: {props.eventName}<br></br>Date: {props.eventDate}<br></br>Location: {props.eventLocation}<br></br>Menu ID: {props.menusId}<br></br></li>
     </div>
   );
 }
