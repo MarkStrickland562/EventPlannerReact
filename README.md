@@ -16,9 +16,12 @@ project, the Angular and Typescript code was converted to React and JSX. Much of
 
 ## Notes
 
+* Understanding how and when styling gets applied can be challenging.
+* Incorporating bootstrap styling continues to be a bit confusing.
+* Lint doesn't seem to handle image files very well.
+* So far, React seems less "busy" than Angular. That's a good thing.
+
 ## Component Structure
-
-
 
 ## Technical Features
 
