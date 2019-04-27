@@ -2,7 +2,7 @@ import React from 'react';
 import SideNav from './SideNav';
 import Header from './Header';
 
-function Recipes(){
+function DeleteMenu(){
   return (
     <div>
       <Header></Header>
@@ -12,4 +12,4 @@ function Recipes(){
   );
 }
 
-export default Recipes;
+export default DeleteMenu;

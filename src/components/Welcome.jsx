@@ -22,13 +22,15 @@ function Welcome(){
             .button {
                 background-color: white;
                 color: darkgreen;
-                width: 200px;
+                width: 150px;
+                font-size: 18px;
                 border: 3px solid darkgreen;
                 border-radius: 15px;
                 padding: 25px;
                 margin: 25px;
                 text-decoration: none;
-            }
+                text-shadow: 1px 1px 2px black; 
+              }
             .link {
               color: darkgreen;
               font-weight: bold;

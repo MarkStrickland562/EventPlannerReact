@@ -113,42 +113,42 @@ function SideNav(){
         <nav className="sidebar">
           <ul className="list-unstyled components">
             <li className="active">
-              <Link to="/events">EVENTS<br></br><i className="fas fa-plus"></i></Link>
+              <Link className="navlink" to="/events">EVENTS<br></br><i className="fas fa-plus"></i></Link>
               <br></br>
               <br></br>
             </li>
             <li className="active">
-              <Link to="/menus">MENUS<br></br><i className="fas fa-book-open"></i></Link>
+              <Link className="navlink" to="/menus">MENUS<br></br><i className="fas fa-book-open"></i></Link>
               <br></br>
               <br></br>
             </li>
             <li className="active">
-              <Link to="/dishes">DISHES<br></br><i className="fas fa-utensils"></i></Link>
+              <Link className="navlink" to="/dishes">DISHES<br></br><i className="fas fa-utensils"></i></Link>
               <br></br>
               <br></br>
             </li>
             <li className="active">
-              <Link to="/foods">FOODS<br></br><i className="fas fa-seedling"></i></Link>
+              <Link className="navlink" to="/foods">FOODS<br></br><i className="fas fa-seedling"></i></Link>
               <br></br>
               <br></br>
             </li>
             <li className="active">
-              <Link to="/stores">STORES<br></br><i className="fas fa-shopping-cart"></i></Link>
+              <Link className="navlink" to="/stores">STORES<br></br><i className="fas fa-shopping-cart"></i></Link>
               <br></br>
               <br></br>
             </li>
             <li className="active">
-              <Link to="/tasks">TASKS<br></br><i className="fas fa-check"></i></Link>
+              <Link className="navlink" to="/tasks">TASKS<br></br><i className="fas fa-check"></i></Link>
               <br></br>
               <br></br>
             </li>
             <li className="active">
-              <Link to="/invitees">INVITEES<br></br><i className="fas fa-at"></i></Link>
+              <Link className="navlink" to="/invitees">INVITEES<br></br><i className="fas fa-at"></i></Link>
               <br></br>
               <br></br>
             </li>
             <li className="active">
-              <Link to="/recipes">RECIPE SEARCH<br></br><i className="fas fa-search-plus"></i></Link>
+              <Link className="navlink" to="/recipes">RECIPE SEARCH<br></br><i className="fas fa-search-plus"></i></Link>
             </li>
           </ul>
         </nav>
