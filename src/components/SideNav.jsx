@@ -99,8 +99,8 @@ function SideNav(){
         @media (max-width: 768px) {
           #sidebar {
               margin-left: -250px;
-          }
-          #content {
+        }
+        #content {
               width: 100%;
           }
           #sidebar.active {

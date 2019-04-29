@@ -51,21 +51,28 @@ function App(){
           color: darkgreen;
           text-shadow: 1px 1px 2px black;          
         }
+
         .button-main {
           color: darkgreen;
           font-family: 'Luckiest Guy', cursive;
           padding-right: 2px;
           margin-right: 5px;
         }
+
         .link {
           color: darkgreen;
           text-shadow: 1px 1px 2px black;  
           text-decoration: none;
         }
+        
         .navlink {
           color: green;
           font-weight: bold;
           text-decoration: none;
+        }
+
+        .navlink:hover {
+          color: rgb(216, 216, 216);
         }
       `}
       </style>
