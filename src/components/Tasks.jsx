@@ -58,7 +58,7 @@ function Tasks(){
           </div>
           <div className="parentColumn">
             {TaskData.map((task, index) =>
-              <div className="column">
+              <div className="column" key={index}>
                 <div>
                   <Task taskDescription={task.taskDescription}
                     taskPlannedStartDateTime={task.taskPlannedStartDateTime}

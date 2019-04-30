@@ -58,7 +58,7 @@ function Invitees(){
           </div>
           <div className="parentColumn">
             {InviteeData.map((invitee, index) =>
-              <div className="column">
+              <div className="column" key={index}>
                 <div>
                   <Invitee inviteeName={invitee.inviteeName}
                     inviteeEmailAddress={invitee.inviteeEmailAddress}

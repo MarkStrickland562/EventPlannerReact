@@ -58,7 +58,7 @@ function Foods(){
           </div>
           <div className="parentColumn">
             {FoodData.map((food, index) =>
-              <div className="column">
+              <div className="column" key={index}>
                 <div>
                   <Food ingredientDescription={food.ingredientDescription}
                     menuitemsId={food.menuitemsId}

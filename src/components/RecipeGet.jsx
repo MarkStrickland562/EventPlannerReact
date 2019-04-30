@@ -11,13 +11,13 @@ class RecipeGet extends Component {
   }
 
   componentDidMount() {
-    console.log('At GetRecipes');
+    // console.log('At GetRecipes');
     fetch(`https://api.edamam.com/search?q=beef&app_id=${recipeID}&app_key=${recipeKey}`)
       .then(results => {
-        console.log('Here');
+        // console.log('Here');
         return results.json();
       }).then(data => {
-        console.log('Here');
+        // console.log('Here');
         let recipes = data.results.recipes.hits.map((recipe) => {
           return(
             <div key={recipe.recipe.label}>

@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import EventData from './EventData';
+import PropTypes from 'prop-types';
 import SideNav from './SideNav';
 import Header from './Header';
 import Event from './Event';
 
-function Events(){
+function Events(props){
   return (
     <div>
       <style jsx>{`>
@@ -57,26 +57,32 @@ function Events(){
             <br></br><br></br>
           </div>
           <div className="parentColumn">
-            {EventData.map((event, index) =>
-              <div className="column">
+            {Object.keys(props.events).map(function(eventId) {
+              var event = props.events[eventId];
+              return <div className="column" key={eventId}>
                 <div>
                   <Event eventName={event.eventName}
                     eventDate={event.eventDate}
                     eventLocation ={event.eventLocation}
                     menusId={event.menusId}
-                    key={index}/>
+                    key={eventId} />
                 </div>
                 <div>
-                  <button type="button" className="button-main"><Link className="link" to="/deleteevent">DELETE</Link></button>
-                  <button type="button" className="button-main"><Link className="link" to="/editevent">UPDATE</Link></button>
+                  <button onClick={() => {props.onEventSelection({eventId});}} type="button" className="button-main"><Link className="link" to="/deleteevent">DELETE</Link></button>
+                  <button onClick={() => {props.onEventSelection({event});}} type="button" className="button-main"><Link className="link" to="/editevent">UPDATE</Link></button>
                 </div>
-              </div>
-            )}
+              </div>;
+            })}
           </div>
         </div>
       </div>
     </div>
   );
 }
+
+Events.propTypes = {
+  events: PropTypes.object,
+  onEventSelection: PropTypes.func
+};
 
 export default Events;

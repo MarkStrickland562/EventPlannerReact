@@ -58,7 +58,7 @@ function Stores(){
           </div>
           <div className="parentColumn">
             {StoreData.map((store, index) =>
-              <div className="column">
+              <div className="column" key={index}>
                 <div>
                   <Store storeName={store.storeName}
                     key={index}/>

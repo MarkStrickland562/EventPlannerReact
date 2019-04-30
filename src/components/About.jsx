@@ -12,7 +12,7 @@ function About(){
           <h1>About this Application</h1>
           <h3>Overview</h3>
           <p>This project is a re-development of an Angular-based project that was itself a redevelopment of a C#-based team project from the Epicodus C# class called 
-            "eHappenings", an Event Planning tool. The C# code was converted to javascript and Angular 
+          &#34;eHappenings&#34;, an Event Planning tool. The C# code was converted to javascript and Angular 
           and the C# Model/View/Controller structure was converted to the Angular Model/View/Component structure. Then for this project, the Angular and Typescript code was converted to 
           React and JSX. Much of the styling has been kept from the C# and Angular projects and credit for the styling goes to Clara Munro and Micaela Jawor. 
           Credit for the format of the README goes to Shawn Lunsford.

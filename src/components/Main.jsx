@@ -23,7 +23,7 @@ function Main(){
         <SideNav></SideNav>
         <div className="image">
           <br></br><br></br><br></br>
-          <p>Let's Get Started!</p>
+          <p>Let&#39;s Get Started!</p>
           <p className="arrow">&#8678;</p>
         </div>
       </div>

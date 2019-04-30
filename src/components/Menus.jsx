@@ -58,7 +58,7 @@ function Menus(){
           </div>
           <div className="parentColumn">
             {MenuData.map((menu, index) =>
-              <div className="column">
+              <div className="column" key={index}>
                 <div>
                   <Menu menuTheme={menu.menuTheme}
                     key={index}/>
