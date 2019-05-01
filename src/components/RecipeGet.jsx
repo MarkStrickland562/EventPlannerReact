@@ -11,32 +11,31 @@ class RecipeGet extends Component {
   }
 
   componentDidMount() {
-    // console.log('At GetRecipes');
+    this.GetRecipes();
+  }
+
+  GetRecipes() {
     fetch(`https://api.edamam.com/search?q=beef&app_id=${recipeID}&app_key=${recipeKey}`)
-      .then(results => {
-        // console.log('Here');
-        return results.json();
-      }).then(data => {
-        // console.log('Here');
-        let recipes = data.results.recipes.hits.map((recipe) => {
-          return(
-            <div key={recipe.recipe.label}>
-              <p>Looping</p>
-              <img src={recipe.recipe.image} />
-            </div>
-          );
-        // console.log(recipe);
-        });
-        this.setState({recipes: recipes});
-        //        console.log('state', this.state.recipes);
-      });
+      .then(({ results }) => {
+          let data = results.json();
+          this.setState({ recipes: data.hits });
+          console.log(data);
+        }
+      );
   }
 
   render() {
+    const recipes = this.state.recipes.map((recipe) => 
+      (
+        <div key={recipe.recipe.label}>
+          <p>Looping</p>
+          <img src={recipe.recipe.image} />
+        </div>
+      ));
+ 
     return (
       <div>
-        <p>Under Construction</p>
-        {this.state.recipes}
+        { recipes }
       </div>
     );
   }

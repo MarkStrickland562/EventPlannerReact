@@ -65,11 +65,12 @@ function Events(props){
                     eventDate={event.eventDate}
                     eventLocation ={event.eventLocation}
                     menusId={event.menusId}
+                    eventId={event.eventId}
                     key={eventId} />
                 </div>
                 <div>
-                  <button onClick={() => {props.onEventSelection({eventId});}} type="button" className="button-main"><Link className="link" to="/deleteevent">DELETE</Link></button>
-                  <button onClick={() => {props.onEventSelection({event});}} type="button" className="button-main"><Link className="link" to="/editevent">UPDATE</Link></button>
+                  <button onClick={() => {props.onEventSelection({eventId}, {event});}} type="button" className="button-main"><Link className="link" to="/deleteevent">DELETE</Link></button>
+                  <button onClick={() => {props.onEventSelection({eventId}, {event});}} type="button" className="button-main"><Link className="link" to="/editevent">UPDATE</Link></button>
                 </div>
               </div>;
             })}

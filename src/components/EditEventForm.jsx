@@ -5,17 +5,15 @@ import Header from './Header';
 
 function EditEventForm(props){
 
-  console.log(props.selectedEvent);
-//  let _eventId = props.selectedEventId;
-  let _eventName = props.selectedEvent.event.eventName;
-  let _eventDate = props.selectedEvent.event.eventDate;
-  let _eventLocation = props.selectedEvent.event.eventLocation;
-  let _menusId = props.selectedEvent.event.menusId;
+  let _eventName = props.selectedEventProps.event.eventName;
+  let _eventDate = props.selectedEventProps.event.eventDate;
+  let _eventLocation = props.selectedEventProps.event.eventLocation;
+  let _menusId = props.selectedEventProps.event.menusId;
 
-  function handleEditEventFormSubmission(event) {
+  var handleEditEventFormSubmission = (event) => {
     event.preventDefault();
-    props.onEventUpdate({eventName: _eventName.value, eventDate: _eventDate.value, eventLocation: _eventLocation.value, menusId: _menusId.value});
-   }
+    props.onEventUpdate({eventToUpdate: props.selectedEvent.eventId, eventName: _eventName.value, eventDate: _eventDate.value, eventLocation: _eventLocation.value, menusId: _menusId.value});
+  };
 
   return (
     <div>
@@ -88,6 +86,7 @@ function EditEventForm(props){
 
 EditEventForm.propTypes = {
   selectedEvent: PropTypes.object,
+  selectedEventProps: PropTypes.object,
   onEventUpdate: PropTypes.func
 };
 

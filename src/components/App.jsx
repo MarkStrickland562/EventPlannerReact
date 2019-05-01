@@ -40,7 +40,7 @@ import AddInvitee from './AddInvitee';
 import DeleteInvitee from './DeleteInvitee';
 import EditInvitee from './EditInvitee';
 import SearchInvitees from './SearchInvitees';
-import Recipes from './Recipes';
+import RecipeGet from './RecipeGet';
 import Error404 from './Error404';
 
 class App extends React.Component {
@@ -48,11 +48,13 @@ class App extends React.Component {
     super(props);
     this.state = {
       masterEvents: EventData,
-      selectedEvent: null
+      selectedEvent: null,
+      selectedEventProps: null
     };
     this.handleAddingNewEvent = this.handleAddingNewEvent.bind(this);
     this.handleDeletingEvent = this.handleDeletingEvent.bind(this);
     this.handleChangingSelectedEvent = this.handleChangingSelectedEvent.bind(this);
+    this.handleEditingEvent = this.handleEditingEvent.bind(this);
   }
 
   handleAddingNewEvent(newEvent) {
@@ -69,18 +71,19 @@ class App extends React.Component {
     this.setState({selectedEvent: null});
   }
 
-  handleEditingEvent(selectedEvent) {
-    console.log(selectedEvent);
-    // this.setState({masterEvents: this.state.masterEvents});
-    // this.setState({selectedEvent: null});
-    // console.log(this.state.selectedEvent);
+  handleEditingEvent(response) {
+    let eventToUpdate = response.eventToUpdate;
+    let newMasterEvents = Object.assign({}, this.state.masterEvents);
+    newMasterEvents[eventToUpdate].eventName = response.eventName;
+    newMasterEvents[eventToUpdate].eventDate = response.eventDate;
+    newMasterEvents[eventToUpdate].eventLocation = response.eventLocation;
+    newMasterEvents[eventToUpdate].menusId = response.menusId;
+    this.setState({masterEvents: newMasterEvents});
   }
 
-  handleChangingSelectedEvent(eventId){
-    this.setState({selectedEventId: eventId.eventId});
+  handleChangingSelectedEvent(eventId, event){
     this.setState({selectedEvent: eventId});
-    // console.log(eventId.eventId);
-    // console.log(this.state.selectedEventId);
+    this.setState({selectedEventProps: event});
   }
 
   render() {
@@ -126,7 +129,7 @@ class App extends React.Component {
             <Route path='/events' render={() =><Events events={this.state.masterEvents} onEventSelection={this.handleChangingSelectedEvent} />} />
             <Route path='/addevent' render={() =><AddEventForm onNewEventCreation={this.handleAddingNewEvent} />} />
             <Route path='/deleteevent' render={() =><DeleteEventForm onEventDeletion={this.handleDeletingEvent} selectedEvent={this.state.selectedEvent} />} />
-            <Route path='/editevent' render={() =><EditEventForm onEventUpdate={this.handleEditingEvent} selectedEvent={this.state.selectedEvent} />} />
+            <Route path='/editevent' render={() =><EditEventForm onEventUpdate={this.handleEditingEvent} selectedEvent={this.state.selectedEvent} selectedEventProps={this.state.selectedEventProps} />} />
             <Route path='/searchevents' component={SearchEvents} />
             <Route path='/menus' component={Menus} />
             <Route path='/addmenu' component={AddMenu} />
@@ -158,7 +161,7 @@ class App extends React.Component {
             <Route path='/deleteinvitee' component={DeleteInvitee} />
             <Route path='/editinvitee' component={EditInvitee} />
             <Route path='/searchinvitees' component={SearchInvitees} />
-            <Route path='/recipes' component={Recipes} />
+            <Route path='/recipes' render={() =><RecipeGet />} />
             <Route component={Error404} />
           </Switch>
         </div>
