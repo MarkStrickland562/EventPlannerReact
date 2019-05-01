@@ -16,20 +16,19 @@ class RecipeGet extends Component {
 
   GetRecipes() {
     fetch(`https://api.edamam.com/search?q=beef&app_id=${recipeID}&app_key=${recipeKey}`)
-      .then(({ results }) => {
-          let data = results.json();
+      .then(results => {
+          return results.json();
+        }).then(data => {
           this.setState({ recipes: data.hits });
           console.log(data);
-        }
-      );
+        });
   }
 
   render() {
     const recipes = this.state.recipes.map((recipe) => 
       (
         <div key={recipe.recipe.label}>
-          <p>Looping</p>
-          <img src={recipe.recipe.image} />
+           <img src={recipe.recipe.image} />
         </div>
       ));
  
