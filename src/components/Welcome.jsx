@@ -20,8 +20,8 @@ function Welcome(){
                 font-size: 30px;
             }
             .button {
-                background-color: white;
-                color: darkgreen;
+                background-color: darkgreen;
+                color: white;
                 width: 150px;
                 font-size: 18px;
                 border: 3px solid darkgreen;

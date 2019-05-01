@@ -62,11 +62,12 @@ function SideNav(){
         .fa-utensils, .fa-check, .fa-at, .fa-shopping-cart, .fa-seedling, .fa-plus {
           font-size: 3rem;
         }
-      
-        .fa-plus {
-          color: #3da599;
+
+        .fa-calendar-alt {
+          color: #f48041;
+          font-size: 50px;
         }
-        
+
         .fa-book-open {
           font-size: 30px;
           color: #c41e3d;
@@ -113,7 +114,7 @@ function SideNav(){
         <nav className="sidebar">
           <ul className="list-unstyled components">
             <li className="active">
-              <Link className="navlink" to="/events">EVENTS<br></br><i className="fas fa-plus"></i></Link>
+              <Link className="navlink" to="/events">EVENTS<br></br><i className="far fa-calendar-alt"></i></Link>
               <br></br>
               <br></br>
             </li>

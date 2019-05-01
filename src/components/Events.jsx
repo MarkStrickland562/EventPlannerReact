@@ -11,14 +11,12 @@ function Events(props){
       <style jsx>{`>
         .pageTitle {
           font-size: 30px;
-          font-family: 'Luckiest Guy', cursive;
           margin-top: 2%;
           color: darkgreen;
         }
 
         .page-content {
           width: 100%;
-          font-family: 'Luckiest Guy', cursive;
           min-height: 100vh;
           position: absolute;
           padding-left: 10%;
@@ -33,7 +31,7 @@ function Events(props){
         }
 
         .column {
-          height: 18vh;
+          height: 14vh;
           width: 25vw;;
           margin: 2px 2px 2px 2px;
           padding: 5px 5px 5px 5px;
@@ -59,11 +57,13 @@ function Events(props){
           <div className="parentColumn">
             {Object.keys(props.events).map(function(eventId) {
               var event = props.events[eventId];
+              var menu = props.menus[event.menusId];
               return <div className="column" key={eventId}>
                 <div>
                   <Event eventName={event.eventName}
                     eventDate={event.eventDate}
                     eventLocation ={event.eventLocation}
+                    menuTheme={menu.menuTheme}
                     menusId={event.menusId}
                     eventId={event.eventId}
                     key={eventId} />
@@ -83,6 +83,7 @@ function Events(props){
 
 Events.propTypes = {
   events: PropTypes.object,
+  menus: PropTypes.object,
   onEventSelection: PropTypes.func
 };
 

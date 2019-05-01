@@ -1,7 +1,8 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { v4 } from 'uuid';
-import EventData from './EventDataObject';
+import EventData from './EventData';
+import MenuData from './MenuData';
 import Welcome from './Welcome';
 import Main from './Main';
 import About from './About';
@@ -49,7 +50,8 @@ class App extends React.Component {
     this.state = {
       masterEvents: EventData,
       selectedEvent: null,
-      selectedEventProps: null
+      selectedEventProps: null,
+      masterMenus: MenuData
     };
     this.handleAddingNewEvent = this.handleAddingNewEvent.bind(this);
     this.handleDeletingEvent = this.handleDeletingEvent.bind(this);
@@ -91,21 +93,25 @@ class App extends React.Component {
       <div>
         <style global jsx>{`
           body {
-            font-family: 'Luckiest Guy', cursive;
+            font-family: 'Open Sans', sans-serif;
             background-color: beige;
             color: darkgreen;
             text-shadow: 1px 1px 2px black;          
           }
 
           .button-main {
-            color: darkgreen;
-            font-family: 'Luckiest Guy', cursive;
+            background: darkgreen;
+            color: white;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 14px;
+            font-weight: bold;
             padding-right: 2px;
             margin-right: 5px;
+            border-radius: 2px;
           }
 
           .link {
-            color: darkgreen;
+            color: white;
             text-shadow: 1px 1px 2px black;  
             text-decoration: none;
           }
@@ -126,10 +132,10 @@ class App extends React.Component {
             <Route exact path='/' component={Welcome} />
             <Route path='/main' component={Main} />
             <Route path='/about' component={About} />
-            <Route path='/events' render={() =><Events events={this.state.masterEvents} onEventSelection={this.handleChangingSelectedEvent} />} />
-            <Route path='/addevent' render={() =><AddEventForm onNewEventCreation={this.handleAddingNewEvent} />} />
+            <Route path='/events' render={() =><Events events={this.state.masterEvents} menus={this.state.masterMenus} onEventSelection={this.handleChangingSelectedEvent} />} />
+            <Route path='/addevent' render={() =><AddEventForm menus={this.state.masterMenus} onNewEventCreation={this.handleAddingNewEvent} />} />
             <Route path='/deleteevent' render={() =><DeleteEventForm onEventDeletion={this.handleDeletingEvent} selectedEvent={this.state.selectedEvent} />} />
-            <Route path='/editevent' render={() =><EditEventForm onEventUpdate={this.handleEditingEvent} selectedEvent={this.state.selectedEvent} selectedEventProps={this.state.selectedEventProps} />} />
+            <Route path='/editevent' render={() =><EditEventForm menus={this.state.masterMenus} onEventUpdate={this.handleEditingEvent} selectedEvent={this.state.selectedEvent} selectedEventProps={this.state.selectedEventProps} />} />
             <Route path='/searchevents' component={SearchEvents} />
             <Route path='/menus' component={Menus} />
             <Route path='/addmenu' component={AddMenu} />

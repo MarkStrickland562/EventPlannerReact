@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 
 function Event(props){
   return (
-    <p>Event: {props.eventName}<br></br>Date: {props.eventDate}<br></br>Location: {props.eventLocation}<br></br>Menu ID: {props.menusId}<br></br></p>
+    <p>&nbsp;Event:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {props.eventName}<br></br>
+       &nbsp;Date:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {props.eventDate}<br></br>
+       &nbsp;Location:&nbsp; {props.eventLocation}<br></br>
+       &nbsp;Menu:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {props.menuTheme}<br></br>    
+    </p>   
   );
 }
 
@@ -11,7 +15,7 @@ Event.propTypes = {
   eventName: PropTypes.string.isRequired,
   eventDate: PropTypes.string.isRequired,
   eventLocation: PropTypes.string.isRequired,
-  menusId: PropTypes.number.isRequired
+  menuTheme: PropTypes.string.isRequired
 };
 
 export default Event;

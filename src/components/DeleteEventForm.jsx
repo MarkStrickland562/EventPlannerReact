@@ -17,14 +17,12 @@ function DeleteEventForm(props){
       <style jsx>{`>
         .pageTitle {
           font-size: 30px;
-          font-family: 'Luckiest Guy', cursive;
           margin-top: 2%;
           color: darkgreen;
         }
 
         .page-content {
           width: 100%;
-          font-family: 'Luckiest Guy', cursive;
           min-height: 100vh;
           position: absolute;
           padding-left: 10%;
@@ -32,23 +30,32 @@ function DeleteEventForm(props){
           color: darkgreen;
         }
 
+        label {
+          fontsize: 16px;
+        }
+
+        select {
+          font-size: 16px;
+          color: darkgreen;
+          font-weight: bold;
+        }
       `}
       </style>
       <div>
         <Header></Header>
         <SideNav></SideNav>
-        <div id="page-content">
-          <h1 id="pageTitle">DELETE EVENT</h1>
+        <div className="page-content">
+          <h1 className="pageTitle">DELETE EVENT</h1>
           <div>
-            <form onSubmit={handleDeleteEventFormSubmission}>
-              <label>Confirm Delete:</label>
+            <form style={{width: '15%', padding: '5px 5px 5px 5px', border: '2px solid darkgreen', borderRadius: '4px'}} onSubmit={handleDeleteEventFormSubmission}>
+              <label>Confirm Delete: </label>
               <select ref={(input) => {_confirm = input;}}>
                 <option value="undefined" disabled></option>
                 <option value="false">No</option>
                 <option value="true">Yes</option>
               </select>
+              &nbsp;
               <button type='submit' className="button-main">CONFIRM</button>
-              {/* <Redirect to="/events" /> */}
             </form>
           </div>
         </div>

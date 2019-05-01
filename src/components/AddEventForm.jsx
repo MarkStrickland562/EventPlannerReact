@@ -16,7 +16,7 @@ function AddEventForm(props){
     _eventName = '';
     _eventDate = '';
     _eventLocation = '';
-    _menusId = '';
+    _menusId = null;
   }
 
   return (
@@ -24,20 +24,42 @@ function AddEventForm(props){
       <style jsx>{`>
         .pageTitle {
           font-size: 30px;
-          font-family: 'Luckiest Guy', cursive;
           margin-top: 2%;
           color: darkgreen;
         }
 
         .page-content {
           width: 100%;
-          font-family: 'Luckiest Guy', cursive;
           min-height: 100vh;
           position: absolute;
           padding-left: 10%;
           background-color: beige;
           color: darkgreen;
         }
+
+        label: {
+          font-size: 16px;
+        }
+
+        input {
+          font-size: 16px;
+          color: darkgreen;
+          font-weight: bold;
+          width: 240px;
+        }        
+
+        select {
+          font-size: 16px;
+          color: darkgreen;
+          font-weight: bold;
+        }
+
+        option {
+          font-size: 16px;
+          color: darkgreen;
+          font-weight: bold;
+          width: 240px;
+        } 
       `}
       </style>
       <div>
@@ -46,34 +68,32 @@ function AddEventForm(props){
         <div className='page-content'>
           <h1 className='pageTitle'>ADD EVENT</h1>
           <div>
-            <form onSubmit={handleNewEventFormSubmission}>
-              <label>Event Name:  </label>
+            <form style={{width: '30%', padding: '5px 5px 5px 5px', border: '2px solid darkgreen', borderRadius: '4px'}} onSubmit={handleNewEventFormSubmission}>
+              <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Event Name: </label>
               <input
                 type='text'
                 id='eventName'
-                placeholder='Event Name'
                 ref={(input) => {_eventName = input;}}/>
               <br></br>
-              <label>Event Date:  </label>
+              <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Event Date: </label>
               <input
                 type='date'
                 id='eventDate'
-                placeholder='Event Date'
                 ref={(input) => {_eventDate = input;}}/>
               <br></br>
-              <label>Event Location:  </label>
+              <label>Event Location: </label>
               <input
                 type='text'
                 id='eventLocation'
-                placeholder='Event Location'
                 ref={(input) => {_eventLocation = input;}}/>
               <br></br>
-              <label>Menus Id:  </label>
-              <input
-                type='number'
-                id='menusId'
-                placeholder='Menus Id'
-                ref={(input) => {_menusId = input;}}/>
+              <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Menu: </label>
+              <select ref={(input) => {_menusId = input;}}>         
+                {Object.keys(props.menus).map(function(menuId) {
+                  var menu = props.menus[menuId];
+                  return <option key={menuId} value={menuId}>{menu.menuTheme}</option>;
+                })}
+              </select>
               <br></br><br></br>
               <button type='submit' className='button-main'>ADD EVENT</button>
             </form>
@@ -85,6 +105,7 @@ function AddEventForm(props){
 }
 
 AddEventForm.propTypes = {
+  menus: PropTypes.object,
   onNewEventCreation: PropTypes.func
 };
 
