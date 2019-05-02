@@ -1,6 +1,7 @@
 import React from 'react';
 import SideNav from './SideNav';
 import Header from './Header';
+import BackgroundImg from '../assets/images/event.jpeg';
 
 function Main(){
   return (
@@ -18,7 +19,7 @@ function Main(){
         }
       `}
       </style>
-      <div>
+      <div style={{textAlign: 'center', backgroundImage: `url(${BackgroundImg})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', minHeight: '100vh', position: 'related'}}>
         <Header></Header>
         <SideNav></SideNav>
         <div className="image">

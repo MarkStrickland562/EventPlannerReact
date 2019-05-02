@@ -10,14 +10,15 @@ class RecipeSearch extends React.Component {
     this.state = {
       searchString: '',
       searchCount: '',
-      recipes: []
+      recipes: [],
+      results: 'Searching...'
     };
     this.getRecipes = this.getRecipes.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   componentDidUpdate() {
-    this.getRecipes();
+    // this.getRecipes();
   }
 
   getRecipes() {
@@ -35,7 +36,7 @@ class RecipeSearch extends React.Component {
       searchString: this.search.value,
       searchCount: this.count.value
     }, () => {
-      this.getRecipes();
+      // this.getRecipes();
     });
   }
 
@@ -85,7 +86,7 @@ class RecipeSearch extends React.Component {
             color: darkgreen;
             font-weight: bold;
             width: 240px;
-          }          
+          }
         `}
         </style>
         <div>
@@ -106,8 +107,8 @@ class RecipeSearch extends React.Component {
                   ref={(input) => this.count = input}/>
                 <p>(default is 10)</p>
                 <button type="submit" className="button-main">SEARCH</button>
-                <p>{this.state.recipes}</p>
               </form>
+              <div><p>{this.state.results}</p></div>
             </div>
           </div>
         </div>

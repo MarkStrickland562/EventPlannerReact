@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
 import { v4 } from 'uuid';
 
 import EventData from './EventData';
@@ -93,6 +93,7 @@ class App extends React.Component {
       selectedInvitee: null,
       selectedInviteeProps: null
     };
+
     this.handleAddingNewEvent = this.handleAddingNewEvent.bind(this);
     this.handleDeletingEvent = this.handleDeletingEvent.bind(this);
     this.handleChangingSelectedEvent = this.handleChangingSelectedEvent.bind(this);
@@ -133,6 +134,7 @@ class App extends React.Component {
     let newEventId = v4();
     let newMasterEvents = Object.assign({}, this.state.masterEvents, {[newEventId]: newEvent});
     this.setState({masterEvents: newMasterEvents});
+    this.props.history.push('/events');
   }
 
   handleDeletingEvent(response) {
@@ -141,6 +143,7 @@ class App extends React.Component {
       this.setState({masterEvents: this.state.masterEvents});
     }
     this.setState({selectedEvent: null});
+    this.props.history.push('/events');
   }
 
   handleEditingEvent(response) {
@@ -151,6 +154,7 @@ class App extends React.Component {
     newMasterEvents[eventToUpdate].eventLocation = response.eventLocation;
     newMasterEvents[eventToUpdate].menusId = response.menusId;
     this.setState({masterEvents: newMasterEvents});
+    this.props.history.push('/events');
   }
 
   handleChangingSelectedEvent(eventId, event){
@@ -162,6 +166,7 @@ class App extends React.Component {
     let newMenuId = v4();
     let newMasterMenus = Object.assign({}, this.state.masterMenus, {[newMenuId]: newMenu});
     this.setState({masterMenus: newMasterMenus});
+    this.props.history.push('/menus');
   }
 
   handleDeletingMenu(response) {
@@ -170,6 +175,7 @@ class App extends React.Component {
       this.setState({masterMenus: this.state.masterMenus});
     }
     this.setState({selectedMenu: null});
+    this.props.history.push('/menus');
   }
 
   handleEditingMenu(response) {
@@ -177,6 +183,7 @@ class App extends React.Component {
     let newMasterMenus = Object.assign({}, this.state.masterMenus);
     newMasterMenus[menuToUpdate].menuTheme = response.menuTheme;
     this.setState({masterMenus: newMasterMenus});
+    this.props.history.push('/menus');
   }
 
   handleChangingSelectedMenu(menuId, menu){
@@ -188,6 +195,7 @@ class App extends React.Component {
     let newDishId = v4();
     let newMasterDishes = Object.assign({}, this.state.masterDishes, {[newDishId]: newDish});
     this.setState({masterDishes: newMasterDishes});
+    this.props.history.push('/dishes');
   }
 
   handleDeletingDish(response) {
@@ -196,6 +204,7 @@ class App extends React.Component {
       this.setState({masterDishes: this.state.masterDishes});
     }
     this.setState({selectedDish: null});
+    this.props.history.push('/dishes');
   }
 
   handleEditingDish(response) {
@@ -203,6 +212,7 @@ class App extends React.Component {
     let newMasterDishes = Object.assign({}, this.state.masterDishes);
     newMasterDishes[dishToUpdate].menuItemDescription = response.menuItemDescription;
     this.setState({masterDishes: newMasterDishes});
+    this.props.history.push('/dishes');
   }
 
   handleChangingSelectedDish(dishId, dish){
@@ -214,6 +224,7 @@ class App extends React.Component {
     let newFoodId = v4();
     let newMasterFoods = Object.assign({}, this.state.masterFoods, {[newFoodId]: newFood});
     this.setState({masterFoods: newMasterFoods});
+    this.props.history.push('/foods');
   }
 
   handleDeletingFood(response) {
@@ -222,6 +233,7 @@ class App extends React.Component {
       this.setState({masterFoods: this.state.masterFoods});
     }
     this.setState({selectedFood: null});
+    this.props.history.push('/foods');
   }
 
   handleEditingFood(response) {
@@ -231,6 +243,7 @@ class App extends React.Component {
     newMasterFoods[foodToUpdate].menuItemsId = response.menuItemsId;
     newMasterFoods[foodToUpdate].storeId = response.storeId;
     this.setState({masterFoods: newMasterFoods});
+    this.props.history.push('/foods');
   }
 
   handleChangingSelectedFood(foodId, food){
@@ -242,6 +255,7 @@ class App extends React.Component {
     let newStoreId = v4();
     let newMasterStores = Object.assign({}, this.state.masterStores, {[newStoreId]: newStore});
     this.setState({masterStores: newMasterStores});
+    this.props.history.push('/stores');
   }
 
   handleDeletingStore(response) {
@@ -250,6 +264,7 @@ class App extends React.Component {
       this.setState({masterStores: this.state.masterStores});
     }
     this.setState({selectedStore: null});
+    this.props.history.push('/stores');
   }
 
   handleEditingStore(response) {
@@ -257,6 +272,7 @@ class App extends React.Component {
     let newMasterStores = Object.assign({}, this.state.masterStores);
     newMasterStores[storeToUpdate].storeName = response.storeName;
     this.setState({masterStores: newMasterStores});
+    this.props.history.push('/stores');
   }
 
   handleChangingSelectedStore(storeId, store){
@@ -268,6 +284,7 @@ class App extends React.Component {
     let newTaskId = v4();
     let newMasterTasks = Object.assign({}, this.state.masterTasks, {[newTaskId]: newTask});
     this.setState({masterTasks: newMasterTasks});
+    this.props.history.push('/tasks');
   }
 
   handleDeletingTask(response) {
@@ -276,6 +293,7 @@ class App extends React.Component {
       this.setState({masterTasks: this.state.masterTasks});
     }
     this.setState({selectedTask: null});
+    this.props.history.push('/tasks');
   }
 
   handleEditingTask(response) {
@@ -284,6 +302,7 @@ class App extends React.Component {
     newMasterTasks[taskToUpdate].taskDescription = response.taskDescription;
     newMasterTasks[taskToUpdate].taskPlannedStartDateTime = response.taskPlannedStartDateTime;
     this.setState({masterTasks: newMasterTasks});
+    this.props.history.push('/tasks');
   }
 
   handleChangingSelectedTask(taskId, task){
@@ -295,6 +314,7 @@ class App extends React.Component {
     let newInviteeId = v4();
     let newMasterInvitees = Object.assign({}, this.state.masterInvitees, {[newInviteeId]: newInvitee});
     this.setState({masterInvitees: newMasterInvitees});
+    this.props.history.push('/invitees');
   }
 
   handleDeletingInvitee(response) {
@@ -303,14 +323,16 @@ class App extends React.Component {
       this.setState({masterInvitees: this.state.masterInvitees});
     }
     this.setState({selectedInvitee: null});
+    this.props.history.push('/invitees');
   }
 
   handleEditingInvitee(response) {
     let inviteeToUpdate = response.inviteeToUpdate;
     let newMasterInvitees = Object.assign({}, this.state.masterInvitees);
     newMasterInvitees[inviteeToUpdate].inviteeName = response.inviteeName;
-    newMasterInvitees[inviteeToUpdate].inviteeEmailAddress = response.inviteeEmailAddress;    
+    newMasterInvitees[inviteeToUpdate].inviteeEmailAddress = response.inviteeEmailAddress;
     this.setState({masterInvitees: newMasterInvitees});
+    this.props.history.push('/invitees');
   }
 
   handleChangingSelectedInvitee(inviteeId, invitee){
@@ -364,7 +386,7 @@ class App extends React.Component {
             <Route path='/about' component={About} />
 
             <Route path='/events' render={() =><Events events={this.state.masterEvents} menus={this.state.masterMenus} onEventSelection={this.handleChangingSelectedEvent} />} />
-            <Route path='/addevent' render={() =><AddEventForm menus={this.state.masterMenus} onNewEventCreation={this.handleAddingNewEvent} />} />
+            <Route path='/addevent' render={() =><AddEventForm menus={this.state.masterMenus} onNewEventCreation={this.handleAddingNewEvent} /> } />
             <Route path='/deleteevent' render={() =><DeleteEventForm onEventDeletion={this.handleDeletingEvent} selectedEvent={this.state.selectedEvent} />} />
             <Route path='/editevent' render={() =><EditEventForm menus={this.state.masterMenus} onEventUpdate={this.handleEditingEvent} selectedEvent={this.state.selectedEvent} selectedEventProps={this.state.selectedEventProps} />} />
             <Route path='/searchevents' component={SearchEvents} />
@@ -415,4 +437,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default withRouter(App);
