@@ -3,14 +3,16 @@ import PropTypes from 'prop-types';
 
 function Food(props){
   return (
-    <p>Description: {props.ingredientDescription}<br></br>Menu Item ID: {props.menuitemsId}<br></br>Store Id: {props.storeId}</p>
+    <p>&nbsp;Description: {props.ingredientDescription}<br></br>
+       &nbsp;Menu Theme: {props.menuItemDescription}<br></br>
+       &nbsp;Store Name: {props.storeName}</p>
   );
 }
 
 Food.propTypes = {
   ingredientDescription: PropTypes.string.isRequired,
-  menuitemsId: PropTypes.number.isRequired,
-  storeId: PropTypes.number.isRequired
+  menuItemDescription: PropTypes.string.isRequired,
+  storeName: PropTypes.string.isRequired
 };
 
 export default Food;

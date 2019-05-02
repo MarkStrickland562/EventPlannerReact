@@ -1,24 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import FoodData from './FoodData';
+import PropTypes from 'prop-types';
 import SideNav from './SideNav';
 import Header from './Header';
 import Food from './Food';
 
-function Foods(){
+function Foods(props){
   return (
     <div>
       <style jsx>{`>
         .pageTitle {
           font-size: 30px;
-          font-family: 'Luckiest Guy', cursive;
           margin-top: 2%;
           color: darkgreen;
         }
 
         .page-content {
           width: 100%;
-          font-family: 'Luckiest Guy', cursive;
           min-height: 100vh;
           position: absolute;
           padding-left: 10%;
@@ -33,7 +31,7 @@ function Foods(){
         }
 
         .column {
-          height: 18vh;
+          height: 14vh;
           width: 25vw;;
           margin: 2px 2px 2px 2px;
           padding: 5px 5px 5px 5px;
@@ -57,20 +55,26 @@ function Foods(){
             <br></br><br></br>
           </div>
           <div className="parentColumn">
-            {FoodData.map((food, index) =>
-              <div className="column" key={index}>
+            {Object.keys(props.foods).map(function(foodId) {
+              var food = props.foods[foodId];
+              var dish = props.dishes[food.menuItemsId];
+              var store = props.stores[food.storeId];
+              return <div className="column" key={foodId}>
                 <div>
                   <Food ingredientDescription={food.ingredientDescription}
                     menuitemsId={food.menuitemsId}
-                    storeId ={food.storeId}
-                    key={index}/>
+                    storeId={food.storeId}
+                    menuItemDescription={dish.menuItemDescription}
+                    storeName={store.storeName}
+                    foodId={food.foodId}
+                    key={eventId}/>
                 </div>
                 <div>
-                  <button type="button" className="button-main"><Link className="link" to="/deletefood">DELETE</Link></button>
-                  <button type="button" className="button-main"><Link className="link" to="/editfood">UPDATE</Link></button>
-                </div>
-              </div>
-            )}
+                  <button onClick={() => {props.onFoodSelection({foodId}, {food});}} type="button" className="button-main"><Link className="link" to="/deletefood">DELETE</Link></button>
+                  <button onClick={() => {props.onFoodSelection({foodId}, {food});}} type="button" className="button-main"><Link className="link" to="/editfood">UPDATE</Link></button>
+                 </div>
+              </div>;
+            })}
           </div>
         </div>
       </div>
@@ -78,5 +82,11 @@ function Foods(){
   );
 }
 
-export default Foods;
+Foods.propTypes = {
+  foods: PropTypes.object,
+  dishes: PropTypes.object,
+  stores: PropTypes.object,
+  onFoodSelection: PropTypes.func
+};
 
+export default Foods;

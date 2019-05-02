@@ -1,24 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import MenuData from './MenuData';
+import PropTypes from 'prop-types';
 import SideNav from './SideNav';
 import Header from './Header';
 import Menu from './Menu';
 
-function Menus(){
+function Menus(props){
   return (
     <div>
-      <style jsx>{`>
+     <style jsx>{`>
         .pageTitle {
           font-size: 30px;
-          font-family: 'Luckiest Guy', cursive;
           margin-top: 2%;
           color: darkgreen;
         }
 
         .page-content {
           width: 100%;
-          font-family: 'Luckiest Guy', cursive;
           min-height: 100vh;
           position: absolute;
           padding-left: 10%;
@@ -33,7 +31,7 @@ function Menus(){
         }
 
         .column {
-          height: 10vh;
+          height: 14vh;
           width: 25vw;;
           margin: 2px 2px 2px 2px;
           padding: 5px 5px 5px 5px;
@@ -57,23 +55,30 @@ function Menus(){
             <br></br><br></br>
           </div>
           <div className="parentColumn">
-            {MenuData.map((menu, index) =>
-              <div className="column" key={index}>
+            {Object.keys(props.menus).map(function(menuId) {
+              var menu = props.menus[menuId];
+              return <div className="column" key={menuId}>
                 <div>
                   <Menu menuTheme={menu.menuTheme}
-                    key={index}/>
+                    menuId={menu.menuId}
+                    key={menuId} />
                 </div>
                 <div>
-                  <button type="button" className="button-main"><Link className="link" to="/deletemenu">DELETE</Link></button>
-                  <button type="button" className="button-main"><Link className="link" to="/editmenu">UPDATE</Link></button>
+                  <button onClick={() => {props.onMenuSelection({menuId}, {menu});}} type="button" className="button-main"><Link className="link" to="/deletemenu">DELETE</Link></button>
+                  <button onClick={() => {props.onMenuSelection({menuId}, {menu});}} type="button" className="button-main"><Link className="link" to="/editmenu">UPDATE</Link></button>
                 </div>
-              </div>
-            )}
+              </div>;
+            })}
           </div>
         </div>
       </div>
     </div>
   );
 }
+
+Menus.propTypes = {
+  menus: PropTypes.object,
+  onEventSelection: PropTypes.func
+};
 
 export default Menus;

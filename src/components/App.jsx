@@ -3,6 +3,9 @@ import { Switch, Route } from 'react-router-dom';
 import { v4 } from 'uuid';
 import EventData from './EventData';
 import MenuData from './MenuData';
+import DishData from './DishData';
+import FoodData from './FoodData';
+import StoreData from './StoreData';
 import Welcome from './Welcome';
 import Main from './Main';
 import About from './About';
@@ -12,24 +15,24 @@ import DeleteEventForm from './DeleteEventForm';
 import EditEventForm from './EditEventForm';
 import SearchEvents from './SearchEvents';
 import Menus from './Menus';
-import AddMenu from './AddMenu';
-import DeleteMenu from './DeleteMenu';
-import EditMenu from './EditMenu';
+import AddMenuForm from './AddMenuForm';
+import DeleteMenuForm from './DeleteMenuForm';
+import EditMenuForm from './EditMenuForm';
 import SearchMenus from './SearchMenus';
 import Dishes from './Dishes';
-import AddDish from './AddDish';
-import DeleteDish from './DeleteDish';
-import EditDish from './EditDish';
+import AddDishForm from './AddDishForm';
+import DeleteDishForm from './DeleteDishForm';
+import EditDishForm from './EditDishForm';
 import SearchDishes from './SearchDishes';
 import Foods from './Foods';
-import AddFood from './AddFood';
-import DeleteFood from './DeleteFood';
-import EditFood from './EditFood';
+import AddFoodForm from './AddFoodForm';
+import DeleteFoodForm from './DeleteFoodForm';
+import EditFoodForm from './EditFoodForm';
 import SearchFoods from './SearchFoods';
 import Stores from './Stores';
-import AddStore from './AddStore';
-import DeleteStore from './DeleteStore';
-import EditStore from './EditStore';
+import AddStoreForm from './AddStoreForm';
+import DeleteStoreForm from './DeleteStoreForm';
+import EditStoreForm from './EditStoreForm';
 import SearchStores from './SearchStores';
 import Tasks from './Tasks';
 import AddTask from './AddTask';
@@ -49,14 +52,37 @@ class App extends React.Component {
     super(props);
     this.state = {
       masterEvents: EventData,
+      masterMenus: MenuData,
+      masterDishes: DishData,
+      masterFoods: FoodData,
+      masterStores: StoreData,
       selectedEvent: null,
       selectedEventProps: null,
-      masterMenus: MenuData
+      selectedMenu: null,
+      selectedMenuProps: null,
+      selectedDish: null,
+      selectedDishProps: null,
+      selectedFood: null,
+      selectedFoodProps: null,
+      selectedStore: null,
+      selectedStoreProps: null
     };
     this.handleAddingNewEvent = this.handleAddingNewEvent.bind(this);
     this.handleDeletingEvent = this.handleDeletingEvent.bind(this);
     this.handleChangingSelectedEvent = this.handleChangingSelectedEvent.bind(this);
     this.handleEditingEvent = this.handleEditingEvent.bind(this);
+    this.handleAddingNewMenu = this.handleAddingNewMenu.bind(this);
+    this.handleDeletingMenu = this.handleDeletingMenu.bind(this);
+    this.handleChangingSelectedMenu = this.handleChangingSelectedMenu.bind(this);
+    this.handleEditingMenu = this.handleEditingMenu.bind(this);
+    this.handleAddingNewDish = this.handleAddingNewDish.bind(this);
+    this.handleDeletingDish = this.handleDeletingDish.bind(this);
+    this.handleChangingSelectedDish = this.handleChangingSelectedDish.bind(this);
+    this.handleEditingDish = this.handleEditingDish.bind(this);
+    this.handleAddingNewFood = this.handleAddingNewFood.bind(this);
+    this.handleDeletingFood = this.handleDeletingFood.bind(this);
+    this.handleChangingSelectedFood = this.handleChangingSelectedFood.bind(this);
+    this.handleEditingFood = this.handleEditingFood.bind(this);
   }
 
   handleAddingNewEvent(newEvent) {
@@ -86,6 +112,84 @@ class App extends React.Component {
   handleChangingSelectedEvent(eventId, event){
     this.setState({selectedEvent: eventId});
     this.setState({selectedEventProps: event});
+  }
+
+  handleAddingNewMenu(newMenu) {
+    let newMenuId = v4();
+    let newMasterMenus = Object.assign({}, this.state.masterMenus, {[newMenuId]: newMenu});
+    this.setState({masterMenus: newMasterMenus});
+  }
+
+  handleDeletingMenu(response) {
+    if (response.confirm === 'true') {
+      delete this.state.masterMenus[response.menuToDelete.menuId];
+      this.setState({masterMenus: this.state.masterMenus});
+    }
+    this.setState({selectedMenu: null});
+  }
+
+  handleEditingMenu(response) {
+    let menuToUpdate = response.menuToUpdate;
+    let newMasterMenus = Object.assign({}, this.state.masterMenus);
+    newMasterMenus[menuToUpdate].menuTheme = response.menuTheme;
+    this.setState({masterMenus: newMasterMenus});
+  }
+
+  handleChangingSelectedMenu(menuId, menu){
+    this.setState({selectedMenu: menuId});
+    this.setState({selectedMenuProps: menu});
+  }
+
+  handleAddingNewDish(newDish) {
+    let newDishId = v4();
+    let newMasterDishes = Object.assign({}, this.state.masterDishes, {[newDishId]: newDish});
+    this.setState({masterDishes: newMasterDishes});
+  }
+
+  handleDeletingDish(response) {
+    if (response.confirm === 'true') {
+      delete this.state.masterDishes[response.dishToDelete.dishId];
+      this.setState({masterDishes: this.state.masterDishes});
+    }
+    this.setState({selectedDish: null});
+  }
+
+  handleEditingDish(response) {
+    let dishToUpdate = response.dishToUpdate;
+    let newMasterDishes = Object.assign({}, this.state.masterDishes);
+    newMasterDishes[dishToUpdate].menuItemDescription = response.menuItemDescription;
+    this.setState({masterDishes: newMasterDishes});
+  }
+
+  handleChangingSelectedDish(dishId, dish){
+    this.setState({selectedDish: dishId});
+    this.setState({selectedDishProps: dish});
+  }
+
+  handleAddingNewFood(newFood) {
+    let newFoodId = v4();
+    let newMasterFoods = Object.assign({}, this.state.masterFoods, {[newFoodId]: newFood});
+    this.setState({masterFoods: newMasterFoods});
+  }
+
+  handleDeletingFood(response) {
+    if (response.confirm === 'true') {
+      delete this.state.masterFoods[response.foodToDelete.foodId];
+      this.setState({masterFoods: this.state.masterFoods});
+    }
+    this.setState({selectedFood: null});
+  }
+
+  handleEditingFood(response) {
+    let foodToUpdate = response.foodToUpdate;
+    let newMasterFoods = Object.assign({}, this.state.masterFoods);
+    newMasterFoods[foodToUpdate].ingredientDescription = response.ingredientDescription;
+    this.setState({masterFoods: newMasterFoods});
+  }
+
+  handleChangingSelectedFood(foodId, food){
+    this.setState({selectedFood: foodId});
+    this.setState({selectedFoodProps: food});
   }
 
   render() {
@@ -137,25 +241,25 @@ class App extends React.Component {
             <Route path='/deleteevent' render={() =><DeleteEventForm onEventDeletion={this.handleDeletingEvent} selectedEvent={this.state.selectedEvent} />} />
             <Route path='/editevent' render={() =><EditEventForm menus={this.state.masterMenus} onEventUpdate={this.handleEditingEvent} selectedEvent={this.state.selectedEvent} selectedEventProps={this.state.selectedEventProps} />} />
             <Route path='/searchevents' component={SearchEvents} />
-            <Route path='/menus' component={Menus} />
-            <Route path='/addmenu' component={AddMenu} />
-            <Route path='/deletemenu' component={DeleteMenu} />
-            <Route path='/editmenu' component={EditMenu} />
+            <Route path='/menus' render={() =><Menus menus={this.state.masterMenus} onMenuSelection={this.handleChangingSelectedMenu} />} />
+            <Route path='/addmenu'  render={() =><AddMenuForm onNewMenuCreation={this.handleAddingNewMenu} />} />
+            <Route path='/deletemenu' render={() =><DeleteMenuForm onMenuDeletion={this.handleDeletingMenu} selectedMenu={this.state.selectedMenu} />} />
+            <Route path='/editmenu' render={() =><EditMenuForm onMenuUpdate={this.handleEditingMenu} selectedMenu={this.state.selectedMenu} selectedMenuProps={this.state.selectedMenuProps} />} />
             <Route path='/searchmenus' component={SearchMenus} />
-            <Route path='/dishes' component={Dishes} />
-            <Route path='/adddish' component={AddDish} />
-            <Route path='/deletedish' component={DeleteDish} />
-            <Route path='/editdish' component={EditDish} />
+            <Route path='/dishes' render={() =><Dishes dishes={this.state.masterDishes} onDishSelection={this.handleChangingSelectedDishEvent} />} />
+            <Route path='/adddish' render={() =><AddDishForm dishes={this.state.masterDishes} onNewDishCreation={this.handleAddingNewDish} />} />
+            <Route path='/deletedish' render={() =><DeleteDishForm onDishDeletion={this.handleDeletingDish} selectedDish={this.state.selectedDish} />} />
+            <Route path='/editdish' render={() =><EditDishForm dishes={this.state.masterDishes} onDishUpdate={this.handleEditingDish} selectedDish={this.state.selectedDish} selectedDishProps={this.state.selectedDishProps} />} />
             <Route path='/searchdishes' component={SearchDishes} />
-            <Route path='/foods' component={Foods} />
-            <Route path='/addfood' component={AddFood} />
-            <Route path='/deletefood' component={DeleteFood} />
-            <Route path='/editfood' component={EditFood} />
+            <Route path='/foods' render={() =><Foods foods={this.state.masterFoods} onFoodSelection={this.handleChangingSelectedFood} />} />
+            <Route path='/addfood' render={() =><AddFoodForm menus={this.state.masterMenus} stores={this.state.masterStores} onNewFoodCreation={this.handleAddingNewFood} />} />
+            <Route path='/deletefood' render={() =><DeleteFoodForm onFoodDeletion={this.handleDeletingFood} selectedFood={this.state.selectedFood} />} />
+            <Route path='/editfood' render={() =><EditFoodForm menus={this.state.masterMenus} stores={this.state.masterStores} onFoodUpdate={this.handleEditingFood} selectedFood={this.state.selectedFood} selectedFoodProps={this.state.selectedFoodProps} />} />
             <Route path='/searchfoods' component={SearchFoods} />
             <Route path='/stores' component={Stores} />
-            <Route path='/addstore' component={AddStore} />
-            <Route path='/deletestore' component={DeleteStore} />
-            <Route path='/editstore' component={EditStore} />
+            <Route path='/addstore' component={AddStoreForm} />
+            <Route path='/deletestore' component={DeleteStoreForm} />
+            <Route path='/editstore' component={EditStoreForm} />
             <Route path='/searchstores' component={SearchStores} />
             <Route path='/tasks' component={Tasks} />
             <Route path='/addtask' component={AddTask} />
