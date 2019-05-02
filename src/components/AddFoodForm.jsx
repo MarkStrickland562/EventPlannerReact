@@ -11,7 +11,7 @@ function AddFoodForm(props){
 
   function handleNewFoodFormSubmission(event) {
     event.preventDefault();
-    props.onNewFoodCreation({ingredientDescription: _ingredientDescription.value, dishId: _dishId.value, storeId: _storeId.value});
+    props.onNewFoodCreation({ingredientDescription: _ingredientDescription.value, menuItemsId: _dishId.value, storeId: _storeId.value});
     _ingredientDescription = '';
     _dishId = null;
     _storeId = null;
@@ -44,7 +44,7 @@ function AddFoodForm(props){
           color: darkgreen;
           font-weight: bold;
           width: 240px;
-        }        
+        }
 
         select {
           font-size: 16px;
@@ -57,7 +57,7 @@ function AddFoodForm(props){
           color: darkgreen;
           font-weight: bold;
           width: 240px;
-        } 
+        }
       `}
       </style>
       <div>
@@ -67,14 +67,14 @@ function AddFoodForm(props){
           <h1 className='pageTitle'>ADD FOOD</h1>
           <div>
             <form style={{width: '30%', padding: '5px 5px 5px 5px', border: '2px solid darkgreen', borderRadius: '4px'}} onSubmit={handleNewFoodFormSubmission}>
-              <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Food Name: </label>
+              <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Description: </label>
               <input
                 type='text'
                 id='ingredientDescription'
                 ref={(input) => {_ingredientDescription = input;}}/>
               <br></br>
               <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dish: </label>
-              <select ref={(input) => {_dishId = input;}}>         
+              <select ref={(input) => {_dishId = input;}}>
                 {Object.keys(props.dishes).map(function(dishId) {
                   var dish = props.dishes[dishId];
                   return <option key={dishId} value={dishId}>{dish.menuItemDescription}</option>;
@@ -82,7 +82,7 @@ function AddFoodForm(props){
               </select>
               <br></br>
               <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Store: </label>
-              <select ref={(input) => {_storeId = input;}}>         
+              <select ref={(input) => {_storeId = input;}}>
                 {Object.keys(props.stores).map(function(storeId) {
                   var store = props.stores[storeId];
                   return <option key={storeId} value={storeId}>{store.storeName}</option>;

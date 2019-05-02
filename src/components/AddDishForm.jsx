@@ -5,12 +5,12 @@ import Header from './Header';
 
 function AddDishForm(props){
 
-  let _menuItemIngredient = null;
+  let _menuItemDescription = null;
 
   function handleNewDishFormSubmission(event) {
     event.preventDefault();
-    props.onNewDishCreation({menuItemIngredient: _menuItemIngredient.value});
-    _menuItemIngredient = '';
+    props.onNewDishCreation({menuItemDescription: _menuItemDescription.value});
+    _menuItemDescription = '';
   }
 
   return (
@@ -40,7 +40,7 @@ function AddDishForm(props){
           color: darkgreen;
           font-weight: bold;
           width: 240px;
-        }        
+        }
 
         select {
           font-size: 16px;
@@ -53,7 +53,7 @@ function AddDishForm(props){
           color: darkgreen;
           font-weight: bold;
           width: 240px;
-        } 
+        }
       `}
       </style>
       <div>
@@ -66,8 +66,8 @@ function AddDishForm(props){
               <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dish Name: </label>
               <input
                 type='text'
-                id='menuItemIngredient'
-                ref={(input) => {_menuItemIngredient = input;}}/>
+                id='menuItemDescription'
+                ref={(input) => {_menuItemDescription = input;}}/>
               <br></br><br></br>
               <button type='submit' className='button-main'>ADD DISH</button>
             </form>

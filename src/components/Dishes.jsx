@@ -55,7 +55,7 @@ function Dishes(props){
             <br></br><br></br>
           </div>
           <div className="parentColumn">
-            {Object.keys(props.menus).map(function(dishId) {
+            {Object.keys(props.dishes).map(function(dishId) {
               var dish = props.dishes[dishId];
               return <div className="column" key={dishId}>
                 <div>

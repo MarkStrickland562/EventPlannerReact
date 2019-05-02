@@ -67,12 +67,12 @@ function Foods(props){
                     menuItemDescription={dish.menuItemDescription}
                     storeName={store.storeName}
                     foodId={food.foodId}
-                    key={eventId}/>
+                    key={foodId}/>
                 </div>
                 <div>
                   <button onClick={() => {props.onFoodSelection({foodId}, {food});}} type="button" className="button-main"><Link className="link" to="/deletefood">DELETE</Link></button>
                   <button onClick={() => {props.onFoodSelection({foodId}, {food});}} type="button" className="button-main"><Link className="link" to="/editfood">UPDATE</Link></button>
-                 </div>
+                </div>
               </div>;
             })}
           </div>

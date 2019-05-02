@@ -1,24 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import StoreData from './StoreData';
+import PropTypes from 'prop-types';
 import SideNav from './SideNav';
 import Header from './Header';
 import Store from './Store';
 
-function Stores(){
+function Stores(props){
   return (
     <div>
       <style jsx>{`>
         .pageTitle {
           font-size: 30px;
-          font-family: 'Luckiest Guy', cursive;
           margin-top: 2%;
           color: darkgreen;
         }
 
         .page-content {
           width: 100%;
-          font-family: 'Luckiest Guy', cursive;
           min-height: 100vh;
           position: absolute;
           padding-left: 10%;
@@ -33,7 +31,7 @@ function Stores(){
         }
 
         .column {
-          height: 10vh;
+          height: 8vh;
           width: 25vw;;
           margin: 2px 2px 2px 2px;
           padding: 5px 5px 5px 5px;
@@ -57,23 +55,30 @@ function Stores(){
             <br></br><br></br>
           </div>
           <div className="parentColumn">
-            {StoreData.map((store, index) =>
-              <div className="column" key={index}>
+            {Object.keys(props.stores).map(function(storeId) {
+              var store = props.stores[storeId];
+              return <div className="column" key={storeId}>
                 <div>
                   <Store storeName={store.storeName}
-                    key={index}/>
+                    storeId={store.storeId}
+                    key={storeId}/>
                 </div>
                 <div>
-                  <button type="button" className="button-main"><Link className="link" to="/deletestore">DELETE</Link></button>
-                  <button type="button" className="button-main"><Link className="link" to="/editstore">UPDATE</Link></button>
+                  <button onClick={() => {props.onStoreSelection({storeId}, {store});}} type="button" className="button-main"><Link className="link" to="/deletestore">DELETE</Link></button>
+                  <button onClick={() => {props.onStoreSelection({storeId}, {store});}} type="button" className="button-main"><Link className="link" to="/editstore">UPDATE</Link></button>
                 </div>
-              </div>
-            )}
+              </div>;
+            })}
           </div>
         </div>
       </div>
     </div>
   );
 }
+
+Stores.propTypes = {
+  stores: PropTypes.object,
+  onStoreSelection: PropTypes.func
+};
 
 export default Stores;

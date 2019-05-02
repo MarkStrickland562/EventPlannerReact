@@ -42,7 +42,7 @@ function EditEventForm(props){
           color: darkgreen;
           font-weight: bold;
           width: 240px;
-        }  
+        }
 
         select {
           font-size: 16px;
@@ -55,7 +55,7 @@ function EditEventForm(props){
           color: darkgreen;
           font-weight: bold;
           width: 240px;
-        } 
+        }
 `}
       </style>
       <div>
@@ -87,13 +87,13 @@ function EditEventForm(props){
                 ref={(input) => {_eventLocation = input;}}/>
               <br></br>
               <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Menu: </label>
-              <select ref={(input) => {_menusId = input;}}>         
+              <select ref={(input) => {_menusId = input;}}>
                 {Object.keys(props.menus).map(function(menuId) {
                   var menu = props.menus[menuId];
                   if (menuId == _menusId) {
                     return <option selected={menu.menuTheme} defaultValue={menuId} key={menuId} value={menuId}>{menu.menuTheme}</option>;
                   } else {
-                    return <option key={menuId} value={menuId}>{menu.menuTheme}</option>;                    
+                    return <option key={menuId} value={menuId}>{menu.menuTheme}</option>;
                   }
                 })}
               </select>

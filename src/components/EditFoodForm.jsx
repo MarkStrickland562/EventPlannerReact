@@ -41,7 +41,7 @@ function EditFoodForm(props){
           color: darkgreen;
           font-weight: bold;
           width: 240px;
-        }  
+        }
 
         select {
           font-size: 16px;
@@ -54,7 +54,7 @@ function EditFoodForm(props){
           color: darkgreen;
           font-weight: bold;
           width: 240px;
-        } 
+        }
 `}
       </style>
       <div>
@@ -72,25 +72,25 @@ function EditFoodForm(props){
                 ref={(input) => {_ingredientDescription = input;}}/>
               <br></br>
               <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dish: </label>
-              <select ref={(input) => {_dishId = input;}}>         
+              <select ref={(input) => {_dishId = input;}}>
                 {Object.keys(props.dishes).map(function(dishId) {
-                  var menu = props.dishes[dishId];
+                  var dish = props.dishes[dishId];
                   if (dishId == _dishId) {
                     return <option selected={dish.menuItemDescription} defaultValue={dishId} key={dishId} value={dishId}>{dish.menuItemDescription}</option>;
                   } else {
-                    return <option key={dishId} value={dishId}>{dish.menuItemDescription}</option>;                    
+                    return <option key={dishId} value={dishId}>{dish.menuItemDescription}</option>;
                   }
                 })}
               </select>
               <br></br>
               <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Store: </label>
-              <select ref={(input) => {_storeId = input;}}>         
+              <select ref={(input) => {_storeId = input;}}>
                 {Object.keys(props.stores).map(function(storeId) {
-                  var store = props.store[storeId];
+                  var store = props.stores[storeId];
                   if (storeId == _storeId) {
-                    return <option selected={store.storeName} defaultValue={storeId} key={storeId} value={storeId}>{store.storeNamee}</option>;
+                    return <option selected={store.storeName} defaultValue={storeId} key={storeId} value={storeId}>{store.storeName}</option>;
                   } else {
-                    return <option key={storeId} value={storeId}>{store.storeName}</option>;                    
+                    return <option key={storeId} value={storeId}>{store.storeName}</option>;
                   }
                 })}
               </select>

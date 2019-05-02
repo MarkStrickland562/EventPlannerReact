@@ -3,14 +3,17 @@ import PropTypes from 'prop-types';
 import SideNav from './SideNav';
 import Header from './Header';
 
-function EditStoreForm(props){
+function AddInviteeForm(props){
 
-  let _storeName = props.selectedStoreProps.store.storeName;
+  let _inviteeName = null;
+  let _inviteeEmailAddress = null;
 
-  var handleEditStoreFormSubmission = (event) => {
+  function handleNewInviteeFormSubmission(event) {
     event.preventDefault();
-    props.onStoreUpdate({storeToUpdate: props.selectedStore.storeId, storeName: _storeName.value});
-  };
+    props.onNewInviteeCreation({inviteeName: _inviteeName.value, inviteeEmailAddress: _inviteeEmailAddress.value});
+    _inviteeName = '';
+    _inviteeEmailAddress = '';
+  }
 
   return (
     <div>
@@ -30,7 +33,7 @@ function EditStoreForm(props){
           color: darkgreen;
         }
 
-        label {
+        label: {
           font-size: 16px;
         }
 
@@ -59,17 +62,22 @@ function EditStoreForm(props){
         <Header></Header>
         <SideNav></SideNav>
         <div className='page-content'>
-          <h1 className='pageTitle'>UPDATE STORE</h1>
+          <h1 className='pageTitle'>ADD INVITEE</h1>
           <div>
-            <form style={{width: '30%', padding: '5px 5px 5px 5px', border: '2px solid darkgreen', borderRadius: '4px'}} onSubmit={handleEditStoreFormSubmission}>
-              <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Store Name:&nbsp;&nbsp;</label>
+            <form style={{width: '30%', padding: '5px 5px 5px 5px', border: '2px solid darkgreen', borderRadius: '4px'}} onSubmit={handleNewInviteeFormSubmission}>
+              <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Invitee Name: </label>
               <input
                 type='text'
-                id='storeName'
-                defaultValue={_storeName}
-                ref={(input) => {_storeName = input;}}/>
+                id='inviteeName'
+                ref={(input) => {_inviteeName = input;}}/>
+              <br></br>
+              <label>Email Address: </label>
+              <input
+                type='text'
+                id='inviteeEmailAddress'
+                ref={(input) => {_inviteeEmailAddress = input;}}/>
               <br></br><br></br>
-              <button type='submit' className='button-main'>UPDATE STORE</button>
+              <button type='submit' className='button-main'>ADD INVITEE</button>
             </form>
           </div>
         </div>
@@ -78,10 +86,8 @@ function EditStoreForm(props){
   );
 }
 
-EditStoreForm.propTypes = {
-  selectedStore: PropTypes.object,
-  selectedStoreProps: PropTypes.object,
-  onStoreUpdate: PropTypes.func
+AddInviteeForm.propTypes = {
+  onNewInviteeCreation: PropTypes.func
 };
 
-export default EditStoreForm;
+export default AddInviteeForm;

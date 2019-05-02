@@ -1,24 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import InviteeData from './InviteeData';
+import PropTypes from 'prop-types';
 import SideNav from './SideNav';
 import Header from './Header';
 import Invitee from './Invitee';
 
-function Invitees(){
+function Invitees(props){
   return (
     <div>
       <style jsx>{`>
         .pageTitle {
           font-size: 30px;
-          font-family: 'Luckiest Guy', cursive;
           margin-top: 2%;
           color: darkgreen;
         }
 
         .page-content {
           width: 100%;
-          font-family: 'Luckiest Guy', cursive;
           min-height: 100vh;
           position: absolute;
           padding-left: 10%;
@@ -33,7 +31,7 @@ function Invitees(){
         }
 
         .column {
-          height: 16vh;
+          height: 14vh;
           width: 25vw;;
           margin: 2px 2px 2px 2px;
           padding: 5px 5px 5px 5px;
@@ -57,19 +55,21 @@ function Invitees(){
             <br></br><br></br>
           </div>
           <div className="parentColumn">
-            {InviteeData.map((invitee, index) =>
-              <div className="column" key={index}>
+            {Object.keys(props.invitees).map(function(inviteeId) {
+              var invitee = props.invitees[inviteeId];
+              return <div className="column" key={inviteeId}>
                 <div>
                   <Invitee inviteeName={invitee.inviteeName}
                     inviteeEmailAddress={invitee.inviteeEmailAddress}
-                    key={index}/>
+                    inviteeId={invitee.inviteeId}
+                    key={inviteeId}/>
                 </div>
                 <div>
-                  <button type="button" className="button-main"><Link className="link" to="/deleteinvitee">DELETE</Link></button>
-                  <button type="button" className="button-main"><Link className="link" to="/editinvitee">UPDATE</Link></button>
+                  <button  onClick={() => {props.onInviteeSelection({inviteeId}, {invitee});}} type="button" className="button-main"><Link className="link" to="/deleteinvitee">DELETE</Link></button>
+                  <button  onClick={() => {props.onInviteeSelection({inviteeId}, {invitee});}} type="button" className="button-main"><Link className="link" to="/editinvitee">UPDATE</Link></button>
                 </div>
-              </div>
-            )}
+              </div>;
+            })}
           </div>
         </div>
       </div>
@@ -77,5 +77,9 @@ function Invitees(){
   );
 }
 
-export default Invitees;
+Invitees.propTypes = {
+  invitees: PropTypes.object,
+  onInviteeSelection: PropTypes.func
+};
 
+export default Invitees;

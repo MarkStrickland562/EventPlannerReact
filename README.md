@@ -121,7 +121,7 @@ No Known Bugs.
 <summary>Click Here for Details</summary>
 This assumes that node is already installed, but verify with "node -v".
 <br><br>
-1) Install the required projects by executing the following commands at the bash prompt:
+1) Setup the project by executing the following commands at the bash prompt:
 <br><br>
     $ npm install bootstrap --save
 <br><br>

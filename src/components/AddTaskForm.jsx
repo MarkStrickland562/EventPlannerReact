@@ -3,14 +3,17 @@ import PropTypes from 'prop-types';
 import SideNav from './SideNav';
 import Header from './Header';
 
-function EditStoreForm(props){
+function AddTaskForm(props){
 
-  let _storeName = props.selectedStoreProps.store.storeName;
+  let _taskDescription = null;
+  let _taskPlannedStartDateTime = null;
 
-  var handleEditStoreFormSubmission = (event) => {
+  function handleNewTaskFormSubmission(event) {
     event.preventDefault();
-    props.onStoreUpdate({storeToUpdate: props.selectedStore.storeId, storeName: _storeName.value});
-  };
+    props.onNewTaskCreation({taskDescription: _taskDescription.value, taskPlannedStartDateTime: _taskPlannedStartDateTime.value});
+    _taskDescription = '';
+    _taskPlannedStartDateTime = '';
+  }
 
   return (
     <div>
@@ -30,7 +33,7 @@ function EditStoreForm(props){
           color: darkgreen;
         }
 
-        label {
+        label: {
           font-size: 16px;
         }
 
@@ -38,7 +41,7 @@ function EditStoreForm(props){
           font-size: 16px;
           color: darkgreen;
           font-weight: bold;
-          width: 240px;
+          width: 300px;
         }
 
         select {
@@ -59,17 +62,22 @@ function EditStoreForm(props){
         <Header></Header>
         <SideNav></SideNav>
         <div className='page-content'>
-          <h1 className='pageTitle'>UPDATE STORE</h1>
+          <h1 className='pageTitle'>ADD TASK</h1>
           <div>
-            <form style={{width: '30%', padding: '5px 5px 5px 5px', border: '2px solid darkgreen', borderRadius: '4px'}} onSubmit={handleEditStoreFormSubmission}>
-              <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Store Name:&nbsp;&nbsp;</label>
+            <form style={{width: '30%', padding: '5px 5px 5px 5px', border: '2px solid darkgreen', borderRadius: '4px'}} onSubmit={handleNewTaskFormSubmission}>
+              <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Task Name: </label>
               <input
                 type='text'
-                id='storeName'
-                defaultValue={_storeName}
-                ref={(input) => {_storeName = input;}}/>
+                id='taskDescription'
+                ref={(input) => {_taskDescription = input;}}/>
+              <br></br>
+              <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Task Date: </label>
+              <input
+                type='datetime-local'
+                id='taskPlannedStartDateTime'
+                ref={(input) => {_taskPlannedStartDateTime = input;}}/>
               <br></br><br></br>
-              <button type='submit' className='button-main'>UPDATE STORE</button>
+              <button type='submit' className='button-main'>ADD TASK</button>
             </form>
           </div>
         </div>
@@ -78,10 +86,8 @@ function EditStoreForm(props){
   );
 }
 
-EditStoreForm.propTypes = {
-  selectedStore: PropTypes.object,
-  selectedStoreProps: PropTypes.object,
-  onStoreUpdate: PropTypes.func
+AddTaskForm.propTypes = {
+  onNewTaskCreation: PropTypes.func
 };
 
-export default EditStoreForm;
+export default AddTaskForm;

@@ -8,7 +8,7 @@ import Menu from './Menu';
 function Menus(props){
   return (
     <div>
-     <style jsx>{`>
+      <style jsx>{`>
         .pageTitle {
           font-size: 30px;
           margin-top: 2%;
@@ -78,7 +78,7 @@ function Menus(props){
 
 Menus.propTypes = {
   menus: PropTypes.object,
-  onEventSelection: PropTypes.func
+  onMenuSelection: PropTypes.func
 };
 
 export default Menus;

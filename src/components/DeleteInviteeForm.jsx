@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import SideNav from './SideNav';
 import Header from './Header';
 
-function DeleteStoreForm(props){
+function DeleteInviteeForm(props){
 
   let _confirm = null;
 
-  var handleDeleteStoreFormSubmission = (event) => {
+  var handleDeleteInviteeFormSubmission = (event) => {
     event.preventDefault();
-    props.onStoreDeletion({confirm: _confirm.value, storeToDelete: props.selectedStore});
+    props.onInviteeDeletion({confirm: _confirm.value, inviteeToDelete: props.selectedInvitee});
   };
 
   return (
@@ -45,9 +45,9 @@ function DeleteStoreForm(props){
         <Header></Header>
         <SideNav></SideNav>
         <div className="page-content">
-          <h1 className="pageTitle">DELETE STORE</h1>
+          <h1 className="pageTitle">DELETE EVENT</h1>
           <div>
-            <form style={{width: '15%', padding: '5px 5px 5px 5px', border: '2px solid darkgreen', borderRadius: '4px'}} onSubmit={handleDeleteStoreFormSubmission}>
+            <form style={{width: '15%', padding: '5px 5px 5px 5px', border: '2px solid darkgreen', borderRadius: '4px'}} onSubmit={handleDeleteInviteeFormSubmission}>
               <label>Confirm Delete: </label>
               <select ref={(input) => {_confirm = input;}}>
                 <option value="undefined" disabled></option>
@@ -64,9 +64,9 @@ function DeleteStoreForm(props){
   );
 }
 
-DeleteStoreForm.propTypes = {
-  selectedStore: PropTypes.object,
-  onStoreDeletion: PropTypes.func
+DeleteInviteeForm.propTypes = {
+  selectedInvitee: PropTypes.object,
+  onInviteeDeletion: PropTypes.func
 };
 
-export default DeleteStoreForm;
+export default DeleteInviteeForm;

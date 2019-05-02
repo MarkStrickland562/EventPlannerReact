@@ -1,24 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import TaskData from './TaskData';
+import PropTypes from 'prop-types';
 import SideNav from './SideNav';
 import Header from './Header';
 import Task from './Task';
 
-function Tasks(){
+function Tasks(props){
   return (
     <div>
       <style jsx>{`>
         .pageTitle {
           font-size: 30px;
-          font-family: 'Luckiest Guy', cursive;
           margin-top: 2%;
           color: darkgreen;
         }
 
         .page-content {
           width: 100%;
-          font-family: 'Luckiest Guy', cursive;
           min-height: 100vh;
           position: absolute;
           padding-left: 10%;
@@ -33,7 +31,7 @@ function Tasks(){
         }
 
         .column {
-          height: 16vh;
+          height: 14vh;
           width: 25vw;;
           margin: 2px 2px 2px 2px;
           padding: 5px 5px 5px 5px;
@@ -57,19 +55,21 @@ function Tasks(){
             <br></br><br></br>
           </div>
           <div className="parentColumn">
-            {TaskData.map((task, index) =>
-              <div className="column" key={index}>
+            {Object.keys(props.tasks).map(function(taskId) {
+              var task = props.tasks[taskId];
+              return <div className="column" key={taskId}>
                 <div>
                   <Task taskDescription={task.taskDescription}
                     taskPlannedStartDateTime={task.taskPlannedStartDateTime}
-                    key={index}/>
+                    taskId={task.taskId}
+                    key={taskId}/>
                 </div>
                 <div>
-                  <button type="button" className="button-main"><Link className="link" to="/deletetask">DELETE</Link></button>
-                  <button type="button" className="button-main"><Link className="link" to="/edittask">UPDATE</Link></button>
+                  <button onClick={() => {props.onTaskSelection({taskId}, {task});}} type="button" className="button-main"><Link className="link" to="/deletetask">DELETE</Link></button>
+                  <button onClick={() => {props.onTaskSelection({taskId}, {task});}} type="button" className="button-main"><Link className="link" to="/edittask">UPDATE</Link></button>
                 </div>
-              </div>
-            )}
+              </div>;
+            })}
           </div>
         </div>
       </div>
@@ -77,5 +77,9 @@ function Tasks(){
   );
 }
 
-export default Tasks;
+Tasks.propTypes = {
+  tasks: PropTypes.object,
+  onTaskSelection: PropTypes.func
+};
 
+export default Tasks;
