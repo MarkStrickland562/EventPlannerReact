@@ -41,7 +41,7 @@ import AddInvitee from './AddInvitee';
 import DeleteInvitee from './DeleteInvitee';
 import EditInvitee from './EditInvitee';
 import SearchInvitees from './SearchInvitees';
-import RecipeGet from './RecipeGet';
+import RecipeSearch from './RecipeSearch';
 import Error404 from './Error404';
 
 class App extends React.Component {
@@ -167,7 +167,7 @@ class App extends React.Component {
             <Route path='/deleteinvitee' component={DeleteInvitee} />
             <Route path='/editinvitee' component={EditInvitee} />
             <Route path='/searchinvitees' component={SearchInvitees} />
-            <Route path='/recipes' render={() =><RecipeGet />} />
+            <Route path='/recipes' component={RecipeSearch} />
             <Route component={Error404} />
           </Switch>
         </div>
