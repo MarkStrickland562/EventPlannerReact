@@ -39,20 +39,21 @@ function AddStoreForm(props){
           font-size: 16px;
           color: darkgreen;
           font-weight: bold;
-          width: 240px;
+          width: 300px;
         }
 
         select {
           font-size: 16px;
           color: darkgreen;
           font-weight: bold;
+          width: 300px;
         }
 
         option {
           font-size: 16px;
           color: darkgreen;
           font-weight: bold;
-          width: 240px;
+          width: 300px;
         }
       `}
       </style>
@@ -63,7 +64,7 @@ function AddStoreForm(props){
           <h1 className='pageTitle'>ADD STORE</h1>
           <div>
             <form style={{width: '30%', padding: '5px 5px 5px 5px', border: '2px solid darkgreen', borderRadius: '4px'}} onSubmit={handleNewStoreFormSubmission}>
-              <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Store Name: </label>
+              <label>&nbsp;Store Name: </label>
               <input
                 type='text'
                 id='storeName'

@@ -38,20 +38,21 @@ function EditStoreForm(props){
           font-size: 16px;
           color: darkgreen;
           font-weight: bold;
-          width: 240px;
+          width: 300px;
         }
 
         select {
           font-size: 16px;
           color: darkgreen;
           font-weight: bold;
+          width: 300px;
         }
 
         option {
           font-size: 16px;
           color: darkgreen;
           font-weight: bold;
-          width: 240px;
+          width: 300px;
         }
       `}
       </style>
@@ -62,7 +63,7 @@ function EditStoreForm(props){
           <h1 className='pageTitle'>UPDATE STORE</h1>
           <div>
             <form style={{width: '30%', padding: '5px 5px 5px 5px', border: '2px solid darkgreen', borderRadius: '4px'}} onSubmit={handleEditStoreFormSubmission}>
-              <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Store Name:&nbsp;&nbsp;</label>
+              <label>Store Name:&nbsp;&nbsp;</label>
               <input
                 type='text'
                 id='storeName'

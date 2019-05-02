@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 function Invitee(props){
   return (
-    <p>Name: {props.inviteeName}<br></br>Email Address: {props.inviteeEmailAddress}<br></br></p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name: {props.inviteeName}<br></br>Email Address: {props.inviteeEmailAddress}<br></br></p>
   );
 }
 

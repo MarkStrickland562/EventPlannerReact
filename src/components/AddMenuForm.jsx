@@ -39,21 +39,8 @@ function AddMenuForm(props){
           font-size: 16px;
           color: darkgreen;
           font-weight: bold;
-          width: 240px;
-        }        
-
-        select {
-          font-size: 16px;
-          color: darkgreen;
-          font-weight: bold;
+          width: 300px;
         }
-
-        option {
-          font-size: 16px;
-          color: darkgreen;
-          font-weight: bold;
-          width: 240px;
-        } 
       `}
       </style>
       <div>
@@ -63,7 +50,7 @@ function AddMenuForm(props){
           <h1 className='pageTitle'>ADD MENU</h1>
           <div>
             <form style={{width: '30%', padding: '5px 5px 5px 5px', border: '2px solid darkgreen', borderRadius: '4px'}} onSubmit={handleNewMenuFormSubmission}>
-              <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Menu Theme: </label>
+              <label>&nbsp;Menu Theme: </label>
               <input
                 type='text'
                 id='menuTheme'

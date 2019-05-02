@@ -43,20 +43,21 @@ function AddFoodForm(props){
           font-size: 16px;
           color: darkgreen;
           font-weight: bold;
-          width: 240px;
+          width: 300px;
         }
 
         select {
           font-size: 16px;
           color: darkgreen;
           font-weight: bold;
+          width: 300px;
         }
 
         option {
           font-size: 16px;
           color: darkgreen;
           font-weight: bold;
-          width: 240px;
+          width: 300px;
         }
       `}
       </style>
@@ -73,7 +74,7 @@ function AddFoodForm(props){
                 id='ingredientDescription'
                 ref={(input) => {_ingredientDescription = input;}}/>
               <br></br>
-              <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dish: </label>
+              <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dish: </label>
               <select ref={(input) => {_dishId = input;}}>
                 {Object.keys(props.dishes).map(function(dishId) {
                   var dish = props.dishes[dishId];
@@ -81,7 +82,7 @@ function AddFoodForm(props){
                 })}
               </select>
               <br></br>
-              <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Store: </label>
+              <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Store: </label>
               <select ref={(input) => {_storeId = input;}}>
                 {Object.keys(props.stores).map(function(storeId) {
                   var store = props.stores[storeId];

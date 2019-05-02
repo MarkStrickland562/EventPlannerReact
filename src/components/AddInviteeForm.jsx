@@ -41,20 +41,7 @@ function AddInviteeForm(props){
           font-size: 16px;
           color: darkgreen;
           font-weight: bold;
-          width: 240px;
-        }
-
-        select {
-          font-size: 16px;
-          color: darkgreen;
-          font-weight: bold;
-        }
-
-        option {
-          font-size: 16px;
-          color: darkgreen;
-          font-weight: bold;
-          width: 240px;
+          width: 300px;
         }
       `}
       </style>
@@ -71,7 +58,7 @@ function AddInviteeForm(props){
                 id='inviteeName'
                 ref={(input) => {_inviteeName = input;}}/>
               <br></br>
-              <label>Email Address: </label>
+              <label>&nbsp;&nbsp;&nbsp;&nbsp;Email Address: </label>
               <input
                 type='text'
                 id='inviteeEmailAddress'

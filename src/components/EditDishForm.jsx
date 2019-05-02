@@ -39,7 +39,7 @@ function EditDishForm(props){
           color: darkgreen;
           font-weight: bold;
           width: 240px;
-        }  
+        }
 
         select {
           font-size: 16px;
@@ -52,7 +52,7 @@ function EditDishForm(props){
           color: darkgreen;
           font-weight: bold;
           width: 240px;
-        } 
+        }
 `}
       </style>
       <div>
@@ -62,7 +62,7 @@ function EditDishForm(props){
           <h1 className='pageTitle'>UPDATE DISH</h1>
           <div>
             <form style={{width: '30%', padding: '5px 5px 5px 5px', border: '2px solid darkgreen', borderRadius: '4px'}} onSubmit={handleEditDishFormSubmission}>
-              <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dish Description:&nbsp;&nbsp;</label>
+              <label>Dish Description:&nbsp;&nbsp;</label>
               <input
                 type='text'
                 id='menuItemDescription'

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 function Task(props){
   return (
-    <p>Description: {props.taskDescription}<br></br>Start Date/Time: {props.taskPlannedStartDateTime}<br></br></p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Description: {props.taskDescription}<br></br>Start Date/Time: {props.taskPlannedStartDateTime}<br></br></p>
   );
 }
 

@@ -31,7 +31,7 @@ function Menus(props){
         }
 
         .column {
-          height: 14vh;
+          height: 8vh;
           width: 25vw;;
           margin: 2px 2px 2px 2px;
           padding: 5px 5px 5px 5px;

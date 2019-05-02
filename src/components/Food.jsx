@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 function Food(props){
   return (
     <p>&nbsp;Description: {props.ingredientDescription}<br></br>
-       &nbsp;Dish: {props.menuItemDescription}<br></br>
-       &nbsp;Store: {props.storeName}</p>
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dish: {props.menuItemDescription}<br></br>
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Store: {props.storeName}</p>
   );
 }
 

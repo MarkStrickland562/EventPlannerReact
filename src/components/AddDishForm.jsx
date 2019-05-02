@@ -39,20 +39,7 @@ function AddDishForm(props){
           font-size: 16px;
           color: darkgreen;
           font-weight: bold;
-          width: 240px;
-        }
-
-        select {
-          font-size: 16px;
-          color: darkgreen;
-          font-weight: bold;
-        }
-
-        option {
-          font-size: 16px;
-          color: darkgreen;
-          font-weight: bold;
-          width: 240px;
+          width: 300px;
         }
       `}
       </style>
@@ -63,7 +50,7 @@ function AddDishForm(props){
           <h1 className='pageTitle'>ADD DISH</h1>
           <div>
             <form style={{width: '30%', padding: '5px 5px 5px 5px', border: '2px solid darkgreen', borderRadius: '4px'}} onSubmit={handleNewDishFormSubmission}>
-              <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dish Name: </label>
+              <label>&nbsp;Dish Name: </label>
               <input
                 type='text'
                 id='menuItemDescription'

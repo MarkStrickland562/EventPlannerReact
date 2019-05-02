@@ -43,19 +43,6 @@ function AddTaskForm(props){
           font-weight: bold;
           width: 300px;
         }
-
-        select {
-          font-size: 16px;
-          color: darkgreen;
-          font-weight: bold;
-        }
-
-        option {
-          font-size: 16px;
-          color: darkgreen;
-          font-weight: bold;
-          width: 240px;
-        }
       `}
       </style>
       <div>

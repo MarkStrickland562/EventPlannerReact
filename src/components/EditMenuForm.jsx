@@ -38,22 +38,9 @@ function EditMenuForm(props){
           font-size: 16px;
           color: darkgreen;
           font-weight: bold;
-          width: 240px;
-        }  
-
-        select {
-          font-size: 16px;
-          color: darkgreen;
-          font-weight: bold;
+          width: 300px;
         }
-
-        option {
-          font-size: 16px;
-          color: darkgreen;
-          font-weight: bold;
-          width: 240px;
-        } 
-`}
+      `}
       </style>
       <div>
         <Header></Header>
