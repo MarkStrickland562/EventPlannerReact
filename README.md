@@ -6,15 +6,14 @@
 
 ## **eHappenings Event Planner (React)**
 
-###### Created April 26, 2019. Finalized May 3rd, 2019.
+###### Started April 26, 2019. Completed May 3rd, 2019.
 
 ----------
 
 ## Description
-This project is a re-development of an Angular-based project that was itself a redevelopment of a C#-based team project from the Epicodus C# class called *eHappenings*. The C# code was converted to javascript and Angular and the C# Model/View/Controller structure was converted to the Angular Model/View/Component structure. Then for this
-project, the Angular and Typescript code was converted to React and JSX. Much of the styling has been kept from the C# project and credit for the styling goes to Clara Munro and Micaela Jawor. Credit for the format of this README largely goes to Shawn Lunsford.
+*eHappenings* is a re-development of an Angular-based project that was itself a redevelopment of a C#-based team project from the Epicodus C# class. The C# code was converted to javascript and Angular and the C# Model/View/Controller structure was converted to the Angular Model/View/Component structure. Then for this project, the Angular and Typescript code was converted to React and JSX. Much of the styling has been kept from the C# project and credit for the styling goes to Clara Munro and Micaela Jawor. Credit for the format of this README largely goes to Shawn Lunsford.
 
-The development process in React versus Angular seems more straightforward. More componentized. Somewhat gentler learning curve.
+The development process in React versus Angular seems more straightforward. More componentized. A somewhat gentler learning curve.
 
 ## Notes
 
@@ -23,7 +22,7 @@ The development process in React versus Angular seems more straightforward. More
 * Lint doesn't seem to handle image files very well.
 * So far, React seems less "busy" than Angular. That's a good thing.
 
-## Component Structure
+## Component Tree
 
 App
 <br>
@@ -47,7 +46,15 @@ App
 <br>
 ----------------> Event
 <br>
---------> Menus ("/menus")
+----------------> AddEventForm
+<br>
+----------------> EditEventForm
+<br>
+----------------> DeleteEventForm
+<br>
+----------------> SearchEvent
+<br>
+--------> Menus ("/menus") &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<-------- MenuData
 <br>
 ----------------> Header
 <br>
@@ -55,7 +62,15 @@ App
 <br>
 ----------------> Menu
 <br>
---------> Dishes ("/dishes")
+----------------> AddMenuForm
+<br>
+----------------> EditMenuForm
+<br>
+----------------> DeleteMenuForm
+<br>
+----------------> SearchMenu
+<br>
+--------> Dishes ("/dishes") &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<-------- DishData
 <br>
 ----------------> Header
 <br>
@@ -63,7 +78,15 @@ App
 <br>
 ----------------> Dish
 <br>
---------> Foods ("/foods")
+----------------> AddDishForm
+<br>
+----------------> EditDishForm
+<br>
+----------------> DeleteDishForm
+<br>
+----------------> SearchDish
+<br>
+--------> Foods ("/foods") &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<-------- FoodData
 <br>
 ----------------> Header
 <br>
@@ -71,7 +94,15 @@ App
 <br>
 ----------------> Food
 <br>
---------> Stores ("/stores")
+----------------> AddFoodForm
+<br>
+----------------> EditFoodForm
+<br>
+----------------> DeleteFoodForm
+<br>
+----------------> SearchFood
+<br>
+--------> Stores ("/stores") &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<-------- StoreData
 <br>
 ----------------> Header
 <br>
@@ -79,7 +110,15 @@ App
 <br>
 ----------------> Store
 <br>
---------> Tasks ("/tasks")
+----------------> AddStoreForm
+<br>
+----------------> EditStoreForm
+<br>
+----------------> DeleteStoreForm
+<br>
+----------------> SearchStore
+<br>
+--------> Tasks ("/tasks") &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<-------- TaskData
 <br>
 ----------------> Header
 <br>
@@ -87,7 +126,15 @@ App
 <br>
 ----------------> Task
 <br>
---------> Invitees ("/invitees")
+----------------> AddTaskForm
+<br>
+----------------> EditTaskForm
+<br>
+----------------> DeleteTaskForm
+<br>
+----------------> SearchTask
+<br>
+--------> Invitees ("/invitees") &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<-------- InviteeData
 <br>
 ----------------> Header
 <br>
@@ -95,7 +142,15 @@ App
 <br>
 ----------------> Invitee
 <br>
---------> Recipes ("/recipes")
+----------------> AddInviteeForm
+<br>
+----------------> EditInviteeForm
+<br>
+----------------> DeleteInviteeForm
+<br>
+----------------> SearchInvitee
+<br>
+--------> RecipeSearch ("/recipes")
 <br>
 ----------------> Header
 <br>
@@ -108,15 +163,15 @@ App
 
 * Bootstrap
 * React
+* Eslint
 
 ## Known Bugs
 No Known Bugs.
 
 ## Project Plan
 
-### Part One (Week #1)
-###### 1) Develop technical architecture.
-###### 2) Set up the project.
+##### 1) Develop technical architecture.
+##### 2) Set up the project.
 <details>
 <summary>Click Here for Details</summary>
 This assumes that node is already installed, but verify with "node -v".
@@ -135,82 +190,10 @@ This assumes that node is already installed, but verify with "node -v".
 <br>
     .env
 <br><br>
-3) Point Angular to the installed Bootstrap node module by adding the following to .angular-cli.json in the styles array so that it looks like this:
-<br><br>
-  "styles": [
-<br>
-  "../node_modules/bootstrap/dist/css/bootstrap.min.css",
-  <br>
-  "styles.css"
-  <br>
-  ],
-<br><br>
-4) Add the Forms Module to app.module.ts. In the top section of imports add "import { FormsModule } from '@angular/forms'". In the @ngModule section in the imports array, add ", FormsModule" after "BrowserModule".
 </details>
 
-###### 3) Create model classes for the data.
-<details>
-<summary>Click Here for Details</summary>
-</details>
-
-###### 4) Develop mock data for each class.
-
-###### 5) Create components for showing, adding, editing, deleting and searching for model-related objects.
-<details>
-<summary>Click Here for Details</summary>
-</details>
-
-## Technical Architecture
-
-<details>
-  <summary>Click Here for an Overview of the Data Model</summary>
-  <table>
-    <tr>
-      <th>Model</th>
-      <th>Properties</th>
-      <th>Typescript Data Types</th>
-    </tr>
-    <tr>
-      <td>Event</td>
-      <td>eventName<br>eventLocation<br>menusId</td>
-      <td>string<br>string<br>number</td>
-    </tr>    
-    <tr>
-      <td>Menu</td>
-      <td>menuTheme</td>
-      <td>string</td>
-    </tr>   
-    <tr>
-      <td>Task</td>
-      <td>taskDescription<br>taskPlannedStartDateTime</td>
-      <td>string<br>Date</td>
-    </tr>
-    <tr>
-      <td>Menu Item</td>
-      <td>menuItemDescription</td>
-      <td>string</td>
-    </tr>
-    <tr>
-      <td>Menu Item Ingredient</td>
-      <td>ingredientDescription<br>menuItemsId<br>storeId</td>
-      <td>string<br>number<br>number</td>
-    </tr>
-    <tr>
-      <td>Store</td>
-      <td>storeName</td>
-      <td>string</td>
-    </tr>
-    <tr>
-      <td>Invitee</td>
-      <td>inviteeName<br>inviteeEmailAddress</td>
-      <td>string<br>string</td>
-    </tr>
-  </table>
-</details>
-
-<details>
-  <summary>Click Here for an Overview of the Components and Routes</summary>
-</details>
+##### 3) Develop mock data for the seven models.
+##### 4) Create components for showing, adding, editing, deleting and searching for model-related objects.
 
 ## Setup and Use
 
@@ -218,26 +201,26 @@ This assumes that node is already installed, but verify with "node -v".
 <details>
 <summary>Click Here for Required Packages</summary>
 <ul>
+<li>babel-core 6.24.1</li>
+<li>babel-loader 7.0.0</li>
+<li>babel-preset-es2015 6.24.1</li>
+<li>babel-preset-react 6.24.1</li>
 <li>bootstrap 4.3.1</li>
-<li>core-js 2.4.1</li>
-
-<li>codelyzer 4.0.1</li>
-<li>jasmine-core 2.8.0</li>
-<li>jasmine-spec-reporter 4.2.1</li>
-<li>karma 2.0.0</li>
-<li>karma-chrome-launcher 2.2.0</li>
-<li>karma-coverage-istanbul-reporter 1.2.1</li>
-<li>karma-jasmine 1.1.0</li>
-<li>karma-jasmine-html-reporter 0.2.2</li>
-<li>protractor 5.1.2</li>
-<li>rxjs 5.5.6</li>
-<li>ts-node 4.1.0</li>
-<li>tslint 5.9.1</li>
-<li>@types/jasmine 2.8.3</li>
-<li>@types/jasminewd2 2.0.2</li>
-<li>@types/node 6.0.60</li>
-<li>typescript 2.5.3</li>
-<li>zone.js 0.8.19</li>
+<li>eslint 4.13.1</li>
+<li>eslint-loader 2.1.2</li>
+<li>eslint-plugin-react 7.12.4</li>
+<li>file-loader 1.1.6</li>
+<li>html-webpack-plugin 2.29.0</li>
+<li>prop-types 15.5.10</li>
+<li>react 15.5.4</li>
+<li>react-dom 15.5.4</li>
+<li>react-hot-loader 3.0.0-beta.7</li>
+<li>react-router-dom 4.0.0</li>
+<li>styled-jsx 3.2.1</li>
+<li>url-loader 0.6.2</li>
+<li>uuid 3.2.1</li>
+<li>webpack 3.4.0</li>
+<li>webpack-dev-server 2.5.0
 </ul>
 </details>
 
@@ -254,19 +237,20 @@ This assumes that node is already installed, but verify with "node -v".
 
        $ npm install
 3. Run the application:
-
+    
        $ npm run start
 
-#### Test the application
-1. Execute the tests with Jasmine and Karma:
+    Then navigate to locahost:8080 in the browser.
 
-       $ npm run test
+4. To lint the code:
+
+       $ npm run lint-fix
 
 ## Built With
 
 * Windows 10.1
 * iMac OS X El Capitan 10.11.6
-* Atom (IDE)
+* VSCode
 
 ## Support and contact details
 

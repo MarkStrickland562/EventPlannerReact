@@ -47,7 +47,6 @@ function Recipes() {
         <Header></Header>
         <SideNav></SideNav>
         <div style={{paddingLeft: '20%', paddingRight: '5%'}} className="page-content">
-          <RecipeGet/>
         </div>
       </div>
     </div>
