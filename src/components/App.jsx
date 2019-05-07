@@ -57,7 +57,11 @@ import DeleteInviteeForm from './DeleteInviteeForm';
 import EditInviteeForm from './EditInviteeForm';
 import SearchInvitees from './SearchInvitees';
 
-import RecipeSearch from './RecipeSearch';
+import RecipeSearchForm from './RecipeSearchForm';
+import Recipes from './Recipes';
+
+import { recipeKey } from './.api-keys';
+import { recipeID } from './.api-keys';
 
 class App extends React.Component {
   constructor(props) {
@@ -91,7 +95,9 @@ class App extends React.Component {
       selectedTaskProps: null,
 
       selectedInvitee: null,
-      selectedInviteeProps: null
+      selectedInviteeProps: null,
+
+      masterRecipes: []
     };
 
     this.handleAddingNewEvent = this.handleAddingNewEvent.bind(this);
@@ -128,6 +134,8 @@ class App extends React.Component {
     this.handleDeletingInvitee = this.handleDeletingInvitee.bind(this);
     this.handleChangingSelectedInvitee = this.handleChangingSelectedInvitee.bind(this);
     this.handleEditingInvitee = this.handleEditingInvitee.bind(this);
+
+    this.handleGettingRecipes = this.handleGettingRecipes.bind(this);
   }
 
   handleAddingNewEvent(newEvent) {
@@ -340,6 +348,19 @@ class App extends React.Component {
     this.setState({selectedInviteeProps: invitee});
   }
 
+  handleGettingRecipes(response) {
+    let searchString = response.searchString;
+    let searchCount = response.searchCount;
+
+    fetch(`https://api.edamam.com/search?q=${searchString}&to=${searchCount}&app_id=${recipeID}&app_key=${recipeKey}`)
+      .then(results => {
+      return results.json();
+    }).then(data => {
+      this.setState({masterRecipes: data.hits});
+      this.props.history.push('/recipes');
+    });
+  }
+
   render() {
     return (
       <div>
@@ -366,6 +387,15 @@ class App extends React.Component {
             color: white;
             text-shadow: 1px 1px 2px black;
             text-decoration: none;
+          }
+
+          .externalLink {
+            color: darkgreen;
+            text-shadow: 1px 1px 2px black;
+          }
+
+          .externalLink:hover {
+            color: rgb(216, 216, 216);
           }
 
           .navlink {
@@ -427,7 +457,8 @@ class App extends React.Component {
             <Route path='/editinvitee' render={() =><EditInviteeForm onInviteeUpdate={this.handleEditingInvitee} selectedInvitee={this.state.selectedInvitee} selectedInviteeProps={this.state.selectedInviteeProps} />} />
             <Route path='/searchinvitees' component={SearchInvitees} />
 
-            <Route path='/recipes' component={RecipeSearch} />
+            <Route path='/searchrecipes' render={() =><RecipeSearchForm onRecipeSearch={this.handleGettingRecipes} />} />
+            <Route path='/recipes' render={() =><Recipes recipes={this.state.masterRecipes} />} />
 
             <Route component={Error404} />
           </Switch>

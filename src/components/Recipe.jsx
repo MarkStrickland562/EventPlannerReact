@@ -1,56 +1,30 @@
 import React from 'react';
-import SideNav from './SideNav';
-import Header from './Header';
-import RecipeGet from './RecipeGet';
+import PropTypes from 'prop-types';
 
-function Recipes() {
+function Recipe(props){
   return (
     <div>
       <style jsx>{`>
-        .pageTitle {
-          font-size: 30px;
-          font-family: 'Luckiest Guy', cursive;
-          margin-top: 2%;
-          color: darkgreen;
-        }
-
-        .page-content {
-          width: 100%;
-          font-family: 'Luckiest Guy', cursive;
-          min-height: 100vh;
-          position: absolute;
-          padding-left: 10%;
-          background-color: beige;
-          color: darkgreen;
-        }
-
-        .parentColumn {
-          display: grid;
-          grid-template-columns: 1fr 1fr 1fr;
-          width: 80%;
-        }
-
-        .column {
-          height: 18vh;
-          width: 25vw;;
-          margin: 2px 2px 2px 2px;
-          padding: 5px 5px 5px 5px;
-          border: 2px solid black;
-          border-radius: 4px;
+        .image {
+          border: 2px solid;
           border-color: darkgreen;
-          background-color: white;
-          font-size: 18px;
+          border-radius: 4px;
         }
-      `}
+        `}
       </style>
       <div>
-        <Header></Header>
-        <SideNav></SideNav>
-        <div style={{paddingLeft: '20%', paddingRight: '5%'}} className="page-content">
-        </div>
+          <img className="image" src={props.recipeImage} style={{height: '40%',  width: '40%', border: '2px solid', borderColor: 'darkgreen', borderRadius: '4px'}}></img>     
+          <br></br>
+          <a className="externalLink" href={props.recipeUrl}>{props.recipeLabel}</a>
       </div>
-    </div>
+  </div>
   );
 }
 
-export default Recipes;
+Recipe.propTypes = {
+  recipeImage: PropTypes.string.isRequired,
+  recipeUrl: PropTypes.string.isRequired,
+  recipeLabel: PropTypes.string.isRequired
+};
+
+export default Recipe;

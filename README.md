@@ -150,7 +150,13 @@ App
 <br>
 ----------------> SearchInvitee
 <br>
---------> RecipeSearch ("/recipes")
+--------> RecipeSearchForm ("/searchrecipes")
+<br>
+----------------> Header
+<br>
+----------------> SideNav
+<br>
+--------> Recipes ("/recipes") &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<-------- API Call
 <br>
 ----------------> Header
 <br>
@@ -158,7 +164,6 @@ App
 <br>
 ----------------> Recipe
 <br>
-
 ## Technical Features
 
 * Bootstrap

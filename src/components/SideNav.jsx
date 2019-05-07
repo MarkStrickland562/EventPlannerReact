@@ -149,7 +149,7 @@ function SideNav(){
               <br></br>
             </li>
             <li className="active">
-              <Link className="navlink" to="/recipes">RECIPE SEARCH<br></br><i className="fas fa-search-plus"></i></Link>
+              <Link className="navlink" to="/searchrecipes">RECIPE SEARCH<br></br><i className="fas fa-search-plus"></i></Link>
             </li>
           </ul>
         </nav>
