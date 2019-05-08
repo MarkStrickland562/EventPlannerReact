@@ -13,11 +13,11 @@ function Recipe(props){
         `}
       </style>
       <div>
-          <img className="image" src={props.recipeImage} style={{height: '40%',  width: '40%', border: '2px solid', borderColor: 'darkgreen', borderRadius: '4px'}}></img>     
-          <br></br>
-          <a className="externalLink" href={props.recipeUrl}>{props.recipeLabel}</a>
+        <img className="image" src={props.recipeImage} style={{height: '40%',  width: '40%', border: '2px solid', borderColor: 'darkgreen', borderRadius: '4px'}}></img>     
+        <br></br>
+        <a className="externalLink" href={props.recipeUrl}>{props.recipeLabel}</a>
       </div>
-  </div>
+    </div>
   );
 }
 
