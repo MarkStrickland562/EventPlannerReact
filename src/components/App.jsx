@@ -75,9 +75,6 @@ class App extends React.Component {
       masterTasks: TaskData,
       masterInvitees: InviteeData,
 
-      selectedEvent: null,
-      selectedEventProps: null,
-
       selectedMenu: null,
       selectedMenuProps: null,
 
@@ -99,12 +96,7 @@ class App extends React.Component {
       masterRecipes: []
     };
 
-    this.handleAddingNewEvent = this.handleAddingNewEvent.bind(this);
-    this.handleDeletingEvent = this.handleDeletingEvent.bind(this);
-    this.handleChangingSelectedEvent = this.handleChangingSelectedEvent.bind(
-      this
-    );
-    this.handleEditingEvent = this.handleEditingEvent.bind(this);
+    this.handleRouteBack = this.handleRouteBack.bind(this);
 
     this.handleAddingNewMenu = this.handleAddingNewMenu.bind(this);
     this.handleDeletingMenu = this.handleDeletingMenu.bind(this);
@@ -151,38 +143,10 @@ class App extends React.Component {
     this.handleGettingRecipes = this.handleGettingRecipes.bind(this);
   }
 
-  handleAddingNewEvent(newEvent) {
-    let newEventId = v4();
-    let newMasterEvents = Object.assign({}, this.state.masterEvents, {
-      [newEventId]: newEvent
-    });
-    this.setState({ masterEvents: newMasterEvents });
-    this.props.history.push('/events');
-  }
-
-  handleDeletingEvent(response) {
-    if (response.confirm === 'true') {
-      delete this.state.masterEvents[response.eventToDelete.eventId];
-      this.setState({ masterEvents: this.state.masterEvents });
+  handleRouteBack(target) {
+    if (target === 'events') {
+      this.props.history.push('/events');
     }
-    this.setState({ selectedEvent: null });
-    this.props.history.push('/events');
-  }
-
-  handleEditingEvent(response) {
-    let eventToUpdate = response.eventToUpdate;
-    let newMasterEvents = Object.assign({}, this.state.masterEvents);
-    newMasterEvents[eventToUpdate].eventName = response.eventName;
-    newMasterEvents[eventToUpdate].eventDate = response.eventDate;
-    newMasterEvents[eventToUpdate].eventLocation = response.eventLocation;
-    newMasterEvents[eventToUpdate].menusId = response.menusId;
-    this.setState({ masterEvents: newMasterEvents });
-    this.props.history.push('/events');
-  }
-
-  handleChangingSelectedEvent(eventId, event) {
-    this.setState({ selectedEvent: eventId });
-    this.setState({ selectedEventProps: event });
   }
 
   handleAddingNewMenu(newMenu) {
@@ -456,7 +420,6 @@ class App extends React.Component {
                 <Events
                   events={this.props.masterEvents}
                   menus={this.state.masterMenus}
-                  onEventSelection={this.handleChangingSelectedEvent}
                 />
               )}
             />
@@ -465,17 +428,14 @@ class App extends React.Component {
               render={() => (
                 <AddEventForm
                   menus={this.state.masterMenus}
-                  onNewEventCreation={this.handleAddingNewEvent}
+                  onFormSubmit={this.handleRouteBack}
                 />
               )}
             />
             <Route
               path="/deleteevent"
               render={() => (
-                <DeleteEventForm
-                  onEventDeletion={this.handleDeletingEvent}
-                  selectedEvent={this.state.selectedEvent}
-                />
+                <DeleteEventForm onFormSubmit={this.handleRouteBack} />
               )}
             />
             <Route
@@ -483,14 +443,11 @@ class App extends React.Component {
               render={() => (
                 <EditEventForm
                   menus={this.state.masterMenus}
-                  onEventUpdate={this.handleEditingEvent}
-                  selectedEvent={this.state.selectedEvent}
-                  selectedEventProps={this.state.selectedEventProps}
+                  onFormSubmit={this.handleRouteBack}
                 />
               )}
             />
             <Route path="/searchevents" component={SearchEvents} />
-
             <Route
               path="/menus"
               render={() => (

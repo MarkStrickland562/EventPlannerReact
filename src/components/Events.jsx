@@ -4,8 +4,18 @@ import PropTypes from 'prop-types';
 import SideNav from './SideNav';
 import Header from './Header';
 import Event from './Event';
+import { connect } from 'react-redux';
 
 function Events(props) {
+  function handleSavingSelectedEvent(eventId) {
+    const { dispatch } = props;
+    const action = {
+      type: 'SELECT_EVENT',
+      eventId: eventId
+    };
+    dispatch(action);
+  }
+
   return (
     <div>
       <style jsx>
@@ -83,7 +93,7 @@ function Events(props) {
                   <div>
                     <button
                       onClick={() => {
-                        props.onEventSelection({ eventId }, { event });
+                        handleSavingSelectedEvent(eventId);
                       }}
                       type="button"
                       className="button-main"
@@ -94,7 +104,7 @@ function Events(props) {
                     </button>
                     <button
                       onClick={() => {
-                        props.onEventSelection({ eventId }, { event });
+                        handleSavingSelectedEvent(eventId);
                       }}
                       type="button"
                       className="button-main"
@@ -116,8 +126,7 @@ function Events(props) {
 
 Events.propTypes = {
   events: PropTypes.object,
-  menus: PropTypes.object,
-  onEventSelection: PropTypes.func
+  menus: PropTypes.object
 };
 
-export default Events;
+export default connect()(Events);

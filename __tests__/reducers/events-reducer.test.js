@@ -1,4 +1,5 @@
 import eventsReducer from "./../../src/reducers/events-reducer";
+import c from "./../../src/constants";
 
 describe("eventsReducer", () => {
   let action;
@@ -23,7 +24,7 @@ describe("eventsReducer", () => {
       menusId
     } = sampleEventData;
     action = {
-      type: "ADD_EVENT",
+      type: c.ADD_EVENT,
       id: id,
       eventName: eventName,
       eventDate: eventDate,
