@@ -1,16 +1,25 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import SideNav from './SideNav';
 import Header from './Header';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { v4 } from 'uuid';
+import c from './../constants';
 
-function AddMenuForm(props){
-
+function AddMenuForm(props) {
   let _menuTheme = null;
 
   function handleNewMenuFormSubmission(event) {
+    const { dispatch } = props;
     event.preventDefault();
-    props.onNewMenuCreation({menuTheme: _menuTheme.value});
+    const action = {
+      type: c.ADD_MENU,
+      id: v4(),
+      menuTheme: _menuTheme.value
+    };
+    dispatch(action);
     _menuTheme = '';
+    props.onFormSubmit('menus');
   }
 
   return (
@@ -49,12 +58,12 @@ function AddMenuForm(props){
         <div className='page-content'>
           <h1 className='pageTitle'>ADD MENU</h1>
           <div>
-            <form style={{width: '30%', padding: '5px 5px 5px 5px', border: '2px solid darkgreen', borderRadius: '4px'}} onSubmit={handleNewMenuFormSubmission}>
+            <form style={{ width: '30%', padding: '5px 5px 5px 5px', border: '2px solid darkgreen', borderRadius: '4px' }} onSubmit={handleNewMenuFormSubmission}>
               <label>&nbsp;Menu Theme: </label>
               <input
                 type='text'
                 id='menuTheme'
-                ref={(input) => {_menuTheme = input;}}/>
+                ref={(input) => { _menuTheme = input; }} />
               <br></br><br></br>
               <button type='submit' className='button-main'>ADD MENU</button>
             </form>
@@ -66,8 +75,7 @@ function AddMenuForm(props){
 }
 
 AddMenuForm.propTypes = {
-  menus: PropTypes.object,
-  onNewMenuCreation: PropTypes.func
+  onFormSubmit: PropTypes.func
 };
 
-export default AddMenuForm;
+export default connect()(AddMenuForm);

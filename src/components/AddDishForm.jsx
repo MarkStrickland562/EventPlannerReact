@@ -1,16 +1,26 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import SideNav from './SideNav';
 import Header from './Header';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { v4 } from 'uuid';
+import c from './../constants';
 
-function AddDishForm(props){
+function AddDishForm(props) {
 
   let _menuItemDescription = null;
 
   function handleNewDishFormSubmission(event) {
+    const { dispatch } = props;
     event.preventDefault();
-    props.onNewDishCreation({menuItemDescription: _menuItemDescription.value});
+    const action = {
+      type: c.ADD_DISH,
+      id: v4(),
+      menuItemDescription: _menuItemDescription.value
+    };
+    dispatch(action);
     _menuItemDescription = '';
+    props.onFormSubmit('dishes');
   }
 
   return (
@@ -49,12 +59,12 @@ function AddDishForm(props){
         <div className='page-content'>
           <h1 className='pageTitle'>ADD DISH</h1>
           <div>
-            <form style={{width: '30%', padding: '5px 5px 5px 5px', border: '2px solid darkgreen', borderRadius: '4px'}} onSubmit={handleNewDishFormSubmission}>
+            <form style={{ width: '30%', padding: '5px 5px 5px 5px', border: '2px solid darkgreen', borderRadius: '4px' }} onSubmit={handleNewDishFormSubmission}>
               <label>&nbsp;Dish Name: </label>
               <input
                 type='text'
                 id='menuItemDescription'
-                ref={(input) => {_menuItemDescription = input;}}/>
+                ref={(input) => { _menuItemDescription = input; }} />
               <br></br><br></br>
               <button type='submit' className='button-main'>ADD DISH</button>
             </form>
@@ -67,7 +77,7 @@ function AddDishForm(props){
 
 AddDishForm.propTypes = {
   dishes: PropTypes.object,
-  onNewDishCreation: PropTypes.func
+  onFormSubmit: PropTypes.func
 };
 
-export default AddDishForm;
+export default connect()(AddDishForm);

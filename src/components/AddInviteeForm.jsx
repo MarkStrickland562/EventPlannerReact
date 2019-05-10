@@ -1,18 +1,29 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import SideNav from './SideNav';
 import Header from './Header';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { v4 } from 'uuid';
+import c from './../constants';
 
-function AddInviteeForm(props){
+function AddInviteeForm(props) {
 
   let _inviteeName = null;
   let _inviteeEmailAddress = null;
 
   function handleNewInviteeFormSubmission(event) {
+    const { dispatch } = props;
     event.preventDefault();
-    props.onNewInviteeCreation({inviteeName: _inviteeName.value, inviteeEmailAddress: _inviteeEmailAddress.value});
+    const action = {
+      type: c.ADD_INVITEE,
+      id: v4(),
+      inviteeName: _inviteeName.value,
+      inviteeEmailAddress: _inviteeEmailAddress.value,
+    };
+    dispatch(action);
     _inviteeName = '';
     _inviteeEmailAddress = '';
+    props.onFormSubmit('invitees');
   }
 
   return (
@@ -51,18 +62,18 @@ function AddInviteeForm(props){
         <div className='page-content'>
           <h1 className='pageTitle'>ADD INVITEE</h1>
           <div>
-            <form style={{width: '30%', padding: '5px 5px 5px 5px', border: '2px solid darkgreen', borderRadius: '4px'}} onSubmit={handleNewInviteeFormSubmission}>
+            <form style={{ width: '30%', padding: '5px 5px 5px 5px', border: '2px solid darkgreen', borderRadius: '4px' }} onSubmit={handleNewInviteeFormSubmission}>
               <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Invitee Name: </label>
               <input
                 type='text'
                 id='inviteeName'
-                ref={(input) => {_inviteeName = input;}}/>
+                ref={(input) => { _inviteeName = input; }} />
               <br></br>
               <label>&nbsp;&nbsp;&nbsp;&nbsp;Email Address: </label>
               <input
                 type='text'
                 id='inviteeEmailAddress'
-                ref={(input) => {_inviteeEmailAddress = input;}}/>
+                ref={(input) => { _inviteeEmailAddress = input; }} />
               <br></br><br></br>
               <button type='submit' className='button-main'>ADD INVITEE</button>
             </form>
@@ -74,7 +85,7 @@ function AddInviteeForm(props){
 }
 
 AddInviteeForm.propTypes = {
-  onNewInviteeCreation: PropTypes.func
+  onFormSubmit: PropTypes.func
 };
 
-export default AddInviteeForm;
+export default connect()(AddInviteeForm);
