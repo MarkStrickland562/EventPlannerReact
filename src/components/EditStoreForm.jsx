@@ -2,15 +2,24 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import SideNav from './SideNav';
 import Header from './Header';
+import { connect } from 'react-redux';
+import c from './../constants';
 
-function EditStoreForm(props){
+function EditStoreForm(props) {
+  let _id = props.selectedStore;
+  let _storeName = props.stores[props.selectedStore].storeName;
 
-  let _storeName = props.selectedStoreProps.store.storeName;
-
-  var handleEditStoreFormSubmission = (event) => {
+  function handleEditStoreFormSubmission(event) {
+    const { dispatch } = props;
     event.preventDefault();
-    props.onStoreUpdate({storeToUpdate: props.selectedStore.storeId, storeName: _storeName.value});
-  };
+    const action = {
+      type: c.EDIT_STORE,
+      id: _id,
+      storeName: _storeName.value
+    };
+    dispatch(action);
+    props.onFormSubmit('stores');
+  }
 
   return (
     <div>
@@ -62,13 +71,13 @@ function EditStoreForm(props){
         <div className='page-content'>
           <h1 className='pageTitle'>UPDATE STORE</h1>
           <div>
-            <form style={{width: '30%', padding: '5px 5px 5px 5px', border: '2px solid darkgreen', borderRadius: '4px'}} onSubmit={handleEditStoreFormSubmission}>
+            <form style={{ width: '30%', padding: '5px 5px 5px 5px', border: '2px solid darkgreen', borderRadius: '4px' }} onSubmit={handleEditStoreFormSubmission}>
               <label>Store Name:&nbsp;&nbsp;</label>
               <input
                 type='text'
                 id='storeName'
                 defaultValue={_storeName}
-                ref={(input) => {_storeName = input;}}/>
+                ref={(input) => { _storeName = input; }} />
               <br></br><br></br>
               <button type='submit' className='button-main'>UPDATE STORE</button>
             </form>
@@ -80,9 +89,16 @@ function EditStoreForm(props){
 }
 
 EditStoreForm.propTypes = {
+  stores: PropTypes.object,
   selectedStore: PropTypes.object,
-  selectedStoreProps: PropTypes.object,
-  onStoreUpdate: PropTypes.func
+  onFormSubmit: PropTypes.func
 };
 
-export default EditStoreForm;
+const mapStateToProps = state => {
+  return {
+    stores: state.masterStores,
+    selectedStore: state.selectedStore
+  };
+};
+
+export default connect(mapStateToProps)(EditStoreForm);

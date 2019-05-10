@@ -2,14 +2,25 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import SideNav from './SideNav';
 import Header from './Header';
+import { connect } from 'react-redux';
+import c from './../constants';
 
-function DeleteDishForm(props){
-
+function DeleteDishForm(props) {
+  let _id = props.selectedDish;
   let _confirm = null;
- 
+
   var handleDeleteDishFormSubmission = (event) => {
+    const { dispatch } = props;
     event.preventDefault();
-    props.onDishDeletion({confirm: _confirm.value, dishToDelete: props.selectedDish});
+    const action = {
+      type: c.DELETE_DISH,
+      id: _id
+    };
+
+    if (_confirm.value === 'true') {
+      dispatch(action);
+    }
+    props.onFormSubmit('dishes');
   };
 
   return (
@@ -47,9 +58,9 @@ function DeleteDishForm(props){
         <div className="page-content">
           <h1 className="pageTitle">DELETE DISH</h1>
           <div>
-            <form style={{width: '15%', padding: '5px 5px 5px 5px', border: '2px solid darkgreen', borderRadius: '4px'}} onSubmit={handleDeleteDishFormSubmission}>
+            <form style={{ width: '15%', padding: '5px 5px 5px 5px', border: '2px solid darkgreen', borderRadius: '4px' }} onSubmit={handleDeleteDishFormSubmission}>
               <label>Confirm Delete: </label>
-              <select ref={(input) => {_confirm = input;}}>
+              <select ref={(input) => { _confirm = input; }}>
                 <option value="undefined" disabled></option>
                 <option value="false">No</option>
                 <option value="true">Yes</option>
@@ -66,7 +77,13 @@ function DeleteDishForm(props){
 
 DeleteDishForm.propTypes = {
   selectedDish: PropTypes.object,
-  onDishDeletion: PropTypes.func
+  onFormSubmit: PropTypes.func
 };
 
-export default DeleteDishForm;
+const mapStateToProps = state => {
+  return {
+    selectedDish: state.selectedDish
+  };
+};
+
+export default connect(mapStateToProps)(DeleteDishForm);

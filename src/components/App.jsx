@@ -1,15 +1,7 @@
 import React from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom';
-import { v4 } from 'uuid';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-
-import MenuData from './MenuData';
-import DishData from './DishData';
-import FoodData from './FoodData';
-import StoreData from './StoreData';
-import TaskData from './TaskData';
-import InviteeData from './InviteeData';
 
 import Welcome from './Welcome';
 import Main from './Main';
@@ -68,279 +60,15 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      masterMenus: MenuData,
-      masterDishes: DishData,
-      masterFoods: FoodData,
-      masterStores: StoreData,
-      masterTasks: TaskData,
-      masterInvitees: InviteeData,
-
-      selectedMenu: null,
-      selectedMenuProps: null,
-
-      selectedDish: null,
-      selectedDishProps: null,
-
-      selectedFood: null,
-      selectedFoodProps: null,
-
-      selectedStore: null,
-      selectedStoreProps: null,
-
-      selectedTask: null,
-      selectedTaskProps: null,
-
-      selectedInvitee: null,
-      selectedInviteeProps: null,
-
       masterRecipes: []
     };
 
-    this.handleRouteBack = this.handleRouteBack.bind(this);
-
-    this.handleAddingNewMenu = this.handleAddingNewMenu.bind(this);
-    this.handleDeletingMenu = this.handleDeletingMenu.bind(this);
-    this.handleChangingSelectedMenu = this.handleChangingSelectedMenu.bind(
-      this
-    );
-    this.handleEditingMenu = this.handleEditingMenu.bind(this);
-
-    this.handleAddingNewDish = this.handleAddingNewDish.bind(this);
-    this.handleDeletingDish = this.handleDeletingDish.bind(this);
-    this.handleChangingSelectedDish = this.handleChangingSelectedDish.bind(
-      this
-    );
-    this.handleEditingDish = this.handleEditingDish.bind(this);
-
-    this.handleAddingNewFood = this.handleAddingNewFood.bind(this);
-    this.handleDeletingFood = this.handleDeletingFood.bind(this);
-    this.handleChangingSelectedFood = this.handleChangingSelectedFood.bind(
-      this
-    );
-    this.handleEditingFood = this.handleEditingFood.bind(this);
-
-    this.handleAddingNewStore = this.handleAddingNewStore.bind(this);
-    this.handleDeletingStore = this.handleDeletingStore.bind(this);
-    this.handleChangingSelectedStore = this.handleChangingSelectedStore.bind(
-      this
-    );
-    this.handleEditingStore = this.handleEditingStore.bind(this);
-
-    this.handleAddingNewTask = this.handleAddingNewTask.bind(this);
-    this.handleDeletingTask = this.handleDeletingTask.bind(this);
-    this.handleChangingSelectedTask = this.handleChangingSelectedTask.bind(
-      this
-    );
-    this.handleEditingTask = this.handleEditingTask.bind(this);
-
-    this.handleAddingNewInvitee = this.handleAddingNewInvitee.bind(this);
-    this.handleDeletingInvitee = this.handleDeletingInvitee.bind(this);
-    this.handleChangingSelectedInvitee = this.handleChangingSelectedInvitee.bind(
-      this
-    );
-    this.handleEditingInvitee = this.handleEditingInvitee.bind(this);
-
     this.handleGettingRecipes = this.handleGettingRecipes.bind(this);
+    this.handleRouteBack = this.handleRouteBack.bind(this);
   }
 
   handleRouteBack(target) {
-    if (target === 'events') {
-      this.props.history.push('/events');
-    }
-  }
-
-  handleAddingNewMenu(newMenu) {
-    let newMenuId = v4();
-    let newMasterMenus = Object.assign({}, this.state.masterMenus, {
-      [newMenuId]: newMenu
-    });
-    this.setState({ masterMenus: newMasterMenus });
-    this.props.history.push('/menus');
-  }
-
-  handleDeletingMenu(response) {
-    if (response.confirm === 'true') {
-      delete this.state.masterMenus[response.menuToDelete.menuId];
-      this.setState({ masterMenus: this.state.masterMenus });
-    }
-    this.setState({ selectedMenu: null });
-    this.props.history.push('/menus');
-  }
-
-  handleEditingMenu(response) {
-    let menuToUpdate = response.menuToUpdate;
-    let newMasterMenus = Object.assign({}, this.state.masterMenus);
-    newMasterMenus[menuToUpdate].menuTheme = response.menuTheme;
-    this.setState({ masterMenus: newMasterMenus });
-    this.props.history.push('/menus');
-  }
-
-  handleChangingSelectedMenu(menuId, menu) {
-    this.setState({ selectedMenu: menuId });
-    this.setState({ selectedMenuProps: menu });
-  }
-
-  handleAddingNewDish(newDish) {
-    let newDishId = v4();
-    let newMasterDishes = Object.assign({}, this.state.masterDishes, {
-      [newDishId]: newDish
-    });
-    this.setState({ masterDishes: newMasterDishes });
-    this.props.history.push('/dishes');
-  }
-
-  handleDeletingDish(response) {
-    if (response.confirm === 'true') {
-      delete this.state.masterDishes[response.dishToDelete.dishId];
-      this.setState({ masterDishes: this.state.masterDishes });
-    }
-    this.setState({ selectedDish: null });
-    this.props.history.push('/dishes');
-  }
-
-  handleEditingDish(response) {
-    let dishToUpdate = response.dishToUpdate;
-    let newMasterDishes = Object.assign({}, this.state.masterDishes);
-    newMasterDishes[dishToUpdate].menuItemDescription =
-      response.menuItemDescription;
-    this.setState({ masterDishes: newMasterDishes });
-    this.props.history.push('/dishes');
-  }
-
-  handleChangingSelectedDish(dishId, dish) {
-    this.setState({ selectedDish: dishId });
-    this.setState({ selectedDishProps: dish });
-  }
-
-  handleAddingNewFood(newFood) {
-    let newFoodId = v4();
-    let newMasterFoods = Object.assign({}, this.state.masterFoods, {
-      [newFoodId]: newFood
-    });
-    this.setState({ masterFoods: newMasterFoods });
-    this.props.history.push('/foods');
-  }
-
-  handleDeletingFood(response) {
-    if (response.confirm === 'true') {
-      delete this.state.masterFoods[response.foodToDelete.foodId];
-      this.setState({ masterFoods: this.state.masterFoods });
-    }
-    this.setState({ selectedFood: null });
-    this.props.history.push('/foods');
-  }
-
-  handleEditingFood(response) {
-    let foodToUpdate = response.foodToUpdate;
-    let newMasterFoods = Object.assign({}, this.state.masterFoods);
-    newMasterFoods[foodToUpdate].ingredientDescription =
-      response.ingredientDescription;
-    newMasterFoods[foodToUpdate].menuItemsId = response.menuItemsId;
-    newMasterFoods[foodToUpdate].storeId = response.storeId;
-    this.setState({ masterFoods: newMasterFoods });
-    this.props.history.push('/foods');
-  }
-
-  handleChangingSelectedFood(foodId, food) {
-    this.setState({ selectedFood: foodId });
-    this.setState({ selectedFoodProps: food });
-  }
-
-  handleAddingNewStore(newStore) {
-    let newStoreId = v4();
-    let newMasterStores = Object.assign({}, this.state.masterStores, {
-      [newStoreId]: newStore
-    });
-    this.setState({ masterStores: newMasterStores });
-    this.props.history.push('/stores');
-  }
-
-  handleDeletingStore(response) {
-    if (response.confirm === 'true') {
-      delete this.state.masterStores[response.storeToDelete.storeId];
-      this.setState({ masterStores: this.state.masterStores });
-    }
-    this.setState({ selectedStore: null });
-    this.props.history.push('/stores');
-  }
-
-  handleEditingStore(response) {
-    let storeToUpdate = response.storeToUpdate;
-    let newMasterStores = Object.assign({}, this.state.masterStores);
-    newMasterStores[storeToUpdate].storeName = response.storeName;
-    this.setState({ masterStores: newMasterStores });
-    this.props.history.push('/stores');
-  }
-
-  handleChangingSelectedStore(storeId, store) {
-    this.setState({ selectedStore: storeId });
-    this.setState({ selectedStoreProps: store });
-  }
-
-  handleAddingNewTask(newTask) {
-    let newTaskId = v4();
-    let newMasterTasks = Object.assign({}, this.state.masterTasks, {
-      [newTaskId]: newTask
-    });
-    this.setState({ masterTasks: newMasterTasks });
-    this.props.history.push('/tasks');
-  }
-
-  handleDeletingTask(response) {
-    if (response.confirm === 'true') {
-      delete this.state.masterTasks[response.taskToDelete.taskId];
-      this.setState({ masterTasks: this.state.masterTasks });
-    }
-    this.setState({ selectedTask: null });
-    this.props.history.push('/tasks');
-  }
-
-  handleEditingTask(response) {
-    let taskToUpdate = response.taskToUpdate;
-    let newMasterTasks = Object.assign({}, this.state.masterTasks);
-    newMasterTasks[taskToUpdate].taskDescription = response.taskDescription;
-    newMasterTasks[taskToUpdate].taskPlannedStartDateTime =
-      response.taskPlannedStartDateTime;
-    this.setState({ masterTasks: newMasterTasks });
-    this.props.history.push('/tasks');
-  }
-
-  handleChangingSelectedTask(taskId, task) {
-    this.setState({ selectedTask: taskId });
-    this.setState({ selectedTaskProps: task });
-  }
-
-  handleAddingNewInvitee(newInvitee) {
-    let newInviteeId = v4();
-    let newMasterInvitees = Object.assign({}, this.state.masterInvitees, {
-      [newInviteeId]: newInvitee
-    });
-    this.setState({ masterInvitees: newMasterInvitees });
-    this.props.history.push('/invitees');
-  }
-
-  handleDeletingInvitee(response) {
-    if (response.confirm === 'true') {
-      delete this.state.masterInvitees[response.inviteeToDelete.inviteeId];
-      this.setState({ masterInvitees: this.state.masterInvitees });
-    }
-    this.setState({ selectedInvitee: null });
-    this.props.history.push('/invitees');
-  }
-
-  handleEditingInvitee(response) {
-    let inviteeToUpdate = response.inviteeToUpdate;
-    let newMasterInvitees = Object.assign({}, this.state.masterInvitees);
-    newMasterInvitees[inviteeToUpdate].inviteeName = response.inviteeName;
-    newMasterInvitees[inviteeToUpdate].inviteeEmailAddress =
-      response.inviteeEmailAddress;
-    this.setState({ masterInvitees: newMasterInvitees });
-    this.props.history.push('/invitees');
-  }
-
-  handleChangingSelectedInvitee(inviteeId, invitee) {
-    this.setState({ selectedInvitee: inviteeId });
-    this.setState({ selectedInviteeProps: invitee });
+    this.props.history.push(`/${target}`);
   }
 
   handleGettingRecipes(response) {
@@ -419,7 +147,7 @@ class App extends React.Component {
               render={() => (
                 <Events
                   events={this.props.masterEvents}
-                  menus={this.state.masterMenus}
+                  menus={this.props.masterMenus}
                 />
               )}
             />
@@ -427,7 +155,7 @@ class App extends React.Component {
               path="/addevent"
               render={() => (
                 <AddEventForm
-                  menus={this.state.masterMenus}
+                  menus={this.props.masterMenus}
                   onFormSubmit={this.handleRouteBack}
                 />
               )}
@@ -442,7 +170,7 @@ class App extends React.Component {
               path="/editevent"
               render={() => (
                 <EditEventForm
-                  menus={this.state.masterMenus}
+                  menus={this.props.masterMenus}
                   onFormSubmit={this.handleRouteBack}
                 />
               )}
@@ -452,33 +180,27 @@ class App extends React.Component {
               path="/menus"
               render={() => (
                 <Menus
-                  menus={this.state.masterMenus}
-                  onMenuSelection={this.handleChangingSelectedMenu}
+                  menus={this.props.masterMenus}
                 />
               )}
             />
             <Route
               path="/addmenu"
               render={() => (
-                <AddMenuForm onNewMenuCreation={this.handleAddingNewMenu} />
+                <AddMenuForm onFormSubmit={this.handleRouteBack} />
               )}
             />
             <Route
               path="/deletemenu"
               render={() => (
-                <DeleteMenuForm
-                  onMenuDeletion={this.handleDeletingMenu}
-                  selectedMenu={this.state.selectedMenu}
+                <DeleteMenuForm onFormSubmit={this.handleRouteBack}
                 />
               )}
             />
             <Route
               path="/editmenu"
               render={() => (
-                <EditMenuForm
-                  onMenuUpdate={this.handleEditingMenu}
-                  selectedMenu={this.state.selectedMenu}
-                  selectedMenuProps={this.state.selectedMenuProps}
+                <EditMenuForm onFormSubmit={this.handleRouteBack}
                 />
               )}
             />
@@ -488,37 +210,28 @@ class App extends React.Component {
               path="/dishes"
               render={() => (
                 <Dishes
-                  dishes={this.state.masterDishes}
-                  onDishSelection={this.handleChangingSelectedDish}
+                  dishes={this.props.masterDishes}
                 />
               )}
             />
             <Route
               path="/adddish"
               render={() => (
-                <AddDishForm
-                  dishes={this.state.masterDishes}
-                  onNewDishCreation={this.handleAddingNewDish}
+                <AddDishForm onFormSubmit={this.handleRouteBack}
                 />
               )}
             />
             <Route
               path="/deletedish"
               render={() => (
-                <DeleteDishForm
-                  onDishDeletion={this.handleDeletingDish}
-                  selectedDish={this.state.selectedDish}
+                <DeleteDishForm onFormSubmit={this.handleRouteBack}
                 />
               )}
             />
             <Route
               path="/editdish"
               render={() => (
-                <EditDishForm
-                  dishes={this.state.masterDishes}
-                  onDishUpdate={this.handleEditingDish}
-                  selectedDish={this.state.selectedDish}
-                  selectedDishProps={this.state.selectedDishProps}
+                <EditDishForm onFormSubmit={this.handleRouteBack}
                 />
               )}
             />
@@ -527,42 +240,28 @@ class App extends React.Component {
             <Route
               path="/foods"
               render={() => (
-                <Foods
-                  foods={this.state.masterFoods}
-                  dishes={this.state.masterDishes}
-                  stores={this.state.masterStores}
-                  onFoodSelection={this.handleChangingSelectedFood}
+                <Foods foods={this.props.masterFoods} dishes={this.props.masterDishes} stores={this.props.masterStores}
                 />
               )}
             />
             <Route
               path="/addfood"
               render={() => (
-                <AddFoodForm
-                  dishes={this.state.masterDishes}
-                  stores={this.state.masterStores}
-                  onNewFoodCreation={this.handleAddingNewFood}
+                <AddFoodForm dishes={this.props.masterDishes} stores={this.props.masterStores} onFormSubmit={this.handleRouteBack}
                 />
               )}
             />
             <Route
               path="/deletefood"
               render={() => (
-                <DeleteFoodForm
-                  onFoodDeletion={this.handleDeletingFood}
-                  selectedFood={this.state.selectedFood}
+                <DeleteFoodForm onFormSubmit={this.handleRouteBack}
                 />
               )}
             />
             <Route
               path="/editfood"
               render={() => (
-                <EditFoodForm
-                  dishes={this.state.masterDishes}
-                  stores={this.state.masterStores}
-                  onFoodUpdate={this.handleEditingFood}
-                  selectedFood={this.state.selectedFood}
-                  selectedFoodProps={this.state.selectedFoodProps}
+                <EditFoodForm dishes={this.props.masterDishes} stores={this.props.masterStores} onFormSubmit={this.handleRouteBack}
                 />
               )}
             />
@@ -572,33 +271,27 @@ class App extends React.Component {
               path="/stores"
               render={() => (
                 <Stores
-                  stores={this.state.masterStores}
-                  onStoreSelection={this.handleChangingSelectedStore}
+                  stores={this.props.masterStores}
                 />
               )}
             />
             <Route
               path="/addstore"
               render={() => (
-                <AddStoreForm onNewStoreCreation={this.handleAddingNewStore} />
+                <AddStoreForm onFormSubmit={this.handleRouteBack} />
               )}
             />
             <Route
               path="/deletestore"
               render={() => (
-                <DeleteStoreForm
-                  onStoreDeletion={this.handleDeletingStore}
-                  selectedStore={this.state.selectedStore}
+                <DeleteStoreForm onFormSubmit={this.handleRouteBack}
                 />
               )}
             />
             <Route
               path="/editstore"
               render={() => (
-                <EditStoreForm
-                  onStoreUpdate={this.handleEditingStore}
-                  selectedStore={this.state.selectedStore}
-                  selectedStoreProps={this.state.selectedStoreProps}
+                <EditStoreForm onFormSubmit={this.handleRouteBack}
                 />
               )}
             />
@@ -608,33 +301,27 @@ class App extends React.Component {
               path="/tasks"
               render={() => (
                 <Tasks
-                  tasks={this.state.masterTasks}
-                  onTaskSelection={this.handleChangingSelectedTask}
+                  tasks={this.props.masterTasks}
                 />
               )}
             />
             <Route
               path="/addtask"
               render={() => (
-                <AddTaskForm onNewTaskCreation={this.handleAddingNewTask} />
+                <AddTaskForm onFormSubmit={this.handleRouteBack} />
               )}
             />
             <Route
               path="/deletetask"
               render={() => (
-                <DeleteTaskForm
-                  onTaskDeletion={this.handleDeletingTask}
-                  selectedTask={this.state.selectedTask}
+                <DeleteTaskForm onFormSubmit={this.handleRouteBack}
                 />
               )}
             />
             <Route
               path="/edittask"
               render={() => (
-                <EditTaskForm
-                  onTaskUpdate={this.handleEditingTask}
-                  selectedTask={this.state.selectedTask}
-                  selectedTaskProps={this.state.selectedTaskProps}
+                <EditTaskForm onFormSubmit={this.handleRouteBack}
                 />
               )}
             />
@@ -644,36 +331,28 @@ class App extends React.Component {
               path="/invitees"
               render={() => (
                 <Invitees
-                  invitees={this.state.masterInvitees}
-                  onInviteeSelection={this.handleChangingSelectedInvitee}
+                  invitees={this.props.masterInvitees}
                 />
               )}
             />
             <Route
               path="/addinvitee"
               render={() => (
-                <AddInviteeForm
-                  onNewInviteeCreation={this.handleAddingNewInvitee}
+                <AddInviteeForm onFormSubmit={this.handleRouteBack}
                 />
               )}
             />
             <Route
               path="/deleteinvitee"
               render={() => (
-                <DeleteInviteeForm
-                  onInviteeDeletion={this.handleDeletingInvitee}
-                  selectedInvitee={this.state.selectedInvitee}
+                <DeleteInviteeForm onFormSubmit={this.handleRouteBack}
                 />
               )}
             />
             <Route
               path="/editinvitee"
               render={() => (
-                <EditInviteeForm
-                  onInviteeUpdate={this.handleEditingInvitee}
-                  selectedInvitee={this.state.selectedInvitee}
-                  selectedInviteeProps={this.state.selectedInviteeProps}
-                />
+                <EditInviteeForm onFormSubmit={this.handleRouteBack} />
               )}
             />
             <Route path="/searchinvitees" component={SearchInvitees} />
@@ -698,12 +377,24 @@ class App extends React.Component {
 }
 
 App.propTypes = {
-  masterEvents: PropTypes.object
+  masterEvents: PropTypes.object,
+  masterMenus: PropTypes.object,
+  masterDishes: PropTypes.object,
+  masterFoods: PropTypes.object,
+  masterStores: PropTypes.object,
+  masterTasks: PropTypes.object,
+  masterInvitees: PropTypes.object
 };
 
 const mapStateToProps = state => {
   return {
-    masterEvents: state.masterEvents
+    masterEvents: state.masterEvents,
+    masterMenus: state.masterMenus,
+    masterDishes: state.masterDishes,
+    masterFoods: state.masterFoods,
+    masterStores: state.masterStores,
+    masterTasks: state.masterTasks,
+    masterInvitees: state.masterInvitees
   };
 };
 

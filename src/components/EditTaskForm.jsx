@@ -2,16 +2,26 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import SideNav from './SideNav';
 import Header from './Header';
+import { connect } from 'react-redux';
+import c from './../constants';
 
-function EditTaskForm(props){
+function EditTaskForm(props) {
+  let _id = props.selectedTask;
+  let _taskDescription = props.tasks[props.selectedTask].taskDescription;
+  let _taskPlannedStartDateTime = props.tasks[props.selectedTask].taskPlannedStartDateTime;
 
-  let _taskDescription = props.selectedTaskProps.task.taskDescription;
-  let _taskPlannedStartDateTime = props.selectedTaskProps.task.taskPlannedStartDateTime;
-
-  var handleEditTaskFormSubmission = (event) => {
+  function handleEditTaskFormSubmission(event) {
+    const { dispatch } = props;
     event.preventDefault();
-    props.onTaskUpdate({taskToUpdate: props.selectedTask.taskId, taskDescription: _taskDescription.value, taskPlannedStartDateTime: _taskPlannedStartDateTime.value});
-  };
+    const action = {
+      type: c.EDIT_TASK,
+      id: _id,
+      taskDescription: _taskDescription.value,
+      taskPlannedStartDateTime: _taskPlannedStartDateTime.value
+    };
+    dispatch(action);
+    props.onFormSubmit('tasks');
+  }
 
   return (
     <div>
@@ -63,20 +73,20 @@ function EditTaskForm(props){
         <div className='page-content'>
           <h1 className='pageTitle'>UPDATE TASK</h1>
           <div>
-            <form style={{width: '30%', padding: '5px 5px 5px 5px', border: '2px solid darkgreen', borderRadius: '4px'}} onSubmit={handleEditTaskFormSubmission}>
+            <form style={{ width: '30%', padding: '5px 5px 5px 5px', border: '2px solid darkgreen', borderRadius: '4px' }} onSubmit={handleEditTaskFormSubmission}>
               <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Task Name:&nbsp;&nbsp;</label>
               <input
                 type='text'
                 id='taskDescription'
                 defaultValue={_taskDescription}
-                ref={(input) => {_taskDescription = input;}}/>
+                ref={(input) => { _taskDescription = input; }} />
               <br></br>
               <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Task Date:&nbsp;&nbsp;</label>
               <input
                 type='datetime-local'
                 id='taskPlannedStartDateTime'
                 defaultValue={_taskPlannedStartDateTime}
-                ref={(input) => {_taskPlannedStartDateTime = input;}}/>
+                ref={(input) => { _taskPlannedStartDateTime = input; }} />
               <br></br><br></br>
               <button type='submit' className='button-main'>UPDATE TASK</button>
             </form>
@@ -88,9 +98,16 @@ function EditTaskForm(props){
 }
 
 EditTaskForm.propTypes = {
+  tasks: PropTypes.object,
   selectedTask: PropTypes.object,
-  selectedTaskProps: PropTypes.object,
-  onTaskUpdate: PropTypes.func
+  onFormSubmit: PropTypes.func
 };
 
-export default EditTaskForm;
+const mapStateToProps = state => {
+  return {
+    tasks: state.masterTasks,
+    selectedTask: state.selectedTask
+  };
+};
+
+export default connect(mapStateToProps)(EditTaskForm);

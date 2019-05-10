@@ -2,16 +2,26 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import SideNav from './SideNav';
 import Header from './Header';
+import { connect } from 'react-redux';
+import c from './../constants';
 
-function EditInviteeForm(props){
+function EditInviteeForm(props) {
+  let _id = props.selectedInvitee;
+  let _inviteeName = props.invitees[props.selectedInvitee].inviteeName;
+  let _inviteeEmailAddress = props.invitees[props.selectedInvitee].inviteeEmailAddress;
 
-  let _inviteeName = props.selectedInviteeProps.invitee.inviteeName;
-  let _inviteeEmailAddress = props.selectedInviteeProps.invitee.inviteeEmailAddress;
-
-  var handleEditInviteeFormSubmission = (event) => {
+  function handleEditInviteeFormSubmission(event) {
+    const { dispatch } = props;
     event.preventDefault();
-    props.onInviteeUpdate({inviteeToUpdate: props.selectedInvitee.inviteeId, inviteeName: _inviteeName.value, inviteeEmailAddress: _inviteeEmailAddress.value});
-  };
+    const action = {
+      type: c.EDIT_INVITEE,
+      id: _id,
+      inviteeName: _inviteeName.value,
+      inviteeEmailAddress: _inviteeEmailAddress.value
+    };
+    dispatch(action);
+    props.onFormSubmit('invitees');
+  }
 
   return (
     <div>
@@ -63,20 +73,20 @@ function EditInviteeForm(props){
         <div className='page-content'>
           <h1 className='pageTitle'>UPDATE INVITEE</h1>
           <div>
-            <form style={{width: '30%', padding: '5px 5px 5px 5px', border: '2px solid darkgreen', borderRadius: '4px'}} onSubmit={handleEditInviteeFormSubmission}>
+            <form style={{ width: '30%', padding: '5px 5px 5px 5px', border: '2px solid darkgreen', borderRadius: '4px' }} onSubmit={handleEditInviteeFormSubmission}>
               <label>&nbsp;&nbsp;Invitee Name:&nbsp;&nbsp;</label>
               <input
                 type='text'
                 id='inviteeName'
                 defaultValue={_inviteeName}
-                ref={(input) => {_inviteeName = input;}}/>
+                ref={(input) => { _inviteeName = input; }} />
               <br></br>
               <label>Email Address:&nbsp;&nbsp;</label>
               <input
                 type='text'
                 id='inviteeEmailAddress'
                 defaultValue={_inviteeEmailAddress}
-                ref={(input) => {_inviteeEmailAddress = input;}}/>
+                ref={(input) => { _inviteeEmailAddress = input; }} />
               <br></br><br></br>
               <button type='submit' className='button-main'>UPDATE INVITEE</button>
             </form>
@@ -88,9 +98,16 @@ function EditInviteeForm(props){
 }
 
 EditInviteeForm.propTypes = {
+  invitees: PropTypes.object,
   selectedInvitee: PropTypes.object,
-  selectedInviteeProps: PropTypes.object,
-  onInviteeUpdate: PropTypes.func
+  onFormSubmit: PropTypes.func
 };
 
-export default EditInviteeForm;
+const mapStateToProps = state => {
+  return {
+    invitees: state.masterInvitees,
+    selectedInvitee: state.selectedInvitee
+  };
+};
+
+export default connect(mapStateToProps)(EditInviteeForm);

@@ -2,15 +2,24 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import SideNav from './SideNav';
 import Header from './Header';
+import { connect } from 'react-redux';
+import c from './../constants';
 
-function EditMenuForm(props){
+function EditMenuForm(props) {
+  let _id = props.selectedMenu;
+  let _menuTheme = props.menus[props.selectedMenu].menuTheme;
 
-  let _menuTheme = props.selectedMenuProps.menu.menuTheme;
-
-  var handleEditMenuFormSubmission = (event) => {
+  function handleEditMenuFormSubmission(event) {
+    const { dispatch } = props;
     event.preventDefault();
-    props.onMenuUpdate({menuToUpdate: props.selectedMenu.menuId, menuTheme: _menuTheme.value});
-  };
+    const action = {
+      type: c.EDIT_MENU,
+      id: _id,
+      menuTheme: _menuTheme.value,
+    };
+    dispatch(action);
+    props.onFormSubmit('menus');
+  }
 
   return (
     <div>
@@ -48,13 +57,13 @@ function EditMenuForm(props){
         <div className='page-content'>
           <h1 className='pageTitle'>UPDATE MENU</h1>
           <div>
-            <form style={{width: '30%', padding: '5px 5px 5px 5px', border: '2px solid darkgreen', borderRadius: '4px'}} onSubmit={handleEditMenuFormSubmission}>
+            <form style={{ width: '30%', padding: '5px 5px 5px 5px', border: '2px solid darkgreen', borderRadius: '4px' }} onSubmit={handleEditMenuFormSubmission}>
               <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Menu Name:&nbsp;&nbsp;</label>
               <input
                 type='text'
                 id='menuTheme'
                 defaultValue={_menuTheme}
-                ref={(input) => {_menuTheme = input;}}/>
+                ref={(input) => { _menuTheme = input; }} />
               <br></br><br></br>
               <button type='submit' className='button-main'>UPDATE MENU</button>
             </form>
@@ -68,8 +77,14 @@ function EditMenuForm(props){
 EditMenuForm.propTypes = {
   menus: PropTypes.object,
   selectedMenu: PropTypes.object,
-  selectedMenuProps: PropTypes.object,
-  onMenuUpdate: PropTypes.func
+  onFormSubmit: PropTypes.func
 };
 
-export default EditMenuForm;
+const mapStateToProps = state => {
+  return {
+    menus: state.masterMenus,
+    selectedMenu: state.selectedMenu
+  };
+};
+
+export default connect(mapStateToProps)(EditMenuForm);

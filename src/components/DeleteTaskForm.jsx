@@ -2,14 +2,25 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import SideNav from './SideNav';
 import Header from './Header';
+import { connect } from 'react-redux';
+import c from './../constants';
 
-function DeleteTaskForm(props){
-
+function DeleteTaskForm(props) {
+  let _id = props.selectedTask;
   let _confirm = null;
 
   var handleDeleteTaskFormSubmission = (event) => {
+    const { dispatch } = props;
     event.preventDefault();
-    props.onTaskDeletion({confirm: _confirm.value, taskToDelete: props.selectedTask});
+    const action = {
+      type: c.DELETE_TASK,
+      id: _id
+    };
+
+    if (_confirm.value === 'true') {
+      dispatch(action);
+    }
+    props.onFormSubmit('tasks');
   };
 
   return (
@@ -47,9 +58,9 @@ function DeleteTaskForm(props){
         <div className="page-content">
           <h1 className="pageTitle">DELETE TASK</h1>
           <div>
-            <form style={{width: '15%', padding: '5px 5px 5px 5px', border: '2px solid darkgreen', borderRadius: '4px'}} onSubmit={handleDeleteTaskFormSubmission}>
+            <form style={{ width: '15%', padding: '5px 5px 5px 5px', border: '2px solid darkgreen', borderRadius: '4px' }} onSubmit={handleDeleteTaskFormSubmission}>
               <label>Confirm Delete: </label>
-              <select ref={(input) => {_confirm = input;}}>
+              <select ref={(input) => { _confirm = input; }}>
                 <option value="undefined" disabled></option>
                 <option value="false">No</option>
                 <option value="true">Yes</option>
@@ -66,7 +77,13 @@ function DeleteTaskForm(props){
 
 DeleteTaskForm.propTypes = {
   selectedTask: PropTypes.object,
-  onTaskDeletion: PropTypes.func
+  onFormSubmit: PropTypes.func
 };
 
-export default DeleteTaskForm;
+const mapStateToProps = state => {
+  return {
+    selectedTask: state.selectedTask
+  };
+};
+
+export default connect(mapStateToProps)(DeleteTaskForm);

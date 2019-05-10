@@ -2,17 +2,28 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import SideNav from './SideNav';
 import Header from './Header';
+import { connect } from 'react-redux';
+import c from './../constants';
 
-function EditFoodForm(props){
+function EditFoodForm(props) {
+  let _id = props.selectedFood;
+  let _ingredientDescription = props.foods[props.selectedFood].ingredientDescription;
+  let _dishId = props.dishes[props.selectedFood].menuItemsId;
+  let _storeId = props.stores[props.selectedFood].storeId;
 
-  let _ingredientDescription = props.selectedFoodProps.food.ingredientDescription;
-  let _dishId = props.selectedFoodProps.food.menuItemsId;
-  let _storeId = props.selectedFoodProps.food.storeId;
-
-  var handleEditFoodFormSubmission = (event) => {
+  function handleEditFoodFormSubmission(event) {
+    const { dispatch } = props;
     event.preventDefault();
-    props.onFoodUpdate({foodToUpdate: props.selectedFood.foodId, ingredientDescription: _ingredientDescription.value, menuItemsId: _dishId.value, storeId: _storeId.value});
-  };
+    const action = {
+      type: c.EDIT_FOOD,
+      id: _id,
+      ingredientDescription: _ingredientDescription.value,
+      dishId: _dishId.value,
+      storeId: _storeId.value
+    };
+    dispatch(action);
+    props.onFormSubmit('foods');
+  }
 
   return (
     <div>
@@ -64,17 +75,17 @@ function EditFoodForm(props){
         <div className='page-content'>
           <h1 className='pageTitle'>UPDATE FOOD</h1>
           <div>
-            <form style={{width: '30%', padding: '5px 5px 5px 5px', border: '2px solid darkgreen', borderRadius: '4px'}} onSubmit={handleEditFoodFormSubmission}>
+            <form style={{ width: '30%', padding: '5px 5px 5px 5px', border: '2px solid darkgreen', borderRadius: '4px' }} onSubmit={handleEditFoodFormSubmission}>
               <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Food Name:&nbsp;&nbsp;</label>
               <input
                 type='text'
                 id='ingredientDescription'
                 defaultValue={_ingredientDescription}
-                ref={(input) => {_ingredientDescription = input;}}/>
+                ref={(input) => { _ingredientDescription = input; }} />
               <br></br>
               <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dish: </label>
-              <select ref={(input) => {_dishId = input;}}>
-                {Object.keys(props.dishes).map(function(dishId) {
+              <select ref={(input) => { _dishId = input; }}>
+                {Object.keys(props.dishes).map(function (dishId) {
                   var dish = props.dishes[dishId];
                   if (dishId == _dishId) {
                     return <option selected={dish.menuItemDescription} defaultValue={dishId} key={dishId} value={dishId}>{dish.menuItemDescription}</option>;
@@ -85,8 +96,8 @@ function EditFoodForm(props){
               </select>
               <br></br>
               <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Store: </label>
-              <select ref={(input) => {_storeId = input;}}>
-                {Object.keys(props.stores).map(function(storeId) {
+              <select ref={(input) => { _storeId = input; }}>
+                {Object.keys(props.stores).map(function (storeId) {
                   var store = props.stores[storeId];
                   if (storeId == _storeId) {
                     return <option selected={store.storeName} defaultValue={storeId} key={storeId} value={storeId}>{store.storeName}</option>;
@@ -106,11 +117,20 @@ function EditFoodForm(props){
 }
 
 EditFoodForm.propTypes = {
+  foods: PropTypes.object,
   dishes: PropTypes.object,
   stores: PropTypes.object,
   selectedFood: PropTypes.object,
-  selectedFoodProps: PropTypes.object,
-  onFoodUpdate: PropTypes.func
+  onFormSubmit: PropTypes.func
 };
 
-export default EditFoodForm;
+const mapStateToProps = state => {
+  return {
+    foods: state.masterFoods,
+    dishes: state.masterDishes,
+    stores: state.masterStores,
+    selectedFood: state.selectedFood
+  };
+};
+
+export default connect(mapStateToProps)(EditFoodForm);

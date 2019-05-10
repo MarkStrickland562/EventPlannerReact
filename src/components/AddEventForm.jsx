@@ -128,7 +128,7 @@ function AddEventForm(props) {
                   _menusId = input;
                 }}
               >
-                {Object.keys(props.menus).map(function(menuId) {
+                {Object.keys(props.menus).map(function (menuId) {
                   var menu = props.menus[menuId];
                   return (
                     <option key={menuId} value={menuId}>
@@ -155,4 +155,10 @@ AddEventForm.propTypes = {
   onFormSubmit: PropTypes.func
 };
 
-export default connect()(AddEventForm);
+const mapStateToProps = state => {
+  return {
+    menus: state.masterMenus
+  };
+};
+
+export default connect(mapStateToProps)(AddEventForm);

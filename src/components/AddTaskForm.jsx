@@ -1,18 +1,29 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import SideNav from './SideNav';
 import Header from './Header';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { v4 } from 'uuid';
+import c from './../constants';
 
-function AddTaskForm(props){
+function AddTaskForm(props) {
 
   let _taskDescription = null;
   let _taskPlannedStartDateTime = null;
 
   function handleNewTaskFormSubmission(event) {
+    const { dispatch } = props;
     event.preventDefault();
-    props.onNewTaskCreation({taskDescription: _taskDescription.value, taskPlannedStartDateTime: _taskPlannedStartDateTime.value});
+    const action = {
+      type: c.ADD_TASK,
+      id: v4(),
+      taskDescription: _taskDescription.value,
+      taskPlannedStartDateTime: _taskPlannedStartDateTime.value
+    };
+    dispatch(action);
     _taskDescription = '';
     _taskPlannedStartDateTime = '';
+    props.onFormSubmit('tasks');
   }
 
   return (
@@ -51,18 +62,18 @@ function AddTaskForm(props){
         <div className='page-content'>
           <h1 className='pageTitle'>ADD TASK</h1>
           <div>
-            <form style={{width: '30%', padding: '5px 5px 5px 5px', border: '2px solid darkgreen', borderRadius: '4px'}} onSubmit={handleNewTaskFormSubmission}>
+            <form style={{ width: '30%', padding: '5px 5px 5px 5px', border: '2px solid darkgreen', borderRadius: '4px' }} onSubmit={handleNewTaskFormSubmission}>
               <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Task Name: </label>
               <input
                 type='text'
                 id='taskDescription'
-                ref={(input) => {_taskDescription = input;}}/>
+                ref={(input) => { _taskDescription = input; }} />
               <br></br>
               <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Task Date: </label>
               <input
                 type='datetime-local'
                 id='taskPlannedStartDateTime'
-                ref={(input) => {_taskPlannedStartDateTime = input;}}/>
+                ref={(input) => { _taskPlannedStartDateTime = input; }} />
               <br></br><br></br>
               <button type='submit' className='button-main'>ADD TASK</button>
             </form>
@@ -74,7 +85,7 @@ function AddTaskForm(props){
 }
 
 AddTaskForm.propTypes = {
-  onNewTaskCreation: PropTypes.func
+  onFormSubmit: PropTypes.func
 };
 
-export default AddTaskForm;
+export default connect()(AddTaskForm);

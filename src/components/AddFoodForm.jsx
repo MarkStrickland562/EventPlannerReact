@@ -1,20 +1,32 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import SideNav from './SideNav';
 import Header from './Header';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { v4 } from 'uuid';
+import c from './../constants';
 
-function AddFoodForm(props){
+function AddFoodForm(props) {
 
   let _ingredientDescription = null;
   let _dishId = null;
   let _storeId = null;
 
   function handleNewFoodFormSubmission(event) {
+    const { dispatch } = props;
     event.preventDefault();
-    props.onNewFoodCreation({ingredientDescription: _ingredientDescription.value, menuItemsId: _dishId.value, storeId: _storeId.value});
+    const action = {
+      type: c.ADD_FOOD,
+      id: v4(),
+      ingredientDescription: _ingredientDescription.value,
+      dishId: _dishId.value,
+      storeId: _storeId.value
+    };
+    dispatch(action);
     _ingredientDescription = '';
-    _dishId = null;
-    _storeId = null;
+    _dishId = '';
+    _storeId = '';
+    props.onFormSubmit('foods');
   }
 
   return (
@@ -67,24 +79,24 @@ function AddFoodForm(props){
         <div className='page-content'>
           <h1 className='pageTitle'>ADD FOOD</h1>
           <div>
-            <form style={{width: '30%', padding: '5px 5px 5px 5px', border: '2px solid darkgreen', borderRadius: '4px'}} onSubmit={handleNewFoodFormSubmission}>
+            <form style={{ width: '30%', padding: '5px 5px 5px 5px', border: '2px solid darkgreen', borderRadius: '4px' }} onSubmit={handleNewFoodFormSubmission}>
               <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Description: </label>
               <input
                 type='text'
                 id='ingredientDescription'
-                ref={(input) => {_ingredientDescription = input;}}/>
+                ref={(input) => { _ingredientDescription = input; }} />
               <br></br>
               <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dish: </label>
-              <select ref={(input) => {_dishId = input;}}>
-                {Object.keys(props.dishes).map(function(dishId) {
+              <select ref={(input) => { _dishId = input; }}>
+                {Object.keys(props.dishes).map(function (dishId) {
                   var dish = props.dishes[dishId];
                   return <option key={dishId} value={dishId}>{dish.menuItemDescription}</option>;
                 })}
               </select>
               <br></br>
               <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Store: </label>
-              <select ref={(input) => {_storeId = input;}}>
-                {Object.keys(props.stores).map(function(storeId) {
+              <select ref={(input) => { _storeId = input; }}>
+                {Object.keys(props.stores).map(function (storeId) {
                   var store = props.stores[storeId];
                   return <option key={storeId} value={storeId}>{store.storeName}</option>;
                 })}
@@ -102,7 +114,14 @@ function AddFoodForm(props){
 AddFoodForm.propTypes = {
   dishes: PropTypes.object,
   stores: PropTypes.object,
-  onNewFoodCreation: PropTypes.func
+  onFormSubmit: PropTypes.func
 };
 
-export default AddFoodForm;
+const mapStateToProps = state => {
+  return {
+    dishes: state.masterDishes,
+    stores: PropTypes.masterStores
+  };
+};
+
+export default connect(mapStateToProps)(AddFoodForm);

@@ -130,7 +130,7 @@ function EditEventForm(props) {
                   _menusId = input;
                 }}
               >
-                {Object.keys(props.menus).map(function(menuId) {
+                {Object.keys(props.menus).map(function (menuId) {
                   var menu = props.menus[menuId];
                   if (menuId == _menusId) {
                     return (
@@ -175,6 +175,7 @@ EditEventForm.propTypes = {
 const mapStateToProps = state => {
   return {
     events: state.masterEvents,
+    menus: state.masterMenus,
     selectedEvent: state.selectedEvent
   };
 };
