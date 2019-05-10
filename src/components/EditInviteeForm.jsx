@@ -8,7 +8,8 @@ import c from './../constants';
 function EditInviteeForm(props) {
   let _id = props.selectedInvitee;
   let _inviteeName = props.invitees[props.selectedInvitee].inviteeName;
-  let _inviteeEmailAddress = props.invitees[props.selectedInvitee].inviteeEmailAddress;
+  let _inviteeEmailAddress =
+    props.invitees[props.selectedInvitee].inviteeEmailAddress;
 
   function handleEditInviteeFormSubmission(event) {
     const { dispatch } = props;
@@ -25,70 +26,88 @@ function EditInviteeForm(props) {
 
   return (
     <div>
-      <style jsx>{`>
-        .pageTitle {
-          font-size: 30px;
-          margin-top: 2%;
-          color: darkgreen;
-        }
+      <style jsx>
+        {`
+          > .pageTitle {
+            font-size: 30px;
+            margin-top: 2%;
+            color: darkgreen;
+          }
 
-        .page-content {
-          width: 100%;
-          min-height: 100vh;
-          position: absolute;
-          padding-left: 10%;
-          background-color: beige;
-          color: darkgreen;
-        }
+          .page-content {
+            width: 100%;
+            min-height: 100vh;
+            position: absolute;
+            padding-left: 10%;
+            background-color: beige;
+            color: darkgreen;
+          }
 
-        label {
-          font-size: 16px;
-        }
+          label {
+            font-size: 16px;
+          }
 
-        input {
-          font-size: 16px;
-          color: darkgreen;
-          font-weight: bold;
-          width: 300px;
-        }
+          input {
+            font-size: 16px;
+            color: darkgreen;
+            font-weight: bold;
+            width: 300px;
+          }
 
-        select {
-          font-size: 16px;
-          color: darkgreen;
-          font-weight: bold;
-          width: 300px;
-        }
+          select {
+            font-size: 16px;
+            color: darkgreen;
+            font-weight: bold;
+            width: 300px;
+          }
 
-        option {
-          font-size: 16px;
-          color: darkgreen;
-          font-weight: bold;
-          width: 300px;
-        }
-`}
+          option {
+            font-size: 16px;
+            color: darkgreen;
+            font-weight: bold;
+            width: 300px;
+          }
+        `}
       </style>
       <div>
-        <Header></Header>
-        <SideNav></SideNav>
-        <div className='page-content'>
-          <h1 className='pageTitle'>UPDATE INVITEE</h1>
+        <Header />
+        <SideNav />
+        <div className="page-content">
+          <h1 className="pageTitle">UPDATE INVITEE</h1>
           <div>
-            <form style={{ width: '30%', padding: '5px 5px 5px 5px', border: '2px solid darkgreen', borderRadius: '4px' }} onSubmit={handleEditInviteeFormSubmission}>
+            <form
+              style={{
+                width: '30%',
+                padding: '5px 5px 5px 5px',
+                border: '2px solid darkgreen',
+                borderRadius: '4px'
+              }}
+              onSubmit={handleEditInviteeFormSubmission}
+            >
               <label>&nbsp;&nbsp;Invitee Name:&nbsp;&nbsp;</label>
               <input
-                type='text'
-                id='inviteeName'
+                type="text"
+                id="inviteeName"
                 defaultValue={_inviteeName}
-                ref={(input) => { _inviteeName = input; }} />
-              <br></br>
+                ref={input => {
+                  _inviteeName = input;
+                }}
+              />
+              <br />
               <label>Email Address:&nbsp;&nbsp;</label>
               <input
-                type='text'
-                id='inviteeEmailAddress'
+                type="text"
+                id="inviteeEmailAddress"
                 defaultValue={_inviteeEmailAddress}
-                ref={(input) => { _inviteeEmailAddress = input; }} />
-              <br></br><br></br>
-              <button type='submit' className='button-main'>UPDATE INVITEE</button>
+                ref={input => {
+                  _inviteeEmailAddress = input;
+                }}
+              />
+              <br />
+              <br />
+              <button type="submit" className="button-main">
+                UPDATE INVITEE
+              </button>
             </form>
           </div>
         </div>
@@ -99,7 +118,7 @@ function EditInviteeForm(props) {
 
 EditInviteeForm.propTypes = {
   invitees: PropTypes.object,
-  selectedInvitee: PropTypes.object,
+  selectedInvitee: PropTypes.string,
   onFormSubmit: PropTypes.func
 };
 
