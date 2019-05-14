@@ -36,10 +36,11 @@ export default (state = {}, action) => {
     delete newState[action.id];
     return newState;
   }
-  case c.RECEIVE_EVENT:
+  case c.RECEIVE_EVENT: {
     newState = Object.assign({}, state);
-    newState[action.event.id] = action.event;
+    newState[action.id] = action.event;
     return newState;
+  }
   default: {
     return state;
   }

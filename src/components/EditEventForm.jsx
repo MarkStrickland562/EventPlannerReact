@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import SideNav from './SideNav';
 import Header from './Header';
 import { connect } from 'react-redux';
-import constants from './../../src/constants';
-const { c } = constants;
+import { editEvent} from './../actions';
 
 function EditEventForm(props) {
   let _id = props.selectedEvent;
@@ -16,15 +15,7 @@ function EditEventForm(props) {
   function handleEditEventFormSubmission(event) {
     const { dispatch } = props;
     event.preventDefault();
-    const action = {
-      type: c.EDIT_EVENT,
-      id: _id,
-      eventName: _eventName.value,
-      eventDate: _eventDate.value,
-      eventLocation: _eventLocation.value,
-      menusId: _menusId.value
-    };
-    dispatch(action);
+    dispatch(editEvent(_id, _eventName.value, _eventDate.value, _eventLocation.value, _menusId.value));
     props.onFormSubmit('events');
   }
 

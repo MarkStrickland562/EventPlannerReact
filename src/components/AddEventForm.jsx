@@ -3,8 +3,6 @@ import SideNav from './SideNav';
 import Header from './Header';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-//import constants from './../../src/constants';
-//const { c } = constants;
 import { addEvent} from './../actions';
 
 function AddEventForm(props) {

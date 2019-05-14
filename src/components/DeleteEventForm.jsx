@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import SideNav from './SideNav';
 import Header from './Header';
 import { connect } from 'react-redux';
-import constants from './../../src/constants';
-const { c } = constants;
+import { deleteEvent} from './../actions';
 
 function DeleteEventForm(props) {
   let _id = props.selectedEvent;
@@ -13,13 +12,8 @@ function DeleteEventForm(props) {
   var handleDeleteEventFormSubmission = event => {
     const { dispatch } = props;
     event.preventDefault();
-    const action = {
-      type: c.DELETE_EVENT,
-      id: _id
-    };
-
     if (_confirm.value === 'true') {
-      dispatch(action);
+      dispatch(deleteEvent(_id));
     }
     props.onFormSubmit('events');
   };
