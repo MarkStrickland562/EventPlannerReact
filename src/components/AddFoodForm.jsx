@@ -4,7 +4,8 @@ import Header from './Header';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { v4 } from 'uuid';
-import c from './../constants';
+import constants from './../../src/constants';
+const { c } = constants;
 
 function AddFoodForm(props) {
   let _ingredientDescription = null;

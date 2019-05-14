@@ -2,6 +2,9 @@ import React from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import * as actions from './../actions';
+//import constants from './../../src/constants';
+//const { c } = constants;
 
 import Welcome from './Welcome';
 import Main from './Main';
@@ -65,6 +68,12 @@ class App extends React.Component {
 
     this.handleGettingRecipes = this.handleGettingRecipes.bind(this);
     this.handleRouteBack = this.handleRouteBack.bind(this);
+  }
+
+  componentWillMount() {
+    const { dispatch } = this.props;
+    const { watchFirebaseEventsRef } = actions;
+    dispatch(watchFirebaseEventsRef());
   }
 
   handleRouteBack(target) {

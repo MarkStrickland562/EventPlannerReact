@@ -1,6 +1,7 @@
-import c from './../constants';
+import constants from './../constants';
+const { c } = constants;
 
-export default (state = EventData, action) => {
+export default (state = {}, action) => {
   let newState;
   const { id, eventName, eventDate, eventLocation, menusId } = action;
 
@@ -35,29 +36,12 @@ export default (state = EventData, action) => {
     delete newState[action.id];
     return newState;
   }
+  case c.RECEIVE_EVENT:
+    newState = Object.assign({}, state);
+    newState[action.event.id] = action.event;
+    return newState;
   default: {
     return state;
   }
-  }
-};
-
-const EventData = {
-  0: {
-    eventName: 'July 5th BBQ',
-    eventDate: '2019-07-04',
-    eventLocation: 'Woodland Park',
-    menusId: 0
-  },
-  1: {
-    eventName: 'Easter Sunday Brunch',
-    eventDate: '2019-04-21',
-    eventLocation: 'Casa de Marco',
-    menusId: 1
-  },
-  2: {
-    eventName: 'St. Patricks Day Party',
-    eventDate: '2019-03-17',
-    eventLocation: 'Claras House',
-    menusId: 2
   }
 };

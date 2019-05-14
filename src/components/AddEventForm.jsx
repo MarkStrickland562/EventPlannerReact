@@ -3,8 +3,9 @@ import SideNav from './SideNav';
 import Header from './Header';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { v4 } from 'uuid';
-import c from './../constants';
+//import constants from './../../src/constants';
+//const { c } = constants;
+import { addEvent} from './../actions';
 
 function AddEventForm(props) {
   let _eventName = null;
@@ -15,15 +16,7 @@ function AddEventForm(props) {
   function handleNewEventFormSubmission(event) {
     const { dispatch } = props;
     event.preventDefault();
-    const action = {
-      type: c.ADD_EVENT,
-      id: v4(),
-      eventName: _eventName.value,
-      eventDate: _eventDate.value,
-      eventLocation: _eventLocation.value,
-      menusId: _menusId.value
-    };
-    dispatch(action);
+    dispatch(addEvent(_eventName.value, _eventDate.value, _eventLocation.value, _menusId.value));
     _eventName = '';
     _eventDate = '';
     _eventLocation = '';

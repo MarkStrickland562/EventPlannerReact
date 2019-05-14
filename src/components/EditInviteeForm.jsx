@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import SideNav from './SideNav';
 import Header from './Header';
 import { connect } from 'react-redux';
-import c from './../constants';
+import constants from './../../src/constants';
+const { c } = constants;
 
 function EditInviteeForm(props) {
   let _id = props.selectedInvitee;

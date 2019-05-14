@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import SideNav from './SideNav';
 import Header from './Header';
-import {
-  connect
-} from 'react-redux';
-import c from './../constants';
+import { connect } from 'react-redux';
+import constants from './../../src/constants';
+const { c } = constants;
+
 function DeleteFoodForm(props) {
   let _id = props.selectedFood;
   let _confirm = null;
