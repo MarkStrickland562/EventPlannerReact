@@ -33,12 +33,17 @@ export default (state = {}, action) => {
   }
   case c.DELETE_EVENT: {
     newState = Object.assign({}, state);
-    delete newState[action.id];
+    delete newState[action.event.id];
     return newState;
   }
   case c.RECEIVE_EVENT: {
     newState = Object.assign({}, state);
-    newState[action.id] = action.event;
+    newState[action.event.id] = action.event;
+    return newState;
+  }
+  case c.RECEIVE_DELETED_EVENT: {
+    newState = Object.assign({}, state);
+    delete newState[action.eventId];
     return newState;
   }
   default: {

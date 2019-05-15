@@ -1,63 +1,61 @@
-import React from 'react';
-import { Switch, Route, withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import * as actions from './../actions';
-//import constants from './../../src/constants';
-//const { c } = constants;
+import React from "react";
+import { Switch, Route, withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import * as actions from "./../actions";
 
-import Welcome from './Welcome';
-import Main from './Main';
-import About from './About';
-import Error404 from './Error404';
+import Welcome from "./Welcome";
+import Main from "./Main";
+import About from "./About";
+import Error404 from "./Error404";
 
-import Events from './Events';
-import AddEventForm from './AddEventForm';
-import DeleteEventForm from './DeleteEventForm';
-import EditEventForm from './EditEventForm';
-import SearchEvents from './SearchEvents';
+import Events from "./Events";
+import AddEventForm from "./AddEventForm";
+import DeleteEventForm from "./DeleteEventForm";
+import EditEventForm from "./EditEventForm";
+import SearchEvents from "./SearchEvents";
 
-import Menus from './Menus';
-import AddMenuForm from './AddMenuForm';
-import DeleteMenuForm from './DeleteMenuForm';
-import EditMenuForm from './EditMenuForm';
-import SearchMenus from './SearchMenus';
+import Menus from "./Menus";
+import AddMenuForm from "./AddMenuForm";
+import DeleteMenuForm from "./DeleteMenuForm";
+import EditMenuForm from "./EditMenuForm";
+import SearchMenus from "./SearchMenus";
 
-import Dishes from './Dishes';
-import AddDishForm from './AddDishForm';
-import DeleteDishForm from './DeleteDishForm';
-import EditDishForm from './EditDishForm';
-import SearchDishes from './SearchDishes';
+import Dishes from "./Dishes";
+import AddDishForm from "./AddDishForm";
+import DeleteDishForm from "./DeleteDishForm";
+import EditDishForm from "./EditDishForm";
+import SearchDishes from "./SearchDishes";
 
-import Foods from './Foods';
-import AddFoodForm from './AddFoodForm';
-import DeleteFoodForm from './DeleteFoodForm';
-import EditFoodForm from './EditFoodForm';
-import SearchFoods from './SearchFoods';
+import Foods from "./Foods";
+import AddFoodForm from "./AddFoodForm";
+import DeleteFoodForm from "./DeleteFoodForm";
+import EditFoodForm from "./EditFoodForm";
+import SearchFoods from "./SearchFoods";
 
-import Stores from './Stores';
-import AddStoreForm from './AddStoreForm';
-import DeleteStoreForm from './DeleteStoreForm';
-import EditStoreForm from './EditStoreForm';
-import SearchStores from './SearchStores';
+import Stores from "./Stores";
+import AddStoreForm from "./AddStoreForm";
+import DeleteStoreForm from "./DeleteStoreForm";
+import EditStoreForm from "./EditStoreForm";
+import SearchStores from "./SearchStores";
 
-import Tasks from './Tasks';
-import AddTaskForm from './AddTaskForm';
-import DeleteTaskForm from './DeleteTaskForm';
-import EditTaskForm from './EditTaskForm';
-import SearchTasks from './SearchTasks';
+import Tasks from "./Tasks";
+import AddTaskForm from "./AddTaskForm";
+import DeleteTaskForm from "./DeleteTaskForm";
+import EditTaskForm from "./EditTaskForm";
+import SearchTasks from "./SearchTasks";
 
-import Invitees from './Invitees';
-import AddInviteeForm from './AddInviteeForm';
-import DeleteInviteeForm from './DeleteInviteeForm';
-import EditInviteeForm from './EditInviteeForm';
-import SearchInvitees from './SearchInvitees';
+import Invitees from "./Invitees";
+import AddInviteeForm from "./AddInviteeForm";
+import DeleteInviteeForm from "./DeleteInviteeForm";
+import EditInviteeForm from "./EditInviteeForm";
+import SearchInvitees from "./SearchInvitees";
 
-import RecipeSearchForm from './RecipeSearchForm';
-import Recipes from './Recipes';
+import RecipeSearchForm from "./RecipeSearchForm";
+import Recipes from "./Recipes";
 
-import { recipeKey } from './.api-keys';
-import { recipeID } from './.api-keys';
+import { recipeKey } from "./.api-keys";
+import { recipeID } from "./.api-keys";
 
 class App extends React.Component {
   constructor(props) {
@@ -92,7 +90,7 @@ class App extends React.Component {
       })
       .then(data => {
         this.setState({ masterRecipes: data.hits });
-        this.props.history.push('/recipes');
+        this.props.history.push("/recipes");
       });
   }
 
@@ -187,61 +185,44 @@ class App extends React.Component {
             <Route path="/searchevents" component={SearchEvents} />
             <Route
               path="/menus"
-              render={() => (
-                <Menus
-                  menus={this.props.masterMenus}
-                />
-              )}
+              render={() => <Menus menus={this.props.masterMenus} />}
             />
             <Route
               path="/addmenu"
-              render={() => (
-                <AddMenuForm onFormSubmit={this.handleRouteBack} />
-              )}
+              render={() => <AddMenuForm onFormSubmit={this.handleRouteBack} />}
             />
             <Route
               path="/deletemenu"
               render={() => (
-                <DeleteMenuForm onFormSubmit={this.handleRouteBack}
-                />
+                <DeleteMenuForm onFormSubmit={this.handleRouteBack} />
               )}
             />
             <Route
               path="/editmenu"
               render={() => (
-                <EditMenuForm onFormSubmit={this.handleRouteBack}
-                />
+                <EditMenuForm onFormSubmit={this.handleRouteBack} />
               )}
             />
             <Route path="/searchmenus" component={SearchMenus} />
 
             <Route
               path="/dishes"
-              render={() => (
-                <Dishes
-                  dishes={this.props.masterDishes}
-                />
-              )}
+              render={() => <Dishes dishes={this.props.masterDishes} />}
             />
             <Route
               path="/adddish"
-              render={() => (
-                <AddDishForm onFormSubmit={this.handleRouteBack}
-                />
-              )}
+              render={() => <AddDishForm onFormSubmit={this.handleRouteBack} />}
             />
             <Route
               path="/deletedish"
               render={() => (
-                <DeleteDishForm onFormSubmit={this.handleRouteBack}
-                />
+                <DeleteDishForm onFormSubmit={this.handleRouteBack} />
               )}
             />
             <Route
               path="/editdish"
               render={() => (
-                <EditDishForm onFormSubmit={this.handleRouteBack}
-                />
+                <EditDishForm onFormSubmit={this.handleRouteBack} />
               )}
             />
             <Route path="/searchdishes" component={SearchDishes} />
@@ -249,28 +230,36 @@ class App extends React.Component {
             <Route
               path="/foods"
               render={() => (
-                <Foods foods={this.props.masterFoods} dishes={this.props.masterDishes} stores={this.props.masterStores}
+                <Foods
+                  foods={this.props.masterFoods}
+                  dishes={this.props.masterDishes}
+                  stores={this.props.masterStores}
                 />
               )}
             />
             <Route
               path="/addfood"
               render={() => (
-                <AddFoodForm dishes={this.props.masterDishes} stores={this.props.masterStores} onFormSubmit={this.handleRouteBack}
+                <AddFoodForm
+                  dishes={this.props.masterDishes}
+                  stores={this.props.masterStores}
+                  onFormSubmit={this.handleRouteBack}
                 />
               )}
             />
             <Route
               path="/deletefood"
               render={() => (
-                <DeleteFoodForm onFormSubmit={this.handleRouteBack}
-                />
+                <DeleteFoodForm onFormSubmit={this.handleRouteBack} />
               )}
             />
             <Route
               path="/editfood"
               render={() => (
-                <EditFoodForm dishes={this.props.masterDishes} stores={this.props.masterStores} onFormSubmit={this.handleRouteBack}
+                <EditFoodForm
+                  dishes={this.props.masterDishes}
+                  stores={this.props.masterStores}
+                  onFormSubmit={this.handleRouteBack}
                 />
               )}
             />
@@ -278,11 +267,7 @@ class App extends React.Component {
 
             <Route
               path="/stores"
-              render={() => (
-                <Stores
-                  stores={this.props.masterStores}
-                />
-              )}
+              render={() => <Stores stores={this.props.masterStores} />}
             />
             <Route
               path="/addstore"
@@ -293,69 +278,53 @@ class App extends React.Component {
             <Route
               path="/deletestore"
               render={() => (
-                <DeleteStoreForm onFormSubmit={this.handleRouteBack}
-                />
+                <DeleteStoreForm onFormSubmit={this.handleRouteBack} />
               )}
             />
             <Route
               path="/editstore"
               render={() => (
-                <EditStoreForm onFormSubmit={this.handleRouteBack}
-                />
+                <EditStoreForm onFormSubmit={this.handleRouteBack} />
               )}
             />
             <Route path="/searchstores" component={SearchStores} />
 
             <Route
               path="/tasks"
-              render={() => (
-                <Tasks
-                  tasks={this.props.masterTasks}
-                />
-              )}
+              render={() => <Tasks tasks={this.props.masterTasks} />}
             />
             <Route
               path="/addtask"
-              render={() => (
-                <AddTaskForm onFormSubmit={this.handleRouteBack} />
-              )}
+              render={() => <AddTaskForm onFormSubmit={this.handleRouteBack} />}
             />
             <Route
               path="/deletetask"
               render={() => (
-                <DeleteTaskForm onFormSubmit={this.handleRouteBack}
-                />
+                <DeleteTaskForm onFormSubmit={this.handleRouteBack} />
               )}
             />
             <Route
               path="/edittask"
               render={() => (
-                <EditTaskForm onFormSubmit={this.handleRouteBack}
-                />
+                <EditTaskForm onFormSubmit={this.handleRouteBack} />
               )}
             />
             <Route path="/searchtasks" component={SearchTasks} />
 
             <Route
               path="/invitees"
-              render={() => (
-                <Invitees
-                  invitees={this.props.masterInvitees}
-                />
-              )}
+              render={() => <Invitees invitees={this.props.masterInvitees} />}
             />
             <Route
               path="/addinvitee"
               render={() => (
-                <AddInviteeForm onFormSubmit={this.handleRouteBack}
-                />
+                <AddInviteeForm onFormSubmit={this.handleRouteBack} />
               )}
             />
             <Route
               path="/deleteinvitee"
               render={() => (
-                <DeleteInviteeForm onFormSubmit={this.handleRouteBack}
-                />
+                <DeleteInviteeForm onFormSubmit={this.handleRouteBack} />
               )}
             />
             <Route

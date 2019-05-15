@@ -7,22 +7,30 @@ firebase.initializeApp(firebaseConfig);
 const events = firebase.database().ref('events');
 
 export function addEvent(_eventName, _eventDate, _eventLocation, _menusId) {
-  return () => events.push({
-    eventName: _eventName,
-    eventDate: _eventDate,
-    eventLocation: _eventLocation,
-    menusId: _menusId
-  });
+  return () =>
+    events.push({
+      eventName: _eventName,
+      eventDate: _eventDate,
+      eventLocation: _eventLocation,
+      menusId: _menusId
+    });
 }
 
-export function editEvent(_id, _eventName, _eventDate, _eventLocation, _menusId) {
+export function editEvent(
+  _id,
+  _eventName,
+  _eventDate,
+  _eventLocation,
+  _menusId
+) {
   var eventToUpdate = firebase.database().ref('events/' + _id);
-  return () => eventToUpdate.update({
-    eventName: _eventName,
-    eventDate: _eventDate,
-    eventLocation: _eventLocation,
-    menusId: _menusId
-  });
+  return () =>
+    eventToUpdate.update({
+      eventName: _eventName,
+      eventDate: _eventDate,
+      eventLocation: _eventLocation,
+      menusId: _menusId
+    });
 }
 
 export function deleteEvent(_id) {
@@ -59,7 +67,7 @@ function receiveEvent(eventFromFirebase) {
 
 function receiveDeletedEvent(eventId) {
   return {
-    type: c.RECEIVE_EVENT,
+    type: c.RECEIVE_DELETED_EVENT,
     eventId: eventId
   };
 }

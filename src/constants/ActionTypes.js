@@ -3,6 +3,7 @@ export const ADD_EVENT = 'ADD_EVENT';
 export const EDIT_EVENT = 'EDIT_EVENT';
 export const DELETE_EVENT = 'DELETE_EVENT';
 export const RECEIVE_EVENT = 'RECEIVE_EVENT';
+export const RECEIVE_DELETED_EVENT = 'RECEIVE_DELETED_EVENT';
 
 export const SELECT_MENU = 'SELECT_MENU';
 export const ADD_MENU = 'ADD_MENU';
