@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import SideNav from './SideNav';
 import Header from './Header';
 import { connect } from 'react-redux';
-import constants from './../../src/constants';
-const { c } = constants;
+import { deleteTask } from './../actions';
 
 function DeleteTaskForm(props) {
   let _id = props.selectedTask;
@@ -13,13 +12,8 @@ function DeleteTaskForm(props) {
   var handleDeleteTaskFormSubmission = event => {
     const { dispatch } = props;
     event.preventDefault();
-    const action = {
-      type: c.DELETE_TASK,
-      id: _id
-    };
-
     if (_confirm.value === 'true') {
-      dispatch(action);
+      dispatch(deleteTask(_id));
     }
     props.onFormSubmit('tasks');
   };
@@ -57,8 +51,8 @@ function DeleteTaskForm(props) {
       <div>
         <Header />
         <SideNav />
-        <div className="page-content">
-          <h1 className="pageTitle">DELETE TASK</h1>
+        <div className='page-content'>
+          <h1 className='pageTitle'>DELETE TASK</h1>
           <div>
             <form
               style={{
@@ -75,12 +69,12 @@ function DeleteTaskForm(props) {
                   _confirm = input;
                 }}
               >
-                <option value="undefined" disabled />
-                <option value="false">No</option>
-                <option value="true">Yes</option>
+                <option value='undefined' disabled />
+                <option value='false'>No</option>
+                <option value='true'>Yes</option>
               </select>
               &nbsp;
-              <button type="submit" className="button-main">
+              <button type='submit' className='button-main'>
                 CONFIRM
               </button>
             </form>
@@ -93,7 +87,8 @@ function DeleteTaskForm(props) {
 
 DeleteTaskForm.propTypes = {
   selectedTask: PropTypes.string,
-  onFormSubmit: PropTypes.func
+  onFormSubmit: PropTypes.func,
+  dispatch: PropTypes.func
 };
 
 const mapStateToProps = state => {

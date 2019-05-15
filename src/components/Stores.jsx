@@ -57,27 +57,27 @@ function Stores(props) {
       <div>
         <Header />
         <SideNav />
-        <div className="page-content">
-          <h1 className="pageTitle">STORES</h1>
+        <div className='page-content'>
+          <h1 className='pageTitle'>STORES</h1>
           <div>
-            <button type="button" className="button-main">
-              <Link className="link" to="/addstore">
+            <button type='button' className='button-main'>
+              <Link className='link' to='/addstore'>
                 ADD STORE
               </Link>
             </button>
-            <button type="button" className="button-main">
-              <Link className="link" to="/searchstores">
+            <button type='button' className='button-main'>
+              <Link className='link' to='/searchstores'>
                 SEARCH STORES
               </Link>
             </button>
             <br />
             <br />
           </div>
-          <div className="parentColumn">
+          <div className='parentColumn'>
             {Object.keys(props.stores).map(function(storeId) {
               var store = props.stores[storeId];
               return (
-                <div className="column" key={storeId}>
+                <div className='column' key={storeId}>
                   <div>
                     <Store
                       storeName={store.storeName}
@@ -90,10 +90,10 @@ function Stores(props) {
                       onClick={() => {
                         handleSavingSelectedStore(storeId);
                       }}
-                      type="button"
-                      className="button-main"
+                      type='button'
+                      className='button-main'
                     >
-                      <Link className="link" to="/deletestore">
+                      <Link className='link' to='/deletestore'>
                         DELETE
                       </Link>
                     </button>
@@ -101,10 +101,10 @@ function Stores(props) {
                       onClick={() => {
                         handleSavingSelectedStore(storeId);
                       }}
-                      type="button"
-                      className="button-main"
+                      type='button'
+                      className='button-main'
                     >
-                      <Link className="link" to="/editstore">
+                      <Link className='link' to='/editstore'>
                         UPDATE
                       </Link>
                     </button>
@@ -120,7 +120,8 @@ function Stores(props) {
 }
 
 Stores.propTypes = {
-  stores: PropTypes.object
+  stores: PropTypes.object,
+  dispatch: PropTypes.func
 };
 
 export default connect()(Stores);

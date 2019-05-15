@@ -57,27 +57,27 @@ function Tasks(props) {
       <div>
         <Header />
         <SideNav />
-        <div className="page-content">
-          <h1 className="pageTitle">TASKS</h1>
+        <div className='page-content'>
+          <h1 className='pageTitle'>TASKS</h1>
           <div>
-            <button type="button" className="button-main">
-              <Link className="link" to="/addtask">
+            <button type='button' className='button-main'>
+              <Link className='link' to='/addtask'>
                 ADD TASK
               </Link>
             </button>
-            <button type="button" className="button-main">
-              <Link className="link" to="/searchtasks">
+            <button type='button' className='button-main'>
+              <Link className='link' to='/searchtasks'>
                 SEARCH TASKS
               </Link>
             </button>
             <br />
             <br />
           </div>
-          <div className="parentColumn">
+          <div className='parentColumn'>
             {Object.keys(props.tasks).map(function(taskId) {
               var task = props.tasks[taskId];
               return (
-                <div className="column" key={taskId}>
+                <div className='column' key={taskId}>
                   <div>
                     <Task
                       taskDescription={task.taskDescription}
@@ -91,10 +91,10 @@ function Tasks(props) {
                       onClick={() => {
                         handleSavingSelectedTask(taskId);
                       }}
-                      type="button"
-                      className="button-main"
+                      type='button'
+                      className='button-main'
                     >
-                      <Link className="link" to="/deletetask">
+                      <Link className='link' to='/deletetask'>
                         DELETE
                       </Link>
                     </button>
@@ -102,10 +102,10 @@ function Tasks(props) {
                       onClick={() => {
                         handleSavingSelectedTask(taskId);
                       }}
-                      type="button"
-                      className="button-main"
+                      type='button'
+                      className='button-main'
                     >
-                      <Link className="link" to="/edittask">
+                      <Link className='link' to='/edittask'>
                         UPDATE
                       </Link>
                     </button>
@@ -122,7 +122,8 @@ function Tasks(props) {
 
 Tasks.propTypes = {
   tasks: PropTypes.object,
-  onTaskSelection: PropTypes.func
+  onTaskSelection: PropTypes.func,
+  dispatch: PropTypes.func
 };
 
 export default connect()(Tasks);

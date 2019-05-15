@@ -57,28 +57,28 @@ function Events(props) {
       <div>
         <Header />
         <SideNav />
-        <div className="page-content">
-          <h1 className="pageTitle">EVENTS</h1>
+        <div className='page-content'>
+          <h1 className='pageTitle'>EVENTS</h1>
           <div>
-            <button type="button" className="button-main">
-              <Link className="link" to="/addevent">
+            <button type='button' className='button-main'>
+              <Link className='link' to='/addevent'>
                 ADD EVENT
               </Link>
             </button>
-            <button type="button" className="button-main">
-              <Link className="link" to="/searchevents">
+            <button type='button' className='button-main'>
+              <Link className='link' to='/searchevents'>
                 SEARCH EVENTS
               </Link>
             </button>
             <br />
             <br />
           </div>
-          <div className="parentColumn">
+          <div className='parentColumn'>
             {Object.keys(props.events).map(function(eventId) {
               var event = props.events[eventId];
               var menu = props.menus[event.menusId];
               return (
-                <div className="column" key={eventId}>
+                <div className='column' key={eventId}>
                   <div>
                     <Event
                       eventName={event.eventName}
@@ -95,10 +95,10 @@ function Events(props) {
                       onClick={() => {
                         handleSavingSelectedEvent(eventId);
                       }}
-                      type="button"
-                      className="button-main"
+                      type='button'
+                      className='button-main'
                     >
-                      <Link className="link" to="/deleteevent">
+                      <Link className='link' to='/deleteevent'>
                         DELETE
                       </Link>
                     </button>
@@ -106,10 +106,10 @@ function Events(props) {
                       onClick={() => {
                         handleSavingSelectedEvent(eventId);
                       }}
-                      type="button"
-                      className="button-main"
+                      type='button'
+                      className='button-main'
                     >
-                      <Link className="link" to="/editevent">
+                      <Link className='link' to='/editevent'>
                         UPDATE
                       </Link>
                     </button>
@@ -126,7 +126,8 @@ function Events(props) {
 
 Events.propTypes = {
   events: PropTypes.object,
-  menus: PropTypes.object
+  menus: PropTypes.object,
+  dispatch: PropTypes.func
 };
 
 export default connect()(Events);

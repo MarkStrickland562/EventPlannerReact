@@ -56,27 +56,27 @@ function Invitees(props) {
       <div>
         <Header />
         <SideNav />
-        <div className="page-content">
-          <h1 className="pageTitle">INVITEES</h1>
+        <div className='page-content'>
+          <h1 className='pageTitle'>INVITEES</h1>
           <div>
-            <button type="button" className="button-main">
-              <Link className="link" to="/addinvitee">
+            <button type='button' className='button-main'>
+              <Link className='link' to='/addinvitee'>
                 ADD INVITEE
               </Link>
             </button>
-            <button type="button" className="button-main">
-              <Link className="link" to="/searchinvitees">
+            <button type='button' className='button-main'>
+              <Link className='link' to='/searchinvitees'>
                 SEARCH INVITEES
               </Link>
             </button>
             <br />
             <br />
           </div>
-          <div className="parentColumn">
+          <div className='parentColumn'>
             {Object.keys(props.invitees).map(function(inviteeId) {
               var invitee = props.invitees[inviteeId];
               return (
-                <div className="column" key={inviteeId}>
+                <div className='column' key={inviteeId}>
                   <div>
                     <Invitee
                       inviteeName={invitee.inviteeName}
@@ -90,10 +90,10 @@ function Invitees(props) {
                       onClick={() => {
                         handleSavingSelectedInvitee(inviteeId);
                       }}
-                      type="button"
-                      className="button-main"
+                      type='button'
+                      className='button-main'
                     >
-                      <Link className="link" to="/deleteinvitee">
+                      <Link className='link' to='/deleteinvitee'>
                         DELETE
                       </Link>
                     </button>
@@ -101,10 +101,10 @@ function Invitees(props) {
                       onClick={() => {
                         handleSavingSelectedInvitee(inviteeId);
                       }}
-                      type="button"
-                      className="button-main"
+                      type='button'
+                      className='button-main'
                     >
-                      <Link className="link" to="/editinvitee">
+                      <Link className='link' to='/editinvitee'>
                         UPDATE
                       </Link>
                     </button>
@@ -120,7 +120,8 @@ function Invitees(props) {
 }
 
 Invitees.propTypes = {
-  invitees: PropTypes.object
+  invitees: PropTypes.object,
+  dispatch: PropTypes.func
 };
 
 export default connect()(Invitees);

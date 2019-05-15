@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import SideNav from './SideNav';
 import Header from './Header';
 import { connect } from 'react-redux';
-import constants from './../../src/constants';
-const { c } = constants;
+import { editStore } from './../actions';
 
 function EditStoreForm(props) {
   let _id = props.selectedStore;
@@ -13,12 +12,7 @@ function EditStoreForm(props) {
   function handleEditStoreFormSubmission(event) {
     const { dispatch } = props;
     event.preventDefault();
-    const action = {
-      type: c.EDIT_STORE,
-      id: _id,
-      storeName: _storeName.value
-    };
-    dispatch(action);
+    dispatch(editStore(_id, _storeName.value));
     props.onFormSubmit('stores');
   }
 
@@ -70,8 +64,8 @@ function EditStoreForm(props) {
       <div>
         <Header />
         <SideNav />
-        <div className="page-content">
-          <h1 className="pageTitle">UPDATE STORE</h1>
+        <div className='page-content'>
+          <h1 className='pageTitle'>UPDATE STORE</h1>
           <div>
             <form
               style={{
@@ -84,8 +78,8 @@ function EditStoreForm(props) {
             >
               <label>Store Name:&nbsp;&nbsp;</label>
               <input
-                type="text"
-                id="storeName"
+                type='text'
+                id='storeName'
                 defaultValue={_storeName}
                 ref={input => {
                   _storeName = input;
@@ -93,7 +87,7 @@ function EditStoreForm(props) {
               />
               <br />
               <br />
-              <button type="submit" className="button-main">
+              <button type='submit' className='button-main'>
                 UPDATE STORE
               </button>
             </form>
@@ -107,7 +101,8 @@ function EditStoreForm(props) {
 EditStoreForm.propTypes = {
   stores: PropTypes.object,
   selectedStore: PropTypes.string,
-  onFormSubmit: PropTypes.func
+  onFormSubmit: PropTypes.func,
+  dispatch: PropTypes.func
 };
 
 const mapStateToProps = state => {

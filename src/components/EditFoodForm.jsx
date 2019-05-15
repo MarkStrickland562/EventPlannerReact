@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import SideNav from './SideNav';
 import Header from './Header';
 import { connect } from 'react-redux';
-import constants from './../../src/constants';
-const { c } = constants;
+import { editFood } from './../actions';
 
 function EditFoodForm(props) {
   let _id = props.selectedFood;
@@ -16,14 +15,9 @@ function EditFoodForm(props) {
   function handleEditFoodFormSubmission(event) {
     const { dispatch } = props;
     event.preventDefault();
-    const action = {
-      type: c.EDIT_FOOD,
-      id: _id,
-      ingredientDescription: _ingredientDescription.value,
-      dishId: _dishId.value,
-      storeId: _storeId.value
-    };
-    dispatch(action);
+    dispatch(
+      editFood(_id, _ingredientDescription.value, _dishId.value, _storeId.value)
+    );
     props.onFormSubmit('foods');
   }
 
@@ -75,8 +69,8 @@ function EditFoodForm(props) {
       <div>
         <Header />
         <SideNav />
-        <div className="page-content">
-          <h1 className="pageTitle">UPDATE FOOD</h1>
+        <div className='page-content'>
+          <h1 className='pageTitle'>UPDATE FOOD</h1>
           <div>
             <form
               style={{
@@ -91,8 +85,8 @@ function EditFoodForm(props) {
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Food Name:&nbsp;&nbsp;
               </label>
               <input
-                type="text"
-                id="ingredientDescription"
+                type='text'
+                id='ingredientDescription'
                 defaultValue={_ingredientDescription}
                 ref={input => {
                   _ingredientDescription = input;
@@ -162,7 +156,7 @@ function EditFoodForm(props) {
               </select>
               <br />
               <br />
-              <button type="submit" className="button-main">
+              <button type='submit' className='button-main'>
                 UPDATE FOOD
               </button>
             </form>
@@ -178,7 +172,8 @@ EditFoodForm.propTypes = {
   dishes: PropTypes.object,
   stores: PropTypes.object,
   selectedFood: PropTypes.string,
-  onFormSubmit: PropTypes.func
+  onFormSubmit: PropTypes.func,
+  dispatch: PropTypes.func
 };
 
 const mapStateToProps = state => {

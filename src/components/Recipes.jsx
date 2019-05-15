@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'react';
+import PropTypes from 'prop-types';
 import SideNav from './SideNav';
 import Header from './Header';
 import Recipe from './Recipe';
@@ -47,19 +47,19 @@ function Recipes(props) {
       <div>
         <Header />
         <SideNav />
-        <div style={{ paddingRight: '5%' }} className="page-content">
-          <h1 className="pageTitle">RECIPES</h1>
-          <button type="button" className="button-main">
-            <Link className="link" to="/searchrecipes">
+        <div style={{ paddingRight: '5%' }} className='page-content'>
+          <h1 className='pageTitle'>RECIPES</h1>
+          <button type='button' className='button-main'>
+            <Link className='link' to='/searchrecipes'>
               SEARCH AGAIN
             </Link>
           </button>
           <br />
-          <div className="parentColumn">
+          <div className='parentColumn'>
             {Object.keys(props.recipes).map(function(recipeId) {
               var recipe = props.recipes[recipeId];
               return (
-                <div className="column" key={recipeId}>
+                <div className='column' key={recipeId}>
                   <div>
                     <Recipe
                       recipeImage={recipe.recipe.image}

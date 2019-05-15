@@ -9,8 +9,6 @@ import thunkMiddleware from 'redux-thunk';
 
 const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
-//let unsubscribe = store.subscribe(() => console.log(store.getState()));
-
 const render = Component => {
   ReactDOM.render(
     <HashRouter>
@@ -26,7 +24,7 @@ render(App);
 
 /*eslint-disable */
 if (module.hot) {
-  module.hot.accept("./components/App", () => {
+  module.hot.accept('./components/App', () => {
     render(App);
   });
 }

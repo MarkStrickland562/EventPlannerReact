@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import SideNav from './SideNav';
 import Header from './Header';
 import { connect } from 'react-redux';
-import { editEvent} from './../actions';
+import { editEvent } from './../actions';
 
 function EditEventForm(props) {
   let _id = props.selectedEvent;
@@ -15,7 +15,15 @@ function EditEventForm(props) {
   function handleEditEventFormSubmission(event) {
     const { dispatch } = props;
     event.preventDefault();
-    dispatch(editEvent(_id, _eventName.value, _eventDate.value, _eventLocation.value, _menusId.value));
+    dispatch(
+      editEvent(
+        _id,
+        _eventName.value,
+        _eventDate.value,
+        _eventLocation.value,
+        _menusId.value
+      )
+    );
     props.onFormSubmit('events');
   }
 
@@ -67,8 +75,8 @@ function EditEventForm(props) {
       <div>
         <Header />
         <SideNav />
-        <div className="page-content">
-          <h1 className="pageTitle">UPDATE EVENT</h1>
+        <div className='page-content'>
+          <h1 className='pageTitle'>UPDATE EVENT</h1>
           <div>
             <form
               style={{
@@ -83,8 +91,8 @@ function EditEventForm(props) {
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Event Name:&nbsp;&nbsp;
               </label>
               <input
-                type="text"
-                id="eventName"
+                type='text'
+                id='eventName'
                 defaultValue={_eventName}
                 ref={input => {
                   _eventName = input;
@@ -96,8 +104,8 @@ function EditEventForm(props) {
                 Date:&nbsp;&nbsp;
               </label>
               <input
-                type="date"
-                id="eventDate"
+                type='date'
+                id='eventDate'
                 defaultValue={_eventDate}
                 ref={input => {
                   _eventDate = input;
@@ -106,8 +114,8 @@ function EditEventForm(props) {
               <br />
               <label>Event Location:&nbsp;&nbsp;</label>
               <input
-                type="text"
-                id="eventLocation"
+                type='text'
+                id='eventLocation'
                 defaultValue={_eventLocation}
                 ref={input => {
                   _eventLocation = input;
@@ -122,7 +130,7 @@ function EditEventForm(props) {
                   _menusId = input;
                 }}
               >
-                {Object.keys(props.menus).map(function (menuId) {
+                {Object.keys(props.menus).map(function(menuId) {
                   var menu = props.menus[menuId];
                   if (menuId == _menusId) {
                     return (
@@ -146,7 +154,7 @@ function EditEventForm(props) {
               </select>
               <br />
               <br />
-              <button type="submit" className="button-main">
+              <button type='submit' className='button-main'>
                 UPDATE EVENT
               </button>
             </form>
@@ -161,7 +169,8 @@ EditEventForm.propTypes = {
   events: PropTypes.object,
   menus: PropTypes.object,
   selectedEvent: PropTypes.string,
-  onFormSubmit: PropTypes.func
+  onFormSubmit: PropTypes.func,
+  dispatch: PropTypes.func
 };
 
 const mapStateToProps = state => {

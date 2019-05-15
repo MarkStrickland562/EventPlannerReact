@@ -3,9 +3,7 @@ import SideNav from './SideNav';
 import Header from './Header';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { v4 } from 'uuid';
-import constants from './../../src/constants';
-const { c } = constants;
+import { addFood } from './../actions';
 
 function AddFoodForm(props) {
   let _ingredientDescription = null;
@@ -15,17 +13,12 @@ function AddFoodForm(props) {
   function handleNewFoodFormSubmission(event) {
     const { dispatch } = props;
     event.preventDefault();
-    const action = {
-      type: c.ADD_FOOD,
-      id: v4(),
-      ingredientDescription: _ingredientDescription.value,
-      dishId: _dishId.value,
-      storeId: _storeId.value
-    };
-    dispatch(action);
+    dispatch(
+      addFood(_ingredientDescription.value, _dishId.value, _storeId.value)
+    );
     _ingredientDescription = '';
-    _dishId = '';
-    _storeId = '';
+    _dishId = null;
+    _storeId = null;
     props.onFormSubmit('foods');
   }
 
@@ -77,8 +70,8 @@ function AddFoodForm(props) {
       <div>
         <Header />
         <SideNav />
-        <div className="page-content">
-          <h1 className="pageTitle">ADD FOOD</h1>
+        <div className='page-content'>
+          <h1 className='pageTitle'>ADD FOOD</h1>
           <div>
             <form
               style={{
@@ -91,8 +84,8 @@ function AddFoodForm(props) {
             >
               <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Description: </label>
               <input
-                type="text"
-                id="ingredientDescription"
+                type='text'
+                id='ingredientDescription'
                 ref={input => {
                   _ingredientDescription = input;
                 }}
@@ -135,7 +128,7 @@ function AddFoodForm(props) {
               </select>
               <br />
               <br />
-              <button type="submit" className="button-main">
+              <button type='submit' className='button-main'>
                 ADD FOOD
               </button>
             </form>
@@ -149,7 +142,8 @@ function AddFoodForm(props) {
 AddFoodForm.propTypes = {
   dishes: PropTypes.object,
   stores: PropTypes.object,
-  onFormSubmit: PropTypes.func
+  onFormSubmit: PropTypes.func,
+  dispatch: PropTypes.func
 };
 
 const mapStateToProps = state => {

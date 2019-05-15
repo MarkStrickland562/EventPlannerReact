@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import SideNav from './SideNav';
 import Header from './Header';
 import { connect } from 'react-redux';
-import { deleteEvent} from './../actions';
+import { deleteEvent } from './../actions';
 
 function DeleteEventForm(props) {
   let _id = props.selectedEvent;
@@ -51,8 +51,8 @@ function DeleteEventForm(props) {
       <div>
         <Header />
         <SideNav />
-        <div className="page-content">
-          <h1 className="pageTitle">DELETE EVENT</h1>
+        <div className='page-content'>
+          <h1 className='pageTitle'>DELETE EVENT</h1>
           <div>
             <form
               style={{
@@ -69,12 +69,12 @@ function DeleteEventForm(props) {
                   _confirm = input;
                 }}
               >
-                <option value="undefined" disabled />
-                <option value="false">No</option>
-                <option value="true">Yes</option>
+                <option value='undefined' disabled />
+                <option value='false'>No</option>
+                <option value='true'>Yes</option>
               </select>
               &nbsp;
-              <button type="submit" className="button-main">
+              <button type='submit' className='button-main'>
                 CONFIRM
               </button>
             </form>
@@ -87,7 +87,8 @@ function DeleteEventForm(props) {
 
 DeleteEventForm.propTypes = {
   selectedEvent: PropTypes.string,
-  onFormSubmit: PropTypes.func
+  onFormSubmit: PropTypes.func,
+  dispatch: PropTypes.func
 };
 
 const mapStateToProps = state => {
