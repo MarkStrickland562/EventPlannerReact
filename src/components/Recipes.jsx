@@ -80,7 +80,7 @@ function Recipes(props) {
 }
 
 Recipes.propTypes = {
-  recipes: PropTypes.object
+  recipes: PropTypes.array
 };
 
 export default Recipes;
