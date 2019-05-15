@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import SideNav from './SideNav';
 import Header from './Header';
 import { connect } from 'react-redux';
-import c from './../constants';
+import { editInvitee } from './../actions';
 
 function EditInviteeForm(props) {
   let _id = props.selectedInvitee;
@@ -14,13 +14,7 @@ function EditInviteeForm(props) {
   function handleEditInviteeFormSubmission(event) {
     const { dispatch } = props;
     event.preventDefault();
-    const action = {
-      type: c.EDIT_INVITEE,
-      id: _id,
-      inviteeName: _inviteeName.value,
-      inviteeEmailAddress: _inviteeEmailAddress.value
-    };
-    dispatch(action);
+    dispatch(editInvitee(_id, _inviteeName.value, _inviteeEmailAddress.value));
     props.onFormSubmit('invitees');
   }
 
@@ -72,8 +66,8 @@ function EditInviteeForm(props) {
       <div>
         <Header />
         <SideNav />
-        <div className="page-content">
-          <h1 className="pageTitle">UPDATE INVITEE</h1>
+        <div className='page-content'>
+          <h1 className='pageTitle'>UPDATE INVITEE</h1>
           <div>
             <form
               style={{
@@ -86,8 +80,8 @@ function EditInviteeForm(props) {
             >
               <label>&nbsp;&nbsp;Invitee Name:&nbsp;&nbsp;</label>
               <input
-                type="text"
-                id="inviteeName"
+                type='text'
+                id='inviteeName'
                 defaultValue={_inviteeName}
                 ref={input => {
                   _inviteeName = input;
@@ -96,8 +90,8 @@ function EditInviteeForm(props) {
               <br />
               <label>Email Address:&nbsp;&nbsp;</label>
               <input
-                type="text"
-                id="inviteeEmailAddress"
+                type='text'
+                id='inviteeEmailAddress'
                 defaultValue={_inviteeEmailAddress}
                 ref={input => {
                   _inviteeEmailAddress = input;
@@ -105,7 +99,7 @@ function EditInviteeForm(props) {
               />
               <br />
               <br />
-              <button type="submit" className="button-main">
+              <button type='submit' className='button-main'>
                 UPDATE INVITEE
               </button>
             </form>
@@ -119,7 +113,8 @@ function EditInviteeForm(props) {
 EditInviteeForm.propTypes = {
   invitees: PropTypes.object,
   selectedInvitee: PropTypes.string,
-  onFormSubmit: PropTypes.func
+  onFormSubmit: PropTypes.func,
+  dispatch: PropTypes.func
 };
 
 const mapStateToProps = state => {

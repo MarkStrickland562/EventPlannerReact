@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import SideNav from './SideNav';
 import Header from './Header';
 import { connect } from 'react-redux';
-import c from './../constants';
+import { editMenu } from './../actions';
 
 function EditMenuForm(props) {
   let _id = props.selectedMenu;
@@ -12,12 +12,7 @@ function EditMenuForm(props) {
   function handleEditMenuFormSubmission(event) {
     const { dispatch } = props;
     event.preventDefault();
-    const action = {
-      type: c.EDIT_MENU,
-      id: _id,
-      menuTheme: _menuTheme.value
-    };
-    dispatch(action);
+    dispatch(editMenu(_id, _menuTheme.value));
     props.onFormSubmit('menus');
   }
 
@@ -55,8 +50,8 @@ function EditMenuForm(props) {
       <div>
         <Header />
         <SideNav />
-        <div className="page-content">
-          <h1 className="pageTitle">UPDATE MENU</h1>
+        <div className='page-content'>
+          <h1 className='pageTitle'>UPDATE MENU</h1>
           <div>
             <form
               style={{
@@ -71,8 +66,8 @@ function EditMenuForm(props) {
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Menu Name:&nbsp;&nbsp;
               </label>
               <input
-                type="text"
-                id="menuTheme"
+                type='text'
+                id='menuTheme'
                 defaultValue={_menuTheme}
                 ref={input => {
                   _menuTheme = input;
@@ -80,7 +75,7 @@ function EditMenuForm(props) {
               />
               <br />
               <br />
-              <button type="submit" className="button-main">
+              <button type='submit' className='button-main'>
                 UPDATE MENU
               </button>
             </form>
@@ -94,7 +89,8 @@ function EditMenuForm(props) {
 EditMenuForm.propTypes = {
   menus: PropTypes.object,
   selectedMenu: PropTypes.string,
-  onFormSubmit: PropTypes.func
+  onFormSubmit: PropTypes.func,
+  dispatch: PropTypes.func
 };
 
 const mapStateToProps = state => {

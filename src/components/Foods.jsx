@@ -57,33 +57,33 @@ function Foods(props) {
       <div>
         <Header />
         <SideNav />
-        <div className="page-content">
-          <h1 className="pageTitle">FOODS</h1>
+        <div className='page-content'>
+          <h1 className='pageTitle'>FOODS</h1>
           <div>
-            <button type="button" className="button-main">
-              <Link className="link" to="/addfood">
+            <button type='button' className='button-main'>
+              <Link className='link' to='/addfood'>
                 ADD FOOD
               </Link>
             </button>
-            <button type="button" className="button-main">
-              <Link className="link" to="/searchfoods">
+            <button type='button' className='button-main'>
+              <Link className='link' to='/searchfoods'>
                 SEARCH FOODS
               </Link>
             </button>
             <br />
             <br />
           </div>
-          <div className="parentColumn">
+          <div className='parentColumn'>
             {Object.keys(props.foods).map(function(foodId) {
               var food = props.foods[foodId];
               var dish = props.dishes[food.menuItemsId];
               var store = props.stores[food.storeId];
               return (
-                <div className="column" key={foodId}>
+                <div className='column' key={foodId}>
                   <div>
                     <Food
                       ingredientDescription={food.ingredientDescription}
-                      menuitemsId={food.menuitemsId}
+                      menuItemsId={food.menuItemsId}
                       storeId={food.storeId}
                       menuItemDescription={dish.menuItemDescription}
                       storeName={store.storeName}
@@ -96,10 +96,10 @@ function Foods(props) {
                       onClick={() => {
                         handleSavingSelectedFood(foodId);
                       }}
-                      type="button"
-                      className="button-main"
+                      type='button'
+                      className='button-main'
                     >
-                      <Link className="link" to="/deletefood">
+                      <Link className='link' to='/deletefood'>
                         DELETE
                       </Link>
                     </button>
@@ -107,10 +107,10 @@ function Foods(props) {
                       onClick={() => {
                         handleSavingSelectedFood(foodId);
                       }}
-                      type="button"
-                      className="button-main"
+                      type='button'
+                      className='button-main'
                     >
-                      <Link className="link" to="/editfood">
+                      <Link className='link' to='/editfood'>
                         UPDATE
                       </Link>
                     </button>
@@ -128,7 +128,8 @@ function Foods(props) {
 Foods.propTypes = {
   foods: PropTypes.object,
   dishes: PropTypes.object,
-  stores: PropTypes.object
+  stores: PropTypes.object,
+  dispatch: PropTypes.func
 };
 
 export default connect()(Foods);

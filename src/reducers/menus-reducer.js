@@ -1,6 +1,7 @@
-import c from './../constants';
+import constants from './../constants';
+const { c } = constants;
 
-export default (state = MenuData, action) => {
+export default (state = {}, action) => {
   let newState;
   const { id, menuTheme } = action;
 
@@ -14,11 +15,7 @@ export default (state = MenuData, action) => {
     return newState;
   }
   case c.EDIT_MENU: {
-    const newMenu = Object.assign(
-      {},
-      state[id],
-      { menuTheme }
-    );
+    const newMenu = Object.assign({}, state[id], { menuTheme });
     newState = Object.assign({}, state, {
       [id]: newMenu
     });
@@ -26,23 +23,21 @@ export default (state = MenuData, action) => {
   }
   case c.DELETE_MENU: {
     newState = Object.assign({}, state);
-    delete newState[action.id];
+    delete newState[action.menu.id];
+    return newState;
+  }
+  case c.RECEIVE_MENU: {
+    newState = Object.assign({}, state);
+    newState[action.menu.id] = action.menu;
+    return newState;
+  }
+  case c.RECEIVE_DELETED_MENU: {
+    newState = Object.assign({}, state);
+    delete newState[action.menuId];
     return newState;
   }
   default: {
     return state;
   }
-  }
-};
-
-const MenuData = {
-  0: {
-    'menuTheme': 'Summer BBQ'
-  },
-  1: {
-    'menuTheme': 'Boozy Brunch'
-  },
-  2: {
-    'menuTheme': 'Green Food or Potato Dishes'
   }
 };

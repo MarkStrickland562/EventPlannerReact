@@ -1,0 +1,323 @@
+{
+  "events": [
+    {
+      "eventName": "July 4th BBQ",
+      "eventDate": "2019-07-04",
+      "eventLocation": "Woodland Park",
+      "menusId": "0"
+    },
+    {
+      "eventName": "Easter Sunday Brunch",
+      "eventDate": "2019-04-21",
+      "eventLocation": "Casa de Marco",
+      "menusId": "1"
+    },
+    {
+      "eventName": "St. Patricks Day Party",
+      "eventDate": "2019-03-17",
+      "eventLocation": "Clara's House",
+      "menusId": "2"
+    }
+  ],
+  "invitees": [
+    {
+      "inviteeName": "Mark Strickland",
+      "inviteeEmailAddress": "markstrickland562@hotmail.com"
+    },
+    {
+      "inviteeName": "Clara Munro",
+      "inviteeEmailAddress": "clarajmunro@gmail.com"
+    },
+    {
+      "inviteeName": "Shawn Lunsford",
+      "inviteeEmailAddress": "lunsford.sk@gmail.com"
+    },
+    {
+      "inviteeName": "Micaela Jawor",
+      "inviteeEmailAddress": "micaelajawor@yahoo.com"
+    }
+  ],
+  "menus": [
+    {
+      "menuTheme": "Summer BBQ"
+    },
+    {
+      "menuTheme": "Boozy Brunch"
+    },
+    {
+      "menuTheme": "Green Food or Potato Dishes"
+    }
+  ],
+  "menuItems": [
+    {
+      "menuItemDescription": "Burgers"
+    },
+    {
+      "menuItemDescription": "Hot Dogs"
+    },
+    {
+      "menuItemDescription": "Potato Chips"
+    },
+    {
+      "menuItemDescription": "Baked Beans"
+    },
+    {
+      "menuItemDescription": "Cole Slaw"
+    },
+    {
+      "menuItemDescription": "Iced Tea"
+    },
+    {
+      "menuItemDescription": "Bacon"
+    },
+    {
+      "menuItemDescription": "Quiche Lorraine"
+    },
+    {
+      "menuItemDescription": "Hash Browns"
+    },
+    {
+      "menuItemDescription": "Fruit Salad"
+    },
+    {
+      "menuItemDescription": "Cinnamon Rolls"
+    },
+    {
+      "menuItemDescription": "Bloody Marys"
+    },
+    {
+      "menuItemDescription": "Corned Beef"
+    },
+    {
+      "menuItemDescription": "Scalloped Potatoes"
+    },
+    {
+      "menuItemDescription": "Brussels Sprouts"
+    },
+    {
+      "menuItemDescription": "Soda Bread"
+    },
+    {
+      "menuItemDescription": "Irish Whiskey"
+    },
+    {
+      "menuItemDescription": "Condiments"
+    }
+  ],
+  "menuItemIngredients": [
+    {
+      "ingredientDescription": "Ground Beef, 10#",
+      "menuItemsId": "0",
+      "storeId": "1"
+    },
+    {
+      "ingredientDescription": "Hot Dogs, 3-Dozen",
+      "menuItemsId": "1",
+      "storeId": "1"
+    },
+    {
+      "ingredientDescription": "Baked Beans, #10 Can",
+      "menuItemsId": "2",
+      "storeId": "1"
+    },
+    {
+      "ingredientDescription": "Potato Chips, 2 Large Bags",
+      "menuItemsId": "1",
+      "storeId": "0"
+    },
+    {
+      "ingredientDescription": "Cole Slaw, 1 Tub",
+      "menuItemsId": "4",
+      "storeId": "0"
+    },
+    {
+      "ingredientDescription": "Hamburger Buns, 3-Dozen",
+      "menuItemsId": "0",
+      "storeId": "3"
+    },
+    {
+      "ingredientDescription": "Hot Dog Buns, 3-Dozen",
+      "menuItemsId": "1",
+      "storeId": "3"
+    },
+    {
+      "ingredientDescription": "Tea Bags, Lipton, 1 Box",
+      "menuItemsId": "5",
+      "storeId": "3"
+    },
+    {
+      "ingredientDescription": "Ketchup, Mayonnaise, Mustard, Relish",
+      "menuItemsId": "17",
+      "storeId": "2"
+    },
+
+    {
+      "ingredientDescription": "Bacon, 4#",
+      "menuItemsId": "1",
+      "storeId": "0"
+    },
+    {
+      "ingredientDescription": "Eggs, 2-Dozen",
+      "menuItemsId": "1",
+      "storeId": "4"
+    },
+    {
+      "ingredientDescription": "Heavy Cream, 1-Quart",
+      "menuItemsId": "1",
+      "storeId": "3"
+    },
+    {
+      "ingredientDescription": "Pie Shells, 4",
+      "menuItemsId": "1",
+      "storeId": "3"
+    },
+    {
+      "ingredientDescription": "Potatoes, 5# Bag",
+      "menuItemsId": "1",
+      "storeId": "2"
+    },
+    {
+      "ingredientDescription": "Butter, 1#",
+      "menuItemsId": "1",
+      "storeId": "4"
+    },
+    {
+      "ingredientDescription": "Fruit Assortment, 2 Tubs",
+      "menuItemsId": "1",
+      "storeId": "0"
+    },
+    {
+      "ingredientDescription": "Cinnamon Rolls, 4 Cans",
+      "menuItemsId": "1",
+      "storeId": "3"
+    },
+    {
+      "ingredientDescription": "Bloody Mary Mix, 2 Bottles",
+      "menuItemsId": "1",
+      "storeId": "1"
+    },
+    {
+      "ingredientDescription": "Vodka, 2-Litres",
+      "menuItemsId": "1",
+      "storeId": "3"
+    },
+    {
+      "ingredientDescription": "Beef Brisket, 5#",
+      "menuItemsId": "2",
+      "storeId": "1"
+    },
+    {
+      "ingredientDescription": "Corned Beef Spices",
+      "menuItemsId": "2",
+      "storeId": "3"
+    },
+    {
+      "ingredientDescription": "Red Potatoes, 5#",
+      "menuItemsId": "2",
+      "storeId": "2"
+    },
+    {
+      "ingredientDescription": "1/2 and 1/2, 2-Quarts",
+      "menuItemsId": "2",
+      "storeId": "1"
+    },
+    {
+      "ingredientDescription": "Brussels Sprouts, Frozen, 2#",
+      "menuItemsId": "2",
+      "storeId": "3"
+    },
+    {
+      "ingredientDescription": "Soda Bread, 2-Dozen Pieces",
+      "menuItemsId": "2",
+      "storeId": "4"
+    },
+    {
+      "ingredientDescription": "Irish Whiskey, 2-Litres",
+      "menuItemsId": "2",
+      "storeId": "0"
+    }
+  ],
+  "stores": [
+    {
+      "storeName": "Costco"
+    },
+    {
+      "storeName": "Cash & Carry"
+    },
+    {
+      "storeName": "Grocery Outlet"
+    },
+    {
+      "storeName": "QFC"
+    },
+    {
+      "storeName": "Trader Joe's"
+    }
+  ],
+  "tasks": [
+    {
+      "taskDescription": "Grill Meat",
+      "taskPlannedStartDateTime": "2019-07-04 14:30:00"
+    },
+    {
+      "taskDescription": "Put Food Out",
+      "taskPlannedStartDateTime": "2019-07-04 15:00:0"
+    },
+    {
+      "taskDescription": "Set Tables",
+      "taskPlannedStartDateTime": "2019-04-21 08:00:00"
+    },
+    {
+      "taskDescription": "Make Quiches",
+      "taskPlannedStartDateTime": "2019-04-21 09:00:00"
+    },
+    {
+      "taskDescription": "Put Cinnamon Rolls in Oven",
+      "taskPlannedStartDateTime": "2019-04-21 09:30:00"
+    },
+    {
+      "taskDescription": "Bake Quiches",
+      "taskPlannedStartDateTime": "2019-04-21 10:00:00"
+    },
+    {
+      "taskDescription": "Fry Bacon",
+      "taskPlannedStartDateTime": "2019-04-21 10:30:00"
+    },
+    {
+      "taskDescription": "Make Bloody Marys",
+      "taskPlannedStartDateTime": "2019-04-21 10:45:00"
+    },
+    {
+      "taskDescription": "Peel and Slice Potatoes",
+      "taskPlannedStartDateTime": "2019-03-17 13:00:00"
+    },
+    {
+      "taskDescription": "Brine the Brisket",
+      "taskPlannedStartDateTime": "2019-03-17 13:30:00"
+    },
+    {
+      "taskDescription": "Prepare Buffet Table",
+      "taskPlannedStartDateTime": "2019-03-17 14:00:00"
+    },
+    {
+      "taskDescription": "Prepare Drink Table",
+      "taskPlannedStartDateTime": "2019-03-17 15:00:00"
+    },
+    {
+      "taskDescription": "Put Corned Beef in Oven",
+      "taskPlannedStartDateTime": "2019-03-17 16:00:00"
+    },
+    {
+      "taskDescription": "Put Scalloped Potatoes in Oven",
+      "taskPlannedStartDateTime": "2019-03-17 16:30:00"
+    },
+    {
+      "taskDescription": "Put Brussels Sprouts in Oven",
+      "taskPlannedStartDateTime": "2019-03-17 17:00:00"
+    },
+    {
+      "taskDescription": "Put Food Out",
+      "taskPlannedStartDateTime": "2019-03-17 17:30:00"
+    }
+  ]
+}

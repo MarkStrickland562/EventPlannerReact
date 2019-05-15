@@ -57,27 +57,27 @@ function Dishes(props) {
       <div>
         <Header />
         <SideNav />
-        <div className="page-content">
-          <h1 className="pageTitle">DISHES</h1>
+        <div className='page-content'>
+          <h1 className='pageTitle'>DISHES</h1>
           <div>
-            <button type="button" className="button-main">
-              <Link className="link" to="/adddish">
+            <button type='button' className='button-main'>
+              <Link className='link' to='/adddish'>
                 ADD DISH
               </Link>
             </button>
-            <button type="button" className="button-main">
-              <Link className="link" to="/searchdishes">
+            <button type='button' className='button-main'>
+              <Link className='link' to='/searchdishes'>
                 SEARCH DISHES
               </Link>
             </button>
             <br />
             <br />
           </div>
-          <div className="parentColumn">
+          <div className='parentColumn'>
             {Object.keys(props.dishes).map(function(dishId) {
               var dish = props.dishes[dishId];
               return (
-                <div className="column" key={dishId}>
+                <div className='column' key={dishId}>
                   <div>
                     <Dish
                       menuItemDescription={dish.menuItemDescription}
@@ -90,10 +90,10 @@ function Dishes(props) {
                       onClick={() => {
                         handleSavingSelectedDish(dishId);
                       }}
-                      type="button"
-                      className="button-main"
+                      type='button'
+                      className='button-main'
                     >
-                      <Link className="link" to="/deletedish">
+                      <Link className='link' to='/deletedish'>
                         DELETE
                       </Link>
                     </button>
@@ -101,10 +101,10 @@ function Dishes(props) {
                       onClick={() => {
                         handleSavingSelectedDish(dishId);
                       }}
-                      type="button"
-                      className="button-main"
+                      type='button'
+                      className='button-main'
                     >
-                      <Link className="link" to="/editdish">
+                      <Link className='link' to='/editdish'>
                         UPDATE
                       </Link>
                     </button>
@@ -120,7 +120,8 @@ function Dishes(props) {
 }
 
 Dishes.propTypes = {
-  dishes: PropTypes.object
+  dishes: PropTypes.object,
+  dispatch: PropTypes.func
 };
 
 export default connect()(Dishes);

@@ -3,8 +3,7 @@ import SideNav from './SideNav';
 import Header from './Header';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { v4 } from 'uuid';
-import c from './../constants';
+import { addTask } from './../actions';
 
 function AddTaskForm(props) {
   let _taskDescription = null;
@@ -13,13 +12,7 @@ function AddTaskForm(props) {
   function handleNewTaskFormSubmission(event) {
     const { dispatch } = props;
     event.preventDefault();
-    const action = {
-      type: c.ADD_TASK,
-      id: v4(),
-      taskDescription: _taskDescription.value,
-      taskPlannedStartDateTime: _taskPlannedStartDateTime.value
-    };
-    dispatch(action);
+    dispatch(addTask(_taskDescription.value, _taskPlannedStartDateTime.value));
     _taskDescription = '';
     _taskPlannedStartDateTime = '';
     props.onFormSubmit('tasks');
@@ -59,8 +52,8 @@ function AddTaskForm(props) {
       <div>
         <Header />
         <SideNav />
-        <div className="page-content">
-          <h1 className="pageTitle">ADD TASK</h1>
+        <div className='page-content'>
+          <h1 className='pageTitle'>ADD TASK</h1>
           <div>
             <form
               style={{
@@ -73,8 +66,8 @@ function AddTaskForm(props) {
             >
               <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Task Name: </label>
               <input
-                type="text"
-                id="taskDescription"
+                type='text'
+                id='taskDescription'
                 ref={input => {
                   _taskDescription = input;
                 }}
@@ -84,15 +77,15 @@ function AddTaskForm(props) {
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Task Date:{' '}
               </label>
               <input
-                type="datetime-local"
-                id="taskPlannedStartDateTime"
+                type='datetime-local'
+                id='taskPlannedStartDateTime'
                 ref={input => {
                   _taskPlannedStartDateTime = input;
                 }}
               />
               <br />
               <br />
-              <button type="submit" className="button-main">
+              <button type='submit' className='button-main'>
                 ADD TASK
               </button>
             </form>
@@ -104,7 +97,8 @@ function AddTaskForm(props) {
 }
 
 AddTaskForm.propTypes = {
-  onFormSubmit: PropTypes.func
+  onFormSubmit: PropTypes.func,
+  dispatch: PropTypes.func
 };
 
 export default connect()(AddTaskForm);

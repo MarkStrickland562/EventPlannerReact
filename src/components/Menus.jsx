@@ -57,27 +57,27 @@ function Menus(props) {
       <div>
         <Header />
         <SideNav />
-        <div className="page-content">
-          <h1 className="pageTitle">MENUS</h1>
+        <div className='page-content'>
+          <h1 className='pageTitle'>MENUS</h1>
           <div>
-            <button type="button" className="button-main">
-              <Link className="link" to="/addMenu">
+            <button type='button' className='button-main'>
+              <Link className='link' to='/addMenu'>
                 ADD MENU
               </Link>
             </button>
-            <button type="button" className="button-main">
-              <Link className="link" to="/searchMenus">
+            <button type='button' className='button-main'>
+              <Link className='link' to='/searchMenus'>
                 SEARCH MENUS
               </Link>
             </button>
             <br />
             <br />
           </div>
-          <div className="parentColumn">
+          <div className='parentColumn'>
             {Object.keys(props.menus).map(function(menuId) {
               var menu = props.menus[menuId];
               return (
-                <div className="column" key={menuId}>
+                <div className='column' key={menuId}>
                   <div>
                     <Menu
                       menuTheme={menu.menuTheme}
@@ -90,10 +90,10 @@ function Menus(props) {
                       onClick={() => {
                         handleSavingSelectedMenu(menuId);
                       }}
-                      type="button"
-                      className="button-main"
+                      type='button'
+                      className='button-main'
                     >
-                      <Link className="link" to="/deletemenu">
+                      <Link className='link' to='/deletemenu'>
                         DELETE
                       </Link>
                     </button>
@@ -101,10 +101,10 @@ function Menus(props) {
                       onClick={() => {
                         handleSavingSelectedMenu(menuId);
                       }}
-                      type="button"
-                      className="button-main"
+                      type='button'
+                      className='button-main'
                     >
-                      <Link className="link" to="/editmenu">
+                      <Link className='link' to='/editmenu'>
                         UPDATE
                       </Link>
                     </button>
@@ -121,7 +121,8 @@ function Menus(props) {
 
 Menus.propTypes = {
   menus: PropTypes.object,
-  onMenuSelection: PropTypes.string
+  onMenuSelection: PropTypes.string,
+  dispatch: PropTypes.func
 };
 
 export default connect()(Menus);

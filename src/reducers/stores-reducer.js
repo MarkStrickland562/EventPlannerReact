@@ -1,6 +1,7 @@
-import c from './../constants';
+import constants from './../constants';
+const { c } = constants;
 
-export default (state = StoreData, action) => {
+export default (state = {}, action) => {
   let newState;
   const { id, storeName } = action;
 
@@ -14,11 +15,7 @@ export default (state = StoreData, action) => {
     return newState;
   }
   case c.EDIT_STORE: {
-    const newStore = Object.assign(
-      {},
-      state[id],
-      { storeName }
-    );
+    const newStore = Object.assign({}, state[id], { storeName });
     newState = Object.assign({}, state, {
       [id]: newStore
     });
@@ -26,29 +23,21 @@ export default (state = StoreData, action) => {
   }
   case c.DELETE_STORE: {
     newState = Object.assign({}, state);
-    delete newState[action.id];
+    delete newState[action.store.id];
+    return newState;
+  }
+  case c.RECEIVE_STORE: {
+    newState = Object.assign({}, state);
+    newState[action.store.id] = action.store;
+    return newState;
+  }
+  case c.RECEIVE_DELETED_STORE: {
+    newState = Object.assign({}, state);
+    delete newState[action.storeId];
     return newState;
   }
   default: {
     return state;
   }
-  }
-};
-
-const StoreData = {
-  0: {
-    'storeName': 'Costco'
-  },
-  1: {
-    'storeName': 'Cash & Carry'
-  },
-  2: {
-    'storeName': 'Grocery Outlet'
-  },
-  3: {
-    'storeName': 'QFC'
-  },
-  4: {
-    'storeName': 'Trader Joe\'s'
   }
 };

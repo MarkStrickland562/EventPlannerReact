@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import SideNav from './SideNav';
 import Header from './Header';
 import { connect } from 'react-redux';
-import c from './../constants';
+import { deleteMenu } from './../actions';
 
 function DeleteMenuForm(props) {
   let _id = props.selectedMenu;
@@ -12,13 +12,8 @@ function DeleteMenuForm(props) {
   var handleDeleteMenuFormSubmission = event => {
     const { dispatch } = props;
     event.preventDefault();
-    const action = {
-      type: c.DELETE_MENU,
-      id: _id
-    };
-
     if (_confirm.value === 'true') {
-      dispatch(action);
+      dispatch(deleteMenu(_id));
     }
     props.onFormSubmit('menus');
   };
@@ -56,8 +51,8 @@ function DeleteMenuForm(props) {
       <div>
         <Header />
         <SideNav />
-        <div className="page-content">
-          <h1 className="pageTitle">DELETE MENU</h1>
+        <div className='page-content'>
+          <h1 className='pageTitle'>DELETE MENU</h1>
           <div>
             <form
               style={{
@@ -74,12 +69,12 @@ function DeleteMenuForm(props) {
                   _confirm = input;
                 }}
               >
-                <option value="undefined" disabled />
-                <option value="false">No</option>
-                <option value="true">Yes</option>
+                <option value='undefined' disabled />
+                <option value='false'>No</option>
+                <option value='true'>Yes</option>
               </select>
               &nbsp;
-              <button type="submit" className="button-main">
+              <button type='submit' className='button-main'>
                 CONFIRM
               </button>
             </form>
@@ -92,7 +87,8 @@ function DeleteMenuForm(props) {
 
 DeleteMenuForm.propTypes = {
   selectedMenu: PropTypes.string,
-  onFormSubmit: PropTypes.func
+  onFormSubmit: PropTypes.func,
+  dispatch: PropTypes.func
 };
 
 const mapStateToProps = state => {

@@ -2,13 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { HashRouter } from 'react-router-dom';
 import App from './components/App';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import rootReducer from './reducers/index';
+import thunkMiddleware from 'redux-thunk';
 
-const store = createStore(rootReducer);
-
-//let unsubscribe = store.subscribe(() => console.log(store.getState()));
+const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
 const render = Component => {
   ReactDOM.render(
@@ -25,7 +24,7 @@ render(App);
 
 /*eslint-disable */
 if (module.hot) {
-  module.hot.accept("./components/App", () => {
+  module.hot.accept('./components/App', () => {
     render(App);
   });
 }

@@ -3,8 +3,7 @@ import SideNav from './SideNav';
 import Header from './Header';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { v4 } from 'uuid';
-import c from './../constants';
+import { addEvent } from './../actions';
 
 function AddEventForm(props) {
   let _eventName = null;
@@ -15,15 +14,14 @@ function AddEventForm(props) {
   function handleNewEventFormSubmission(event) {
     const { dispatch } = props;
     event.preventDefault();
-    const action = {
-      type: c.ADD_EVENT,
-      id: v4(),
-      eventName: _eventName.value,
-      eventDate: _eventDate.value,
-      eventLocation: _eventLocation.value,
-      menusId: _menusId.value
-    };
-    dispatch(action);
+    dispatch(
+      addEvent(
+        _eventName.value,
+        _eventDate.value,
+        _eventLocation.value,
+        _menusId.value
+      )
+    );
     _eventName = '';
     _eventDate = '';
     _eventLocation = '';
@@ -79,8 +77,8 @@ function AddEventForm(props) {
       <div>
         <Header />
         <SideNav />
-        <div className="page-content">
-          <h1 className="pageTitle">ADD EVENT</h1>
+        <div className='page-content'>
+          <h1 className='pageTitle'>ADD EVENT</h1>
           <div>
             <form
               style={{
@@ -93,8 +91,8 @@ function AddEventForm(props) {
             >
               <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Event Name: </label>
               <input
-                type="text"
-                id="eventName"
+                type='text'
+                id='eventName'
                 ref={input => {
                   _eventName = input;
                 }}
@@ -104,8 +102,8 @@ function AddEventForm(props) {
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Event Date:{' '}
               </label>
               <input
-                type="date"
-                id="eventDate"
+                type='date'
+                id='eventDate'
                 ref={input => {
                   _eventDate = input;
                 }}
@@ -113,8 +111,8 @@ function AddEventForm(props) {
               <br />
               <label>Event Location: </label>
               <input
-                type="text"
-                id="eventLocation"
+                type='text'
+                id='eventLocation'
                 ref={input => {
                   _eventLocation = input;
                 }}
@@ -128,7 +126,7 @@ function AddEventForm(props) {
                   _menusId = input;
                 }}
               >
-                {Object.keys(props.menus).map(function (menuId) {
+                {Object.keys(props.menus).map(function(menuId) {
                   var menu = props.menus[menuId];
                   return (
                     <option key={menuId} value={menuId}>
@@ -139,7 +137,7 @@ function AddEventForm(props) {
               </select>
               <br />
               <br />
-              <button type="submit" className="button-main">
+              <button type='submit' className='button-main'>
                 ADD EVENT
               </button>
             </form>
@@ -152,7 +150,8 @@ function AddEventForm(props) {
 
 AddEventForm.propTypes = {
   menus: PropTypes.object,
-  onFormSubmit: PropTypes.func
+  onFormSubmit: PropTypes.func,
+  dispatch: PropTypes.func
 };
 
 const mapStateToProps = state => {

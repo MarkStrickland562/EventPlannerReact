@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import SideNav from './SideNav';
 import Header from './Header';
 import { connect } from 'react-redux';
-import c from './../constants';
+import { editDish } from './../actions';
 
 function EditDishForm(props) {
   let _id = props.selectedDish;
@@ -13,12 +13,7 @@ function EditDishForm(props) {
   function handleEditDishFormSubmission(event) {
     const { dispatch } = props;
     event.preventDefault();
-    const action = {
-      type: c.EDIT_EVENT,
-      id: _id,
-      menuItemDescription: _menuItemDescription.value
-    };
-    dispatch(action);
+    dispatch(editDish(_id, _menuItemDescription.value));
     props.onFormSubmit('dishes');
   }
 
@@ -69,8 +64,8 @@ function EditDishForm(props) {
       <div>
         <Header />
         <SideNav />
-        <div className="page-content">
-          <h1 className="pageTitle">UPDATE DISH</h1>
+        <div className='page-content'>
+          <h1 className='pageTitle'>UPDATE DISH</h1>
           <div>
             <form
               style={{
@@ -83,8 +78,8 @@ function EditDishForm(props) {
             >
               <label>Dish Description:&nbsp;&nbsp;</label>
               <input
-                type="text"
-                id="menuItemDescription"
+                type='text'
+                id='menuItemDescription'
                 defaultValue={_menuItemDescription}
                 ref={input => {
                   _menuItemDescription = input;
@@ -92,7 +87,7 @@ function EditDishForm(props) {
               />
               <br />
               <br />
-              <button type="submit" className="button-main">
+              <button type='submit' className='button-main'>
                 UPDATE DISH
               </button>
             </form>
@@ -106,7 +101,8 @@ function EditDishForm(props) {
 EditDishForm.propTypes = {
   dishes: PropTypes.object,
   selectedDish: PropTypes.string,
-  onFormSubmit: PropTypes.func
+  onFormSubmit: PropTypes.func,
+  dispatch: PropTypes.func
 };
 
 const mapStateToProps = state => {

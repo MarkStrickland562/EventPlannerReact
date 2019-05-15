@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import SideNav from './SideNav';
 import Header from './Header';
 import { connect } from 'react-redux';
-import c from './../constants';
+import { editTask } from './../actions';
 
 function EditTaskForm(props) {
   let _id = props.selectedTask;
@@ -14,13 +14,9 @@ function EditTaskForm(props) {
   function handleEditTaskFormSubmission(event) {
     const { dispatch } = props;
     event.preventDefault();
-    const action = {
-      type: c.EDIT_TASK,
-      id: _id,
-      taskDescription: _taskDescription.value,
-      taskPlannedStartDateTime: _taskPlannedStartDateTime.value
-    };
-    dispatch(action);
+    dispatch(
+      editTask(_id, _taskDescription.value, _taskPlannedStartDateTime.value)
+    );
     props.onFormSubmit('tasks');
   }
 
@@ -72,8 +68,8 @@ function EditTaskForm(props) {
       <div>
         <Header />
         <SideNav />
-        <div className="page-content">
-          <h1 className="pageTitle">UPDATE TASK</h1>
+        <div className='page-content'>
+          <h1 className='pageTitle'>UPDATE TASK</h1>
           <div>
             <form
               style={{
@@ -88,8 +84,8 @@ function EditTaskForm(props) {
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Task Name:&nbsp;&nbsp;
               </label>
               <input
-                type="text"
-                id="taskDescription"
+                type='text'
+                id='taskDescription'
                 defaultValue={_taskDescription}
                 ref={input => {
                   _taskDescription = input;
@@ -101,8 +97,8 @@ function EditTaskForm(props) {
                 Date:&nbsp;&nbsp;
               </label>
               <input
-                type="datetime-local"
-                id="taskPlannedStartDateTime"
+                type='datetime-local'
+                id='taskPlannedStartDateTime'
                 defaultValue={_taskPlannedStartDateTime}
                 ref={input => {
                   _taskPlannedStartDateTime = input;
@@ -110,7 +106,7 @@ function EditTaskForm(props) {
               />
               <br />
               <br />
-              <button type="submit" className="button-main">
+              <button type='submit' className='button-main'>
                 UPDATE TASK
               </button>
             </form>
@@ -124,7 +120,8 @@ function EditTaskForm(props) {
 EditTaskForm.propTypes = {
   tasks: PropTypes.object,
   selectedTask: PropTypes.string,
-  onFormSubmit: PropTypes.func
+  onFormSubmit: PropTypes.func,
+  dispatch: PropTypes.func
 };
 
 const mapStateToProps = state => {
